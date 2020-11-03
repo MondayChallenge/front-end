@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import Navigation from './components/Navigation';
+import List from './components/List'
 import mondaySdk from "monday-sdk-js";
 const monday = mondaySdk();
 
@@ -19,7 +21,15 @@ class App extends React.Component {
   }
 
   render() {
-    return <div className="App">Hello, mondaewfafey Apps!</div>;
+    return (
+      <div class="dashboard-projects border-class-1">
+        <div class="dashboard font-class-2 border-class-1">Dashboard</div>
+        <div class="rectangle-176"></div>
+        <div class="new-project valign-text-middle font-class-1 border-class-1">New Project</div>
+        <Navigation />       
+        <List />       
+      </div>
+    );
   }
 }
 
