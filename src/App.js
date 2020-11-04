@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Router, Switch, Redirect } from 'react-router-dom
 
 import ScrollToTop from './ScrollToTop';
 import Admin from 'layouts/Admin';
-import Messages from "components/Messages/Messages";
-import Projects from "components/Projects/Projects";
+import Messages from "./components/Messages";
+import Projects from "./components/Projects";
 
 const App = ()=> {
 
