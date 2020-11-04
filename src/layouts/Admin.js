@@ -45,12 +45,9 @@ class Admin extends React.Component {
   render() {
     console.log(this.state.settings);
     return (
-      <div className="dashboard-projects border-class-1">
-       
+      <div className="dashboard-projects border-class-1">       
         <Navigation />
-        {/* <List />        */}
-        {/* <Messages/> */}
-        <Projects/>
+        <List />       
         {/* {JSON.stringify(this.state.boardData, null, 2)} */}
       </div>
     );

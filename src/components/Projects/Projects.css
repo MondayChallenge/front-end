@@ -2,10 +2,24 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url('https://fonts.googleapis.com/css?family=Roboto:700,400');
 @import url('https://fonts.googleapis.com/css?family=Roboto:700,400');
+
 * {
   box-sizing: border-box;
 }
-.border-class-1 {
+
+.project-form .new-project {
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  height: 33px;
+  left: 1259px;
+  position: absolute;
+  text-align: left;
+  top: 205px;
+  width: 78px;
+}
+
+input.border-class-1 {
   border: 1px solid var(--ghost);
 }
 .border-class-2 {

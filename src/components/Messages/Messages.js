@@ -1,8 +1,10 @@
 import React from "react";
-
+import Navigation from '../Navigation/Navigation';
+import '../../App'
 const Messages = () => {
   return (
     <div class="new-messages border-class-1">
+      <Navigation />
       <div class="rectangle-182 border-class-3"></div>
       <div class="search valign-text-middle font-class-1 border-class-1">
         Search

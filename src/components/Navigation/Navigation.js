@@ -1,37 +1,39 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import './Navigation'
 
 const Navigation = (props) => {
   return (
     <div id="navBar">
       <div className="dashboard font-class-2 border-class-1">Dashboard</div>
       <div className="rectangle-176"></div>
-      <div className="new-project valign-text-middle font-class-1 border-class-1">
+      <Link to="/newProject"  className="new-project valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         New Project
-      </div>
-      <div className="projects valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="projects valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Projects
-      </div>
-      <div className="messages valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/messages" className="messages valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Messages
-      </div>
-      <div className="proposals valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="proposals valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Proposals
-      </div>
-      <div className="documents valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="documents valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Documents
-      </div>
-      <div className="reports valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="reports valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Reports
-      </div>
-      <div className="directory valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="directory valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Directory
-      </div>
-      <div className="calendar valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="calendar valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Calendar
-      </div>
-      <div className="admin valign-text-middle font-class-1 border-class-1">
+      </Link>
+      <Link to="/" className="admin valign-text-middle font-class-1 border-class-1" style={{ textDecoration: 'none' }}>
         Admin
-      </div>
+      </Link>
       <img
         className="line-1"
         src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b2a05d6f58133fc1a5b9/img/line-1@1x.png"

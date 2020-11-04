@@ -15,7 +15,7 @@ const App = ()=> {
         <ScrollToTop />       
           <Route path="/" exact component={Admin} />
           <Route path="/messages" exact component={Messages} />
-          <Route path="/projects" exact component={Projects} />
+          <Route path="/newProject" exact component={Projects} />
       </BrowserRouter>
     );
   }

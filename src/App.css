@@ -817,6 +817,10 @@
   width: auto;
 }
 
+.border-class-1 {
+  border: 1px solid transparent;
+}
+
 .font-class-1 {
   font-family: 'Roboto', Helvetica, Arial, serif;
   font-style: normal;
