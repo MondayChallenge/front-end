@@ -1,9 +1,13 @@
 import React from "react";
-import "../App";
 
 const Navigation = (props) => {
   return (
     <div id="navBar">
+      <div className="dashboard font-class-2 border-class-1">Dashboard</div>
+      <div className="rectangle-176"></div>
+      <div className="new-project valign-text-middle font-class-1 border-class-1">
+        New Project
+      </div>
       <div className="projects valign-text-middle font-class-1 border-class-1">
         Projects
       </div>

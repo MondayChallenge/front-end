@@ -7,9 +7,9 @@
 .dashboard-projects {
   margin: 0;
   padding: 0;
-  height: 900px;
+  height: 100vh;
   position: relative;
-  width: 1440px;
+  width: 100vw;
   background-color: white;
   /* background-image: url(https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b7f80aa76a11ee1c03eb/img/image-28@1x.jpg); */
   /* background-size: 100% 100%; */

@@ -1,55 +1,28 @@
 import React from "react";
-import "./App.css";
-import Navigation from './components/Navigation';
-import List from './components/List'
-import mondaySdk from "monday-sdk-js";
-const monday = mondaySdk();
+import { BrowserRouter, Route, Router, Switch, Redirect } from 'react-router-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
 
-    // Default state
-    this.state = {
-      settings: {},
-      name: "",
-      boardData: null,
-      context: null
-    };
-  }
+import ScrollToTop from './ScrollToTop';
+import Admin from 'layouts/Admin';
+import Messages from "components/Messages/Messages";
+import Projects from "components/Projects/Projects";
 
-  componentDidMount() {
-    // TODO: set up event listeners
+const App = ()=> {
 
-    monday.listen("context", res => {
-      this.setState({context: res.data});
-      console.log(res.data);
-      monday.api(`query ($boardIds: [Int]) { boards (ids:$boardIds) { name items(limit:1) { name column_values { title text } } } }`,
-        { variables: {boardIds: this.state.context.boardIds} }
-      )
-      .then(res => {
-        this.setState({boardData: res.data});
-      });
-    })
-  }
-
- 
- 
-
-  render() {
-    console.log(this.state.settings);
+  
     return (
-      <div className="dashboard-projects border-class-1">
-        <div className="dashboard font-class-2 border-class-1" >Dashboard</div>
-        <div className="rectangle-176"></div>
-        <div className="new-project valign-text-middle font-class-1 border-class-1">New Project</div>
+      <BrowserRouter >
+        <ScrollToTop />
+        
+        
+          <Route path="/" exact component={Admin} />
+          <Route path="/messages" exact component={Messages} />
+          <Route path="/projects" exact component={Projects} />
 
-        <Navigation />       
-        <List />       
-          {JSON.stringify(this.state.boardData, null, 2)} 
-      </div>
+      </BrowserRouter>
     );
   }
-}
 
 export default App;
+
+{/* {JSON.stringify(this.state.boardData, null, 2)}  */}

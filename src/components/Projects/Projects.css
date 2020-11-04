@@ -1,0 +1,1055 @@
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url('https://fonts.googleapis.com/css?family=Roboto:700,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:700,400');
+* {
+  box-sizing: border-box;
+}
+.border-class-1 {
+  border: 1px solid var(--ghost);
+}
+.border-class-2 {
+  border: 1px solid transparent;
+}
+.border-class-3 {
+  border: 1px solid var(--mine-shaft);
+}
+.font-class-1 {
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.font-class-2 {
+  color: var(--mine-shaft);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+.font-class-3 {
+  color: transparent;
+  font-family: "Roboto", Helvetica, Arial, serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+.project-form {
+  background-color: white;
+  
+  position: relative;
+
+}
+.project-form .address {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .admin {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 1274px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .allow-range {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 16px;
+  height: 24px;
+  left: 947px;
+  position: absolute;
+  text-align: left;
+  top: 685px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .architect {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1076px;
+  position: absolute;
+  text-align: left;
+  top: 1769px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .calendar {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 1143px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .city {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1064px;
+  position: absolute;
+  text-align: left;
+  top: 1162px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .company-name {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 467px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .country {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1162px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .dashboard {
+  background-color: transparent;
+  height: auto;
+  left: 381px;
+  position: absolute;
+  text-align: left;
+  top: 210px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .directory {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 1021px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .documents {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 768px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .drag-your---or-browse-C61RwL {
+  background-color: transparent;
+  height: 24px;
+  left: 536px;
+  position: absolute;
+  text-align: left;
+  top: 1544px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .drag-your---or-browse-VMr6Om {
+  background-color: transparent;
+  height: 24px;
+  left: 1018px;
+  position: absolute;
+  text-align: left;
+  top: 1544px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .email {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 1881px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .end-date {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 579px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .image-102 {
+  background-color: transparent;
+  height: 16px;
+  left: 664px;
+  position: absolute;
+  top: 627px;
+  width: 16px;
+}
+.project-form .image-103 {
+  background-color: transparent;
+  height: 16px;
+  left: 998px;
+  position: absolute;
+  top: 627px;
+  width: 16px;
+}
+.project-form .image-28 {
+  background-color: transparent;
+  height: 900px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 1440px;
+}
+.project-form .image-55 {
+  background-color: transparent;
+  height: 86px;
+  left: 692px;
+  position: absolute;
+  top: 3px;
+  width: 745px;
+}
+.project-form .included-items {
+  background-color: transparent;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1390px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .internal-office {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1769px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .line-1 {
+  background-color: transparent;
+  height: 2px;
+  left: 382px;
+  position: absolute;
+  top: 307px;
+  width: 976px;
+}
+.project-form .line-2 {
+  background-color: transparent;
+  height: 2px;
+  left: 382px;
+  position: absolute;
+  top: 307px;
+  width: 122px;
+}
+.project-form .messages {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 528px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-form {
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  height: 33px;
+ 
+  position: absolute;
+  text-align: left;
+  top: 205px;
+  width: 78px;
+}
+.project-form .owner {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 1769px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .phone-number {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1076px;
+  position: absolute;
+  text-align: left;
+  top: 1881px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-amount {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 685px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-description {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 796px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-information {
+  background-color: transparent;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 348px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-location {
+  background-color: transparent;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1043px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-manager {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1881px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-name {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 467px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-number {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1064px;
+  position: absolute;
+  text-align: left;
+  top: 467px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-team {
+  background-color: transparent;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1650px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .project-type {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 685px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .projects {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .proposals {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 651px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .rectangle-175-C61RwL {
+  background-color: white;
+  height: 53px;
+  left: 761px;
+  position: absolute;
+  top: 29px;
+  width: 103px;
+}
+.project-form .rectangle-175-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 175px;
+  left: 414px;
+  position: absolute;
+  top: 828px;
+  width: 944px;
+}
+.project-form .rectangle-176-C61RwL {
+  background-color: var(--azure-radiance);
+  border-radius: 100px;
+  height: 32px;
+  left: 1236px;
+  position: absolute;
+  top: 205px;
+  width: 121px;
+}
+.project-form .rectangle-176-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 503px;
+  width: 282px;
+}
+.project-form .rectangle-176-mzXdH9 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 1805px;
+  width: 282px;
+}
+.project-form .rectangle-179 {
+  background-color: var(--azure-radiance);
+  border-radius: 6px;
+  height: 40px;
+  left: 1198px;
+  position: absolute;
+  top: 2024px;
+  width: 160px;
+}
+.project-form .rectangle-18-C61RwL {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 503px;
+  width: 282px;
+}
+.project-form .rectangle-18-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 503px;
+  width: 282px;
+}
+.project-form .rectangle-18-mzXdH9 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 1805px;
+  width: 282px;
+}
+.project-form .rectangle-180-C61RwL {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 615px;
+  width: 282px;
+}
+.project-form .rectangle-180-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 1917px;
+  width: 282px;
+}
+.project-form .rectangle-181-C61RwL {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 615px;
+  width: 282px;
+}
+.project-form .rectangle-181-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 1917px;
+  width: 282px;
+}
+.project-form .rectangle-182-C61RwL {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 615px;
+  width: 282px;
+}
+.project-form .rectangle-182-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 1917px;
+  width: 282px;
+}
+.project-form .rectangle-183-C61RwL {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 1198px;
+  width: 282px;
+}
+.project-form .rectangle-183-VMr6Om {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 1805px;
+  width: 282px;
+}
+.project-form .rectangle-184 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 1198px;
+  width: 282px;
+}
+.project-form .rectangle-185 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 1198px;
+  width: 282px;
+}
+.project-form .rectangle-186 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 1310px;
+  width: 607px;
+}
+.project-form .rectangle-188 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 1310px;
+  width: 282px;
+}
+.project-form .rectangle-189 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 414px;
+  position: absolute;
+  top: 721px;
+  width: 282px;
+}
+.project-form .rectangle-190 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 747px;
+  position: absolute;
+  top: 721px;
+  width: 282px;
+}
+.project-form .rectangle-191 {
+  background-color: white;
+  border-radius: 4px;
+  height: 40px;
+  left: 1076px;
+  position: absolute;
+  top: 721px;
+  width: 282px;
+}
+.project-form .rectangle-192 {
+  background-color: white;
+  border-radius: 4px;
+  height: 96px;
+  left: 414px;
+  position: absolute;
+  top: 1517px;
+  width: 450px;
+}
+.project-form .rectangle-193 {
+  background-color: white;
+  border-radius: 4px;
+  height: 96px;
+  left: 908px;
+  position: absolute;
+  top: 1517px;
+  width: 450px;
+}
+.project-form .rectangle-73 {
+  background-color: white;
+  height: 32px;
+  left: 344px;
+  position: absolute;
+  top: 127px;
+  width: 134px;
+}
+.project-form .rectangle-75 {
+  background-color: white;
+  height: 726px;
+  left: 345px;
+  position: absolute;
+  top: 174px;
+  width: 1095px;
+}
+.project-form .reports {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: 24px;
+  left: 903px;
+  position: absolute;
+  text-align: left;
+  top: 274px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .rewards {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 14px;
+  height: 24px;
+  left: 381px;
+  position: absolute;
+  text-align: left;
+  top: 124px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .select-2P4qUJ {
+  background-color: transparent;
+  border-radius: 2px;
+  height: 12px;
+  left: 926px;
+  position: absolute;
+  top: 691px;
+  width: 12px;
+}
+.project-form .select-C61RwL {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 433px;
+  position: absolute;
+  text-align: left;
+  top: 1206px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .select-QxM5SU {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 1082px;
+  position: absolute;
+  text-align: left;
+  top: 623px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .select-VMr6Om {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 765px;
+  position: absolute;
+  text-align: left;
+  top: 1206px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .select-mzXdH9 {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 433px;
+  position: absolute;
+  text-align: left;
+  top: 512px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .select-qr8e7q {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 436px;
+  position: absolute;
+  text-align: left;
+  top: 1814px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .span1-9jb2op {
+  color: rgba(50,51,56,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 24px;
+}
+.project-form .span1-QATFf4 {
+  color: rgba(50,51,56,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 24px;
+}
+.project-form .span2-9jb2op {
+  color: rgba(0,154,255,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 24px;
+}
+.project-form .span2-QATFf4 {
+  color: rgba(0,154,255,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 24px;
+}
+.project-form .start-date {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 579px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .state-province {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 747px;
+  position: absolute;
+  text-align: left;
+  top: 1162px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .submit {
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  height: 36px;
+  left: 1199px;
+  position: absolute;
+  text-align: center;
+  top: 2026px;
+  width: 161px;
+}
+.project-form .supports-j-if-pdf-png-C61RwL {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 14px;
+  height: 24px;
+  left: 549px;
+  position: absolute;
+  text-align: left;
+  top: 1568px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .supports-j-if-pdf-png-VMr6Om {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 14px;
+  height: 24px;
+  left: 1031px;
+  position: absolute;
+  text-align: left;
+  top: 1568px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .the-inform-onday-bids-C61RwL {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 390px;
+  width: 909px;
+}
+.project-form .the-inform-onday-bids-QxM5SU {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1692px;
+  width: 909px;
+}
+.project-form .the-inform-onday-bids-VMr6Om {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1085px;
+  width: 909px;
+}
+.project-form .the-inform-onday-bids-mzXdH9 {
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 16px;
+  height: auto;
+  left: 414px;
+  position: absolute;
+  text-align: left;
+  top: 1432px;
+  width: 909px;
+}
+.project-form .timezone {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1064px;
+  position: absolute;
+  text-align: left;
+  top: 579px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .to {
+  background-color: transparent;
+  color: var(--mist-gray);
+  font-size: 16px;
+  height: 24px;
+  left: 1045px;
+  position: absolute;
+  text-align: left;
+  top: 729px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .vector-4 {
+  background-color: transparent;
+  height: 6px;
+  left: 448px;
+  position: absolute;
+  top: 136px;
+  width: 10px;
+}
+.project-form .vector-6 {
+  background-color: transparent;
+  height: 6px;
+  left: 668px;
+  position: absolute;
+  top: 1216px;
+  width: 10px;
+}
+.project-form .vector-7 {
+  background-color: transparent;
+  height: 6px;
+  left: 992px;
+  position: absolute;
+  top: 1216px;
+  width: 10px;
+}
+.project-form .vector-8-C61RwL {
+  background-color: transparent;
+  height: 6px;
+  left: 668px;
+  position: absolute;
+  top: 522px;
+  width: 10px;
+}
+.project-form .vector-8-VMr6Om {
+  background-color: transparent;
+  height: 6px;
+  left: 672px;
+  position: absolute;
+  top: 1824px;
+  width: 10px;
+}
+.project-form .vector-9 {
+  background-color: transparent;
+  height: 6px;
+  left: 1318px;
+  position: absolute;
+  top: 632px;
+  width: 10px;
+}
+.project-form .x-C61RwL {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 765px;
+  position: absolute;
+  text-align: left;
+  top: 730px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .x-VMr6Om {
+  background-color: transparent;
+  color: var(--ghost);
+  font-size: 16px;
+  height: 24px;
+  left: 1082px;
+  position: absolute;
+  text-align: left;
+  top: 730px;
+  white-space: nowrap;
+  width: auto;
+}
+.project-form .zip-postal-code {
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  height: 24px;
+  left: 1064px;
+  position: absolute;
+  text-align: left;
+  top: 1274px;
+  white-space: nowrap;
+  width: auto;
+}
+:root {
+  --azure-radiance: rgba(0,154,255,1.0);
+  --dolphin: rgba(103,104,121,1.0);
+  --ghost: rgba(197,199,208,1.0);
+  --mine-shaft: rgba(50,51,56,1.0);
+  --mist-gray: rgba(196,196,196,1.0);
+}
