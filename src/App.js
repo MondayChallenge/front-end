@@ -3,22 +3,19 @@ import { BrowserRouter, Route, Router, Switch, Redirect } from 'react-router-dom
 
 
 import ScrollToTop from './ScrollToTop';
-import Admin from 'layouts/Admin';
-import Messages from "./components/Messages";
-import Projects from "./components/Projects";
+import Admin from './layouts/Admin';
+import Messages from "./components/Messages/Messages";
+import Projects from "./components/Projects/Projects";
 
 const App = ()=> {
 
   
     return (
       <BrowserRouter >
-        <ScrollToTop />
-        
-        
+        <ScrollToTop />       
           <Route path="/" exact component={Admin} />
           <Route path="/messages" exact component={Messages} />
           <Route path="/projects" exact component={Projects} />
-
       </BrowserRouter>
     );
   }
