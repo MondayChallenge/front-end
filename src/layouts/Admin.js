@@ -1,13 +1,13 @@
 import React from "react";
-import "App.css";
+import "../App.css";
 
-import Navigation from "components/Navigation/Navigation.js";
-import List from "components/List/List.js";
-import Messages from "components/Messages/Messages.js";
-import "components/Messages/Messages.css";
+import Navigation from "../components/Navigation/Navigation";
+import List from "../components/List/List";
+import Messages from "../components/Messages/Messages";
+import "../components/Messages/Messages.css";
 
-import Projects from "components/Projects/Projects";
-import "components/Projects/Projects.css";
+import Projects from "../components/Projects/Projects";
+import "../components/Projects/Projects.css";
 
 import mondaySdk from "monday-sdk-js";
 const monday = mondaySdk();
@@ -45,13 +45,16 @@ class Admin extends React.Component {
   render() {
     console.log(this.state.settings);
     return (
-      <div className="dashboard-projects border-class-1">
-       
+      <div className="dashboard-projects">       
         <Navigation />
         <List />       
+<<<<<<< HEAD
         {/* <Messages/> */}
         {/* <Projects/> */}
         {JSON.stringify(this.state.boardData, null, 2)}
+=======
+        {/* {JSON.stringify(this.state.boardData, null, 2)} */}
+>>>>>>> 80eae42f1fbfbf07e49edf19251f6a88ecf3bd57
       </div>
     );
   }
