@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+
 
 import Navigation from "../components/Navigation/Navigation";
 import List from "../components/List/List";
@@ -57,7 +57,3 @@ class Admin extends React.Component {
 }
 
 export default Admin;
-
-{
-  /* {JSON.stringify(this.state.boardData, null, 2)}  */
-}
