@@ -38,7 +38,7 @@ class Admin extends React.Component {
   }
 
   render() {
-    console.log(this.state.settings);
+    // console.log(this.state.settings);
     return (
       <div className="dashboard-projects">       
         <Navigation />
