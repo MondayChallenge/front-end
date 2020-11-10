@@ -298,7 +298,7 @@ input.border-class-1 {
   top: 307px;
   width: 122px;
 }
-.project-form .messages {
+.project-form .new-messages{
   background-color: transparent;
   color: var(--dolphin);
   font-size: 16px;
