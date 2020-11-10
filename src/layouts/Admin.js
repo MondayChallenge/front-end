@@ -3,11 +3,6 @@ import React from "react";
 
 import Navigation from "../components/Navigation/Navigation";
 import List from "../components/List/List";
-import Messages from "../components/Messages/Messages";
-import "../components/Messages/Messages.css";
-
-import Projects from "../components/Projects/Projects";
-import "../components/Projects/Projects.css";
 
 import mondaySdk from "monday-sdk-js";
 const monday = mondaySdk();
@@ -48,8 +43,6 @@ class Admin extends React.Component {
       <div className="dashboard-projects">       
         <Navigation />
         <List />       
-        {/* <Messages/> */}
-        {/* <Projects/> */}
         {JSON.stringify(this.state.boardData, null, 2)}
       </div>
     );
