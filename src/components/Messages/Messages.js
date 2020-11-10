@@ -1,123 +1,180 @@
 import React from "react";
 import Navigation from '../Navigation/Navigation';
-import '../../App'
+import './Messages.css';
+import { ReactSVG } from 'react-svg'
+
 const Messages = () => {
   return (
-    <div class="new-messages border-class-1">
+    <div class="new-messages">
       <Navigation />
-      <div class="rectangle-182 border-class-3"></div>
-      <div class="search  font-class-1 border-class-1">
-        Search
-      </div>
-      <p class="june-15-20-at-1214-pm  font-class-1 border-class-1">
-        June 15, 2020 at 12:14 PM
-      </p>
-      <div class="today-C61RwL  font-class-1 border-class-1">
-        Today
-      </div>
-      <img class="image-17" src="" />
-      <div class="kristen-smith-C61RwL  font-class-1 border-class-1">
-        Kristen Smith
-      </div>
-      <div class="kristen-smith-VMr6Om  font-class-1 border-class-1">
-        Kristen Smith
-      </div>
-      <p class="lorem-ipsu-e-lobortis-C61RwL font-class-1 border-class-1">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
-        purus metus, in lacinia sapien scelerisque lobortis.
-      </p>
-      <p class="quotation--stallation-C61RwL  font-class-2 border-class-1">
-        Quotation for Air Duct Installation
-      </p>
-      <div class="today-VMr6Om  font-class-1 border-class-1">
-        Today
-      </div>
-      <div class="david-felber  font-class-1 border-class-1">
-        David Felber
-      </div>
-      <div class="x2  font-class-1 border-class-1">2</div>
-      <p class="lorem-ipsu-e-lobortis-VMr6Om font-class-1 border-class-1">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
-        purus metus, in lacinia sapien scelerisque lobortis.
-      </p>
-      <p class="quotation--stallation-VMr6Om  font-class-2 border-class-1">
-        Quotation for Air Duct Installation
-      </p>
-      <div class="quotation--stallation-mzXdH9  font-class-2 border-class-1">
-        Quotation for Air Duct Installation
-      </div>
-      <p class="hi-david-l-ks-kristen font-class-1 border-class-1">
-        Hi David,
-        <br />
-        <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
-        purus metus in lacinia sapien scelerisque sed. Etiam volutpat massa
-        metus, et tempor nulla ultrices ut. Fusce et venenatis duis porttitor
-        magna erat. <br />
-        <br />
-        Sed aliquam accumsan velit at pharetra. Sed et est vel magna accumsan
-        posuere. Proin efficitur metus nec ullamcorper auctor. Donec quis
-        tincidunt maecenas lobortis ultrices nibh, vel porta nibh varius ut.
-        <br />
-        <br />
-        Thanks,
-        <br />
-        <br />
-        Kristen
-      </p>
-      <div class="sort-newest-first  font-class-4 border-class-1">
-        <span>
-          <span class="span1-eaQyBP">Sort: </span>
-          <span class="span2-eaQyBP">Newest First</span>
-        </span>
-      </div>
-      <img class="image-64" src="" />
-      <img class="image-66" src="" />
-      <img class="image-67" src="" />
-      <img class="image-68" src="" />
-      <img class="image-69" src="" />
-      <div class="x2-attachments font-class-1 border-class-1">
-        2 Attachments
-      </div>
-      <div class="rectangle-174 border-class-4"></div>
-      <img class="image-70" src="" />
-      <img class="ellipse-1-C61RwL" src="" />
-      <div class="ks-C61RwL  font-class-3 border-class-1">
-        KS
-      </div>
-      <img class="ellipse-1-VMr6Om" src="" />
-      <div class="ks-VMr6Om  font-class-3 border-class-1">
-        KS
-      </div>
-      <img class="line-8" src="" />
-      <div class="today-mzXdH9  font-class-1 border-class-1">
-        Today
-      </div>
-      <div class="wesley-thomas  font-class-1 border-class-1">
-        Wesley Thomas
-      </div>
-      <p class="lorem-ipsu-e-lobortis-mzXdH9 font-class-1 border-class-1">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
-        purus metus, in lacinia sapien scelerisque lobortis.
-      </p>
-      <p class="quotation--stallation-QxM5SU  font-class-2 border-class-1">
-        Quotation for Air Duct Installation
-      </p>
-      <img class="ellipse-1-mzXdH9" src="" />
-      <div class="wt  font-class-3 border-class-1">WT</div>
-      <div class="select-C61RwL border-class-2"></div>
-      <img class="sort" src="" />
-      <img class="star-C61RwL" src="" />
-      <div class="select-VMr6Om border-class-2"></div>
-      <img class="star-VMr6Om" src="" />
-      <div class="select-mzXdH9 border-class-2"></div>
-      <img class="star-mzXdH9" src="" />
-      <img class="unread" src="" />
-      <img class="vector-5" src="" />
-      <img class="image-99" src="" />
-      <img class="image-100" src="" />
-      <img class="image-101" src="" />
-    </div>
+      <div id='messagesArea'>
+        <div id='messagesBox'>
+          <div id='inboxToolBar'>
+            <div className="search-box border-class-3">
+              <ReactSVG className="image-99" src="/public/search.svg"/> 
+              <span class="search  font-class-1 border-class-1">Search</span>
+            </div>
+            <div class="sort-box valign-text-middle font-class-4 border-class-1">
+              <div class="sort font-class-1">Sort: 
+                <select class="sort-menu font-class-1">
+                  <option value="Newest" selected="selected">Newest First</option>
+                  <option value="Oldest" >Oldest First</option>
+                </select>
+                <img src="/public/sort.svg" alt=''/>
+              </div>
+            </div>
+            <div className="icons">              
+                <img class="compose icon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-100@2x.png"
+              />
+              <img
+                class="edit icon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-64@2x.png"
+              />
+              <img class="delete icon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-66@2x.png"
+              />
+            </div>
+             
+          </div>
+          <div id='messagesList'>
+            <div class='messageEntry'>
+              <div class="leftMessageEntry">
+                <div class="photo">
+                  <img class="smallPhoto" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
+                  />
+                  <div class="smallInitial font-class-3 border-class-1">KS</div>
+                </div>
+                <div class="select border-class-1"></div>
+                <div class='star'>
+                  <img class="starIcon" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/star@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="rightMessageEntry">
+                <div class="messageHead">
+                  <div class="smallName  font-class-1 border-class-1">Kristen Smith</div>
+                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                </div>
+                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 border-class-1">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
+                  purus metus, in lacinia sapien scelerisque lobortis.
+                </p>
+              </div>  
+            </div>
+            {/* * * * */}
+            <div class='messageEntry'>
+              <div class="leftMessageEntry">
+                <div class="photo">
+                  <img class="smallPhoto" alt=''
+                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b73e5d6f58133fc1a61d/img/image-17@2x.png"
+                   />
+                   
+                </div>
+                <div class="select border-class-1"></div>
+                <div class='star'>
+                  <img class="starIcon" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/star@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="rightMessageEntry">
+                <div class="messageHead">
+                  <div class="smallName  font-class-1 border-class-1">David Felber</div>
+                  <img class="unread" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/unread@2x.png"
+                  />
+                  <div class="x2 valign-text-middle font-class-1 border-class-1">2</div>
+                  <img class="attachments" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/vector-5@2x.png"
+                  />
+                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                </div>
+                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 border-class-1">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
+                  purus metus, in lacinia sapien scelerisque lobortis.
+                </p>
+              </div>  
+            </div>
+             {/* * * * */}
+             <div class='messageEntry'>
+              <div class="leftMessageEntry">
+                <div class="photo">
+                  <img class="smallPhoto" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-2@2x.png"
+                  />
+                  <div class="smallInitial font-class-3 border-class-1">WT</div>
+                </div>
+                <div class="select border-class-1"></div>
+                <div class='star'>
+                  <img class="starIcon" alt=''
+                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/star@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="rightMessageEntry">
+                <div class="messageHead">
+                  <div class="smallName  font-class-1 border-class-1">Wesley Thomas</div>
+                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                </div>
+                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 border-class-1">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
+                  purus metus, in lacinia sapien scelerisque lobortis.
+                </p>
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div id='selectedMessage'>
+          <div id='messageContent-head'>
+            <img class="largePhoto" alt=''
+              src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
+            />
+            <div class="smallName  font-class-1 border-class-1">David Felber</div>
+            <img class="clockIcon" alt=''
+              src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-67@2x.png"
+            />
+            <p class="longTime font-class-1 border-class-1">June 15, 2020 at 12:14 PM</p>
+          </div>
+          <div id='messageContent-title'>
+            <div class=" largeTitle font-class-1 border-class-1">Quotation for Air Duct Installation</div>
+
+            <div id='editIcons'>
+              <img class="forward editIcon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-68@2x.png"
+              />
+              <img class="vip editIcon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-70@2x.png"
+              />
+              <img class="print editIcon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-69@2x.png"
+              />
+              <img class="more editIcon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-101@2x.png"
+              /> 
+            </div>
+          </div>
+          
+          <div id='messageContent-text'>
+            <p class="text font-class-1 border-class-1">
+              Hi David,<br /><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique purus metus in lacinia
+              sapien scelerisque sed. Etiam volutpat massa metus, et tempor nulla ultrices ut. Fusce et venenatis duis porttitor
+              magna erat. <br /><br />Sed aliquam accumsan velit at pharetra. Sed et est vel magna accumsan posuere. Proin
+              efficitur metus nec ullamcorper auctor. Donec quis tincidunt maecenas lobortis ultrices nibh, vel porta nibh varius
+              ut.<br /><br />Thanks,<br /><br />Kristen
+            </p>
+          </div>
+          <div className='rectangle-174'>
+            <div className='messageContent-attachments font-class-1 border-class-1'>2 Attachments</div>
+          </div>
+        </div>
+        </div>
+    </div> 
   );
 };
 
