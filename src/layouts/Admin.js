@@ -1,13 +1,8 @@
 import React from "react";
-import "../App.css";
+
 
 import Navigation from "../components/Navigation/Navigation";
 import List from "../components/List/List";
-import Messages from "../components/Messages/Messages";
-import "../components/Messages/Messages.css";
-
-import Projects from "../components/Projects/Projects";
-import "../components/Projects/Projects.css";
 
 import mondaySdk from "monday-sdk-js";
 const monday = mondaySdk();
@@ -43,13 +38,16 @@ class Admin extends React.Component {
   }
 
   render() {
-    console.log(this.state.settings);
+    // console.log(this.state.settings);
     return (
       <div className="dashboard-projects">       
         <Navigation />
         <List />       
+<<<<<<< HEAD
         {/* <Messages/> */}
         {/* <Projects/> */}
+=======
+>>>>>>> 255a45340e9236151131834153abbb8416989c02
         {JSON.stringify(this.state.boardData, null, 2)}
       </div>
     );
@@ -57,7 +55,3 @@ class Admin extends React.Component {
 }
 
 export default Admin;
-
-{
-  /* {JSON.stringify(this.state.boardData, null, 2)}  */
-}

@@ -1,11 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Router, Switch, Redirect } from 'react-router-dom';
-
+import "sass/main.scss";
 
 import ScrollToTop from './ScrollToTop';
 import Admin from './layouts/Admin';
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
+
+
 
 const App = ()=> {
 

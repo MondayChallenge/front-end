@@ -1,27 +1,451 @@
 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+.new-messages {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 6.4rem;
+  position: relative;
+  background-color: white;
+  
+}
 
 
+#topNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-.new-messages .messages {
+/* Dashboard sign */
+.new-messages .dashboard {
   background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 528px;
-  position: absolute;
+  font-size: 32px;
   text-align: left;
-  top: 274px;
   white-space: nowrap;
   width: auto;
 }
 
+/* New Project Btn */
+.new-messages .rectangle-176 {
+  background-color: var(--azure-radiance);
+  border-radius: 100px;
+  height: 40px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-messages .new-project {
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+/* Nevagation Menu Links */
+#bottomNav{
+  display: flex;
+  flex-direction: column;
+}
+
+#navLinks{
+  display: flex;
+  flex-direction: row;
+  height: 80px; 
+}
+
+.new-messages .navLink {
+  display: block;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 18px;
+  height: 80px;
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100px;
+  width: calc(100%/8);
+  text-align: center
+}
+
+#bar{
+  position: relative;
+  height: 4px;
+  width:100%
+}
+
+.new-messages .line-1 {
+  background-color: transparent;
+  height: 4px;
+  position: absolute;
+  width: inherit;
+}
+.new-messages .line-2 {
+  background-color: transparent;
+  height: 4px;
+  position: absolute;
+  margin-left: calc(100%/8) ;
+  width: calc(100%/8);
+}
+
+/* messagesArea */
+#messagesArea{
+  width: 100% + 130px;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+/* Left Side Message Box */
+#messagesBox{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border-right: 4px solid #E6E9EF;
+}
+
+/* Left Top Bar */
+#inboxToolBar{
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  justify-content: space-around;
+}
+
+/* Search box */
+.new-messages .search-box {
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  border-radius: 100px;
+  height: 32px;
+  width: 243px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.new-messages .image-99 {
+  height: 30px;
+  width: 30px;
+}
+
+.new-messages .search {
+  color: var(--ghost);
+  font-size: 14px;
+  height: 32px;
+  line-height: 32px;
+}
+
+/* Sort box */
+.new-messages .sort-box {
+  background-color: transparent;
+  height: 72px;
+  text-align: left;
+  white-space: nowrap;
+  width: auto;
+}
+
+.new-messages .sort{
+  color: rgba(50,51,56,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 72px;
+}
+
+.sort-menu{
+  border: none;
+  /* background-color: #0085FF; */
+  color: rgba(50,51,56,1.0);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.00px;
+  line-height: 72px;
+}
+
+/* Top Icons */
+.new-messages .icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.new-messages .icon {
+  background-color: transparent;
+  height: 20px;
+  width: 20px;
+  margin: auto 5px auto 5px;
+}
+
+/* Messages List */
+
+#messagesList{
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+}
+
+.new-messages .messageEntry{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 4px solid #E6E9EF;
+}
+.new-messages .leftMessageEntry{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* small portfolio photo */
+.new-messages .smallPhoto{
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+}
+
+.new-messages .smallInitial{
+  background-color: transparent;
+  font-size: 14px;
+  height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  width: 26px;
+}
+
+.new-messages .unread {
+  background-color: transparent;
+  height: 6px;
+  width: 6px;
+}
+
+.new-messages .select {
+  background-color: transparent;
+  border-radius: 2px;
+  height: 12px;
+  width: 12px;
+  border: 1px solid var(--dolphin);
+}
+
+
+.new-messages .starIcon {
+  background-color: transparent;
+  height: 16px;
+  width: 16px;
+}
+
+/* message entry main area */
+.new-messages .rightMessageEntry{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 50px 10px 20px;
+}
+
+.new-messages .messageHead{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new-messages .smallName {
+  background-color: transparent;
+  color: var(--azure-radiance);
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  text-align: left;
+  white-space: nowrap;
+  width: 108px;
+}
+
+.new-messages .x2 {
+  background-color: transparent;
+  color: var(--azure-radiance);
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  width: 17px;
+}
+.new-messages .attachments {
+  background-color: transparent;
+  height: 16px;
+  width: 14px;
+}
+
+.new-messages .smallDate {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  text-align: right;
+  white-space: nowrap;
+  width: 146px;
+}
+
+.new-messages .messageTitle {
+  background-color: transparent;
+  font-size: 14px;
+  height: 24px;
+  text-align: left;
+  white-space: nowrap;
+  width: 319px;
+}
+
+.new-messages .messageContent {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 14px;
+  height: auto;
+  line-height: 22px;
+  text-align: left;
+  width: 402px;
+}
+
+/* Right Side Selected Message */
+#selectedMessage{
+  width: 50%;
+  height: 50px;
+}
+
+
+#messageContent-head{
+  display: flex;
+  flex-direction: row;
+}
+
+.new-messages .largePhoto{
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+}
+
+
+.new-messages .clockIcon {
+  background-color: transparent;
+  height: 16px;
+  width: 16px;
+}
+
+
+.new-messages .longTime {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  text-align: left;
+  white-space: nowrap;
+  width: 146px;
+}
+
+#messageContent-title{
+  display: flex;
+  flex-direction: row;
+}
+
+#messageContent-title .largeTitle{
+  background-color: transparent;
+  flex-shrink: 0;
+  height: 24px;
+  min-height: 24px;
+  text-align: left;
+  white-space: nowrap;
+  width: 383px;
+}
+
+
+.new-messages .editIcon {
+  background-color: transparent;
+  height: 16px;
+  width: 16px;
+}
+
+
+
+.new-messages .text {
+  background-color: transparent;
+  color: var(--mine-shaft);
+  font-size: 14px;
+  height: auto;
+  line-height: 22px;
+  text-align: left;
+  width: 496px;
+}
+
+
+.new-messages .rectangle-174 {
+  background-color: transparent;
+  border-radius: 100px;
+  border: 1px solid var(--azure-radiance);
+
+  height: 24px;
+  
+  width: 140px;
+}
+
+.messageContent-attachments  {
+  background-color: transparent;
+  color: var(--azure-radiance);
+  font-size: 14px;
+  height: auto;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+  width: auto;
+}
+
+
+/* end */
+.border-class-1 {
+  border: 1px solid transparent;
+}
+.border-class-2 {
+  border: 1px solid var(--dolphin);
+}
+.border-class-3 {
+  border: 1px solid var(--ghost);
+}
+.border-class-4 {
+  border: 1px solid var(--azure-radiance);
+}
 .font-class-1 {
   font-family: 'Roboto', Helvetica, Arial, serif;
   font-style: normal;
   font-weight: 400;
+}
+.font-class-2 {
+  color: var(--mine-shaft);
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+.font-class-3 {
+  color: white;
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+}
+.font-class-4 {
+  color: var(--mine-shaft);
+  font-family: "Roboto", Helvetica, Arial, serif;
+  font-size: 14px;
   line-height: 24px;
 }
 
@@ -62,158 +486,10 @@
   font-size: 14px;
   line-height: 24px;
 }
-.new-messages {
-  background-color: white;
-  background-image: url();
-  background-size: 100% 100%;
- 
-  position: relative;
-  
-}
-.new-messages .admin {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 1274px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .calendar {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 1143px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .dashboard {
-  background-color: transparent;
-  font-size: 18px;
-  height: auto;
-  left: 381px;
-  position: absolute;
-  text-align: left;
-  top: 210px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .david-felber {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 573px;
-  white-space: nowrap;
-  width: 108px;
-}
-.new-messages .directory {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 1021px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .documents {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 768px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .ellipse-1-C61RwL {
-  background-color: transparent;
-  height: 40px;
-  left: 903px;
-  position: absolute;
-  top: 354px;
-  width: 40px;
-}
-.new-messages .ellipse-1-VMr6Om {
-  background-color: transparent;
-  height: 30px;
-  left: 382px;
-  position: absolute;
-  top: 412px;
-  width: 30px;
-}
-.new-messages .ellipse-1-mzXdH9 {
-  background-color: transparent;
-  height: 30px;
-  left: 382px;
-  position: absolute;
-  top: 726px;
-  width: 30px;
-}
-.new-messages .hi-david-l-ks-kristen {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 14px;
-  height: auto;
-  left: 903px;
-  line-height: 22px;
-  position: absolute;
-  text-align: left;
-  top: 484px;
-  width: 496px;
-}
-.new-messages .image-100 {
-  background-color: transparent;
-  height: 16px;
-  left: 758px;
-  position: absolute;
-  top: 343px;
-  width: 16px;
-}
-.new-messages .image-101 {
-  background-color: transparent;
-  height: 16px;
-  left: 1386px;
-  position: absolute;
-  top: 429px;
-  width: 16px;
-}
-.new-messages .image-17 {
-  background-color: transparent;
-  height: 30px;
-  left: 382px;
-  position: absolute;
-  top: 569px;
-  width: 30px;
-}
-.new-messages .image-55 {
-  background-color: transparent;
-  height: 86px;
-  left: 692px;
-  position: absolute;
-  top: 3px;
-  width: 745px;
-}
+
+
+
+
 .new-messages .image-64 {
   background-color: transparent;
   height: 16px;
@@ -222,131 +498,13 @@
   top: 342px;
   width: 16px;
 }
-.new-messages .image-66 {
-  background-color: transparent;
-  height: 16px;
-  left: 815px;
-  position: absolute;
-  top: 341px;
-  width: 16px;
-}
-.new-messages .image-67 {
-  background-color: transparent;
-  height: 16px;
-  left: 1234px;
-  position: absolute;
-  top: 366px;
-  width: 16px;
-}
-.new-messages .image-68 {
-  background-color: transparent;
-  height: 16px;
-  left: 1305px;
-  position: absolute;
-  top: 429px;
-  width: 16px;
-}
-.new-messages .image-69 {
-  background-color: transparent;
-  height: 16px;
-  left: 1359px;
-  position: absolute;
-  top: 429px;
-  width: 16px;
-}
-.new-messages .image-70 {
-  background-color: transparent;
-  height: 16px;
-  left: 1332px;
-  position: absolute;
-  top: 429px;
-  width: 16px;
-}
-.new-messages .image-99 {
-  background-color: transparent;
-  height: 16px;
-  left: 357px;
-  position: absolute;
-  top: 342px;
-  width: 16px;
-}
-.new-messages .june-15-20-at-1214-pm {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 12px;
-  height: 24px;
-  left: 1255px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 362px;
-  white-space: nowrap;
-  width: 146px;
-}
-.new-messages .kristen-smith-C61RwL {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: 24px;
-  left: 955px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 362px;
-  white-space: nowrap;
-  width: 108px;
-}
-.new-messages .kristen-smith-VMr6Om {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 417px;
-  white-space: nowrap;
-  width: 108px;
-}
-.new-messages .ks-C61RwL {
-  background-color: transparent;
-  font-size: 14px;
-  height: 24px;
-  left: 911px;
-  position: absolute;
-  text-align: center;
-  top: 361px;
-  white-space: nowrap;
-  width: 26px;
-}
-.new-messages .ks-VMr6Om {
-  background-color: transparent;
-  font-size: 12px;
-  height: 18px;
-  left: 382px;
-  position: absolute;
-  text-align: center;
-  top: 418px;
-  white-space: nowrap;
-  width: 32px;
-}
-.new-messages .line-1 {
-  background-color: transparent;
-  height: 2px;
-  left: 382px;
-  position: absolute;
-  top: 307px;
-  width: 976px;
-}
-.new-messages .line-2 {
-  background-color: transparent;
-  height: 2px;
-  left: 504px;
-  position: absolute;
-  top: 307px;
-  width: 122px;
-}
+
+
+
+
+
+
+/* left border on selected message area */
 .new-messages .line-4 {
   background-color: transparent;
   height: 592px;
@@ -355,178 +513,18 @@
   top: 308px;
   width: 2px;
 }
+
+/*  message list border */
 .new-messages .line-5 {
   background-color: transparent;
   height: 2px;
-  left: 382px;
-  position: absolute;
-  top: 389px;
-  width: 472px;
+  /* left: 382px; */
+  /* position: absolute; */
+  /* top: 389px; */
+  /* width: 472px; */
 }
-.new-messages .line-6 {
-  background-color: transparent;
-  height: 2px;
-  left: 382px;
-  position: absolute;
-  top: 546px;
-  width: 472px;
-}
-.new-messages .line-7 {
-  background-color: transparent;
-  height: 2px;
-  left: 382px;
-  position: absolute;
-  top: 700px;
-  width: 472px;
-}
-.new-messages .line-8 {
-  background-color: transparent;
-  height: 2px;
-  left: 382px;
-  position: absolute;
-  top: 860px;
-  width: 472px;
-}
-.new-messages .lorem-ipsu-e-lobortis-C61RwL {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 14px;
-  height: auto;
-  left: 432px;
-  line-height: 22px;
-  position: absolute;
-  text-align: left;
-  top: 473px;
-  width: 402px;
-}
-.new-messages .lorem-ipsu-e-lobortis-VMr6Om {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 14px;
-  height: auto;
-  left: 432px;
-  line-height: 22px;
-  position: absolute;
-  text-align: left;
-  top: 629px;
-  width: 402px;
-}
-.new-messages .lorem-ipsu-e-lobortis-mzXdH9 {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 14px;
-  height: auto;
-  left: 432px;
-  line-height: 22px;
-  position: absolute;
-  text-align: left;
-  top: 787px;
-  width: 402px;
-}
-.new-messages .new-messages {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 528px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .new-project {
-  background-color: transparent;
-  color: white;
-  font-size: 14px;
-  height: 33px;
-  left: 1259px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 205px;
-  width: 78px;
-}
-.new-messages .projects {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 414px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .proposals {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 651px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .quotation--stallation-C61RwL {
-  background-color: transparent;
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  position: absolute;
-  text-align: left;
-  top: 445px;
-  white-space: nowrap;
-  width: 319px;
-}
-.new-messages .quotation--stallation-QxM5SU {
-  background-color: transparent;
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  position: absolute;
-  text-align: left;
-  top: 759px;
-  white-space: nowrap;
-  width: 319px;
-}
-.new-messages .quotation--stallation-VMr6Om {
-  background-color: transparent;
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  position: absolute;
-  text-align: left;
-  top: 601px;
-  white-space: nowrap;
-  width: 319px;
-}
-.new-messages .quotation--stallation-mzXdH9 {
-  background-color: transparent;
-  font-size: 18px;
-  height: 24px;
-  left: 903px;
-  position: absolute;
-  text-align: left;
-  top: 425px;
-  white-space: nowrap;
-  width: 383px;
-}
-.new-messages .rectangle-174 {
-  background-color: transparent;
-  border-radius: 100px;
-  height: 24px;
-  left: 903px;
-  position: absolute;
-  top: 837px;
-  width: 140px;
-}
+
+
 .new-messages .rectangle-175 {
   background-color: white;
   height: 53px;
@@ -535,15 +533,9 @@
   top: 29px;
   width: 103px;
 }
-.new-messages .rectangle-176 {
-  background-color: var(--azure-radiance-2);
-  border-radius: 100px;
-  height: 32px;
-  left: 1236px;
-  position: absolute;
-  top: 205px;
-  width: 121px;
-}
+
+
+/* selected message background on message list */
 .new-messages .rectangle-180 {
   background-color: var(--pattens-blue);
   height: 157px;
@@ -552,269 +544,9 @@
   top: 389px;
   width: 535px;
 }
-.new-messages .rectangle-182 {
-  background-color: transparent;
-  border-radius: 100px;
-  height: 32px;
-  left: 342px;
-  position: absolute;
-  top: 334px;
-  width: 243px;
-}
-.new-messages .rectangle-73 {
-  background-color: white;
-  height: 32px;
-  left: 344px;
-  position: absolute;
-  top: 127px;
-  width: 134px;
-}
-.new-messages .rectangle-75 {
-  background-color: white;
-  height: 726px;
-  left: 345px;
-  position: absolute;
-  top: 174px;
-  width: 1095px;
-}
-.new-messages .reports {
-  background-color: transparent;
-  color: var(--dolphin);
-  font-size: 16px;
-  height: 24px;
-  left: 903px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 274px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .rewards {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 14px;
-  height: 24px;
-  left: 381px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 124px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .search {
-  background-color: transparent;
-  color: var(--ghost);
-  font-size: 14px;
-  height: 33px;
-  left: 343px;
-  line-height: 24px;
-  position: absolute;
-  text-align: center;
-  top: 333px;
-  width: 122px;
-}
-.new-messages .select-C61RwL {
-  background-color: transparent;
-  border-radius: 2px;
-  height: 12px;
-  left: 391px;
-  position: absolute;
-  top: 463px;
-  width: 12px;
-}
-.new-messages .select-VMr6Om {
-  background-color: transparent;
-  border-radius: 2px;
-  height: 12px;
-  left: 391px;
-  position: absolute;
-  top: 773px;
-  width: 12px;
-}
-.new-messages .select-mzXdH9 {
-  background-color: transparent;
-  border-radius: 2px;
-  height: 12px;
-  left: 391px;
-  position: absolute;
-  top: 621px;
-  width: 12px;
-}
-.new-messages .sort {
-  background-color: transparent;
-  height: 6px;
-  left: 726px;
-  position: absolute;
-  top: 347px;
-  width: 10px;
-}
-.new-messages .sort-newest-first {
-  background-color: transparent;
-  height: 24px;
-  left: 605px;
-  position: absolute;
-  text-align: left;
-  top: 338px;
-  white-space: nowrap;
-  width: auto;
-}
-.new-messages .span1-eaQyBP {
-  color: rgba(50,51,56,1.0);
-  font-family: 'Roboto', Helvetica, Arial, serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.00px;
-  line-height: 24px;
-}
-.new-messages .span2-eaQyBP {
-  color: rgba(50,51,56,1.0);
-  font-family: 'Roboto', Helvetica, Arial, serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.00px;
-  line-height: 24px;
-}
-.new-messages .star-C61RwL {
-  background-color: transparent;
-  height: 16px;
-  left: 389px;
-  position: absolute;
-  top: 490px;
-  width: 16px;
-}
-.new-messages .star-VMr6Om {
-  background-color: transparent;
-  height: 16px;
-  left: 389px;
-  position: absolute;
-  top: 800px;
-  width: 16px;
-}
-.new-messages .star-mzXdH9 {
-  background-color: transparent;
-  height: 16px;
-  left: 389px;
-  position: absolute;
-  top: 648px;
-  width: 16px;
-}
-.new-messages .today-C61RwL {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 12px;
-  height: 24px;
-  left: 688px;
-  line-height: 24px;
-  position: absolute;
-  text-align: right;
-  top: 417px;
-  white-space: nowrap;
-  width: 146px;
-}
-.new-messages .today-VMr6Om {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 12px;
-  height: 24px;
-  left: 688px;
-  line-height: 24px;
-  position: absolute;
-  text-align: right;
-  top: 573px;
-  white-space: nowrap;
-  width: 146px;
-}
-.new-messages .today-mzXdH9 {
-  background-color: transparent;
-  color: var(--mine-shaft);
-  font-size: 12px;
-  height: 24px;
-  left: 688px;
-  line-height: 24px;
-  position: absolute;
-  text-align: right;
-  top: 731px;
-  white-space: nowrap;
-  width: 146px;
-}
-.new-messages .unread {
-  background-color: transparent;
-  height: 6px;
-  left: 526px;
-  position: absolute;
-  top: 582px;
-  width: 6px;
-}
-.new-messages .vector-4 {
-  background-color: transparent;
-  height: 6px;
-  left: 448px;
-  position: absolute;
-  top: 136px;
-  width: 10px;
-}
-.new-messages .vector-5 {
-  background-color: transparent;
-  height: 16px;
-  left: 760px;
-  position: absolute;
-  top: 576px;
-  width: 14px;
-}
-.new-messages .wesley-thomas {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: 24px;
-  left: 432px;
-  line-height: 24px;
-  position: absolute;
-  text-align: left;
-  top: 731px;
-  white-space: nowrap;
-  width: 108px;
-}
-.new-messages .wt {
-  background-color: transparent;
-  font-size: 12px;
-  height: 18px;
-  left: 382px;
-  position: absolute;
-  text-align: center;
-  top: 732px;
-  white-space: nowrap;
-  width: 32px;
-}
-.new-messages .x2 {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: 24px;
-  left: 742px;
-  line-height: 24px;
-  position: absolute;
-  text-align: center;
-  top: 573px;
-  white-space: nowrap;
-  width: 17px;
-}
-.new-messages .x2-attachments {
-  background-color: transparent;
-  color: var(--azure-radiance);
-  font-size: 14px;
-  height: auto;
-  left: 927px;
-  line-height: 18px;
-  position: absolute;
-  text-align: center;
-  top: 840px;
-  white-space: nowrap;
-  width: auto;
-}
+
+
+
 :root {
   --azure-radiance: rgba(0,133,255,1.0);
   --azure-radiance-2: rgba(0,154,255,1.0);
