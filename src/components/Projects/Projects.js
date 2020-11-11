@@ -80,27 +80,22 @@ const Projects = () => {
             </div>
 
             <div className="project-form__info__amounts-sect--2">
-              <input id ="1" class="project-form__inputs--small border-class-1"></input>
+              <input id="1" class="project-form__inputs--small border-class-1"></input>
               <p class="valign-text-middle font-class-1">to</p>
-              <input id ="2" class="project-form__inputs--small border-class-1"></input>
+              <input id="2" class="project-form__inputs--small border-class-1"></input>
             </div>
 
             {/* <div class="x-C61RwL valign-text-middle font-class-1">$</div> */}
-
-
-
-
-
 
             {/* <div class="x-VMr6Om valign-text-middle font-class-1">$</div> */}
           </div>
 
 
-          <div className="project-form__info__inputs">
-            <div class="project-description valign-text-middle font-class-1">
+          <div className="project-form__info__description">
+            <div class=" valign-text-middle font-class-1">
               Project Description
         </div>
-            <input class="rectangle-175-VMr6Om border-class-1"></input>
+            <input class="project-form__inputs--large border-class-1"></input>
           </div>
         </div>
 
@@ -108,20 +103,23 @@ const Projects = () => {
 
 
 
+        <div className="project-form__info">
+        <h1 class="font-class-2 border-class-2">
+        Project Location
+        </h1>
 
-
-
-
-
-
-        <div class="project-location font-class-2 border-class-2">
-          Project Location
-      </div>
-        <p class="the-inform-onday-bids-VMr6Om font-class-1 border-class-2">
-          The information below will be published to Monday Bids as a project.
+        <p class="font-class-1 border-class-2">
+        The information below will be published to Monday Bids as a project.
           Please fill out the required fields below then hit publish to create a
           project on Monday Bids.
         </p>
+
+        </div>
+
+
+
+
+
 
 
         <div class="country valign-text-middle font-class-1">Country</div>

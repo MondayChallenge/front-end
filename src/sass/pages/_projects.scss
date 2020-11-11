@@ -50,9 +50,8 @@
                         margin-right: 8px;
                     }
                 }
-
-
             }
+
             &--2{
                 grid-column: 1/-1;
                 grid-row: 2; 
@@ -75,21 +74,28 @@
              
             }
 
-            // &p{
-            //     grid-column: 2/3;
-            // }
+        }
 
+        &__description{
+            grid-column: 1/-1;
         }
     }
 
     &__inputs{
         border-radius: 4px;
         border: 1px solid $color-ghost; //ghost
+        background-color: white;
 
         &--small{
-            width: 282px;
-            height: 40px;
+            width: 28.2rem;
+            height: 4rem;
         }
+        &--large{
+            
+            height: 17.5rem;
+            width: 94.4rem;
+        }
+        
 
     }
   }
