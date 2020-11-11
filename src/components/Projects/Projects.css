@@ -89,7 +89,7 @@ input.border-class-1 {
   position: relative;
 
 }
-.project-form .address {
+/* .project-form .address {
   background-color: transparent;
   color: black;
   font-size: 16px;
@@ -100,7 +100,8 @@ input.border-class-1 {
   top: 1274px;
   white-space: nowrap;
   width: auto;
-}
+} */
+
 .project-form .admin {
   background-color: transparent;
   color: var(--dolphin);
@@ -544,10 +545,11 @@ input.border-class-1 {
 .project-form .rectangle-179 {
   background-color: var(--azure-radiance);
   border-radius: 6px;
-  height: 40px;
+
   left: 1198px;
   position: absolute;
   top: 2024px;
+  height: 40px;
   width: 160px;
 }
 .project-form .rectangle-18-C61RwL {
@@ -671,10 +673,11 @@ input.border-class-1 {
 .project-form .rectangle-186 {
   background-color: white;
   border-radius: 4px;
-  height: 40px;
+ 
   left: 414px;
   position: absolute;
   top: 1310px;
+  height: 40px;
   width: 607px;
 }
 .project-form .rectangle-188 {
@@ -715,11 +718,12 @@ input.border-class-1 {
 }
 .project-form .rectangle-192 {
   background-color: white;
-  border-radius: 4px;
-  height: 96px;
+
   left: 414px;
   position: absolute;
   top: 1517px;
+  border-radius: 4px;
+  height: 96px;
   width: 450px;
 }
 .project-form .rectangle-193 {
@@ -915,12 +919,13 @@ input.border-class-1 {
   background-color: transparent;
   color: var(--ghost);
   font-size: 14px;
+  white-space: nowrap;
   height: 24px;
   left: 549px;
   position: absolute;
   text-align: left;
   top: 1568px;
-  white-space: nowrap;
+
   width: auto;
 }
 .project-form .supports-j-if-pdf-png-VMr6Om {
