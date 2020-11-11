@@ -14,7 +14,7 @@ const Messages = () => {
               <ReactSVG className="image-99" src="/public/search.svg"/> 
               <span class="search  font-class-1 border-class-1">Search</span>
             </div>
-            <div class="sort-box valign-text-middle font-class-4 border-class-1">
+            <div class="sort-box font-class-4 ">
               <div class="sort font-class-1">Sort: 
                 <select class="sort-menu font-class-1">
                   <option value="Newest" selected="selected">Newest First</option>
@@ -44,7 +44,7 @@ const Messages = () => {
                   <img class="smallPhoto" alt=''
                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
                   />
-                  <div class="smallInitial font-class-3 border-class-1">KS</div>
+                  <div class="smallInitial font-class-3 ">KS</div>
                 </div>
                 <div class="select border-class-1"></div>
                 <div class='star'>
@@ -55,11 +55,11 @@ const Messages = () => {
               </div>
               <div class="rightMessageEntry">
                 <div class="messageHead">
-                  <div class="smallName  font-class-1 border-class-1">Kristen Smith</div>
-                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                  <div class="smallName  font-class-1 ">Kristen Smith</div>
+                  <div class="smallDate  font-class-1 ">Today</div>
                 </div>
-                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
-                <p class="messageContent font-class-1 border-class-1">
+                <p class="messageTitle  font-class-2 ">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 ">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
                   purus metus, in lacinia sapien scelerisque lobortis.
                 </p>
@@ -83,18 +83,24 @@ const Messages = () => {
               </div>
               <div class="rightMessageEntry">
                 <div class="messageHead">
-                  <div class="smallName  font-class-1 border-class-1">David Felber</div>
-                  <img class="unread" alt=''
-                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/unread@2x.png"
-                  />
-                  <div class="x2 valign-text-middle font-class-1 border-class-1">2</div>
-                  <img class="attachments" alt=''
-                    src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/vector-5@2x.png"
-                  />
-                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                  <div >
+                    <span class="smallName  font-class-1 ">David Felber</span>
+                    <img class="unread" alt=''
+                      src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/unread@2x.png"
+                    />
+                  </div>
+                  <div>
+                    <span>
+                      <span class="x2 font-class-1 ">2</span>
+                      <img class="attachments" alt=''
+                        src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/vector-5@2x.png"
+                      />
+                    </span>
+                    <div class="smallDate  font-class-1 ">Today</div>
+                  </div>
                 </div>
-                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
-                <p class="messageContent font-class-1 border-class-1">
+                <p class="messageTitle  font-class-2 ">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 ">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
                   purus metus, in lacinia sapien scelerisque lobortis.
                 </p>
@@ -107,7 +113,7 @@ const Messages = () => {
                   <img class="smallPhoto" alt=''
                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-2@2x.png"
                   />
-                  <div class="smallInitial font-class-3 border-class-1">WT</div>
+                  <div class="smallInitial font-class-3 ">WT</div>
                 </div>
                 <div class="select border-class-1"></div>
                 <div class='star'>
@@ -118,11 +124,11 @@ const Messages = () => {
               </div>
               <div class="rightMessageEntry">
                 <div class="messageHead">
-                  <div class="smallName  font-class-1 border-class-1">Wesley Thomas</div>
-                  <div class="smallDate  font-class-1 border-class-1">Today</div>
+                  <div class="smallName  font-class-1 ">Wesley Thomas</div>
+                  <div class="smallDate  font-class-1 ">Today</div>
                 </div>
-                <p class="messageTitle  font-class-2 border-class-1">Quotation for Air Duct Installation</p>
-                <p class="messageContent font-class-1 border-class-1">
+                <p class="messageTitle  font-class-2 ">Quotation for Air Duct Installation</p>
+                <p class="messageContent font-class-1 ">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique
                   purus metus, in lacinia sapien scelerisque lobortis.
                 </p>
@@ -132,17 +138,21 @@ const Messages = () => {
         </div>
         <div id='selectedMessage'>
           <div id='messageContent-head'>
-            <img class="largePhoto" alt=''
-              src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
-            />
-            <div class="smallName  font-class-1 border-class-1">David Felber</div>
-            <img class="clockIcon" alt=''
-              src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-67@2x.png"
-            />
-            <p class="longTime font-class-1 border-class-1">June 15, 2020 at 12:14 PM</p>
+            <div>
+              <img class="largePhoto" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
+              />
+              <span class="largeName  font-class-1 ">David Felber</span>
+            </div>
+            <div>
+              <img class="clockIcon" alt=''
+                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-67@2x.png"
+              />
+              <span class="longTime font-class-1 ">June 15, 2020 at 12:14 PM</span>
+            </div>
           </div>
           <div id='messageContent-title'>
-            <div class=" largeTitle font-class-1 border-class-1">Quotation for Air Duct Installation</div>
+            <div class=" largeTitle font-class-1 ">Quotation for Air Duct Installation</div>
 
             <div id='editIcons'>
               <img class="forward editIcon" alt=''
@@ -161,7 +171,7 @@ const Messages = () => {
           </div>
           
           <div id='messageContent-text'>
-            <p class="text font-class-1 border-class-1">
+            <p class="text font-class-1 ">
               Hi David,<br /><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique purus metus in lacinia
               sapien scelerisque sed. Etiam volutpat massa metus, et tempor nulla ultrices ut. Fusce et venenatis duis porttitor
               magna erat. <br /><br />Sed aliquam accumsan velit at pharetra. Sed et est vel magna accumsan posuere. Proin
@@ -169,8 +179,8 @@ const Messages = () => {
               ut.<br /><br />Thanks,<br /><br />Kristen
             </p>
           </div>
-          <div className='rectangle-174'>
-            <div className='messageContent-attachments font-class-1 border-class-1'>2 Attachments</div>
+          <div className='rectangle-174 messageContent-attachments font-class-1 '>
+            <span className='border-class-1'>2 Attachments</span>
           </div>
         </div>
         </div>
