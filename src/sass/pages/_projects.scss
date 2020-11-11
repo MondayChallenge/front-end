@@ -2,10 +2,10 @@
 .project-form{
     display: grid;
     grid-template-columns:
-    [full-start] minmax(6rem, 1fr)
-    [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [full-start] minmax(8rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 16rem) [col-end])
     [center-end]
-    minmax(6rem, 1fr) [full-end];
+    minmax(8rem, 1fr) [full-end];
 
     margin: 4rem 0;
 
@@ -156,11 +156,13 @@
         &--small{
             // width: 28.2rem;
             height: 4rem;
+            width: 100%;
         }
         &--large{
             
             height: 17.5rem;
-            width: 94.4rem;
+            width: 100%;
+           
         }
 
       
