@@ -1,5 +1,109 @@
 .project-form{
     display: grid;
-    grid-column: repeat(8,1fr);
+    grid-template-columns:
+    [full-start] minmax(6rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end]
+    minmax(6rem, 1fr) [full-end];
+    
+
+    & h1{
+        grid-column: center-start/center-end;
+    }
+
+    & p{
+        grid-column: center-start/center-end;
+    }
   
+    &__info{
+        grid-column:center-start/center-end;
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+
+        &__inputs{
+            display:grid;
+            grid-row: repeat(2,1fr);
+
+        }
+
+        &__amounts-sect{
+            grid-column: 2/-1;
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+           
+            &--1{
+                grid-column: 1/-1;
+                grid-row: 1;
+                display: grid;
+                grid-template-columns: repeat(2,20rem);
+
+                & h3{
+                    grid-column: 1;
+                }
+
+                & span{
+                    grid-column: 2;  
+                    display: flex;
+
+                    & .select-box{
+                        align-self: center;
+                        margin-right: 8px;
+                    }
+                }
+
+
+            }
+            &--2{
+                grid-column: 1/-1;
+                grid-row: 2; 
+                display: grid;
+                grid-template-columns: 1fr 2rem 1fr;
+
+                & #1{
+                    grid-column:1;
+                }
+
+                & #2{
+                    grid-column:3;
+                }
+
+                & p{
+                    grid-column: 2;
+                    justify-content: center;
+                    align-self: center;
+                }
+             
+            }
+
+            // &p{
+            //     grid-column: 2/3;
+            // }
+
+        }
+    }
+
+    &__inputs{
+        border-radius: 4px;
+        border: 1px solid $color-ghost; //ghost
+
+        &--small{
+            width: 282px;
+            height: 40px;
+        }
+
+    }
   }
+
+.select-box{
+    background-color: transparent;
+  border-radius: 2px;
+  height: 12px;
+  width: 12px;
+}
+//   :root {
+//     --azure-radiance: rgba(0,154,255,1.0);
+//     --dolphin: rgba(103,104,121,1.0);
+//     --ghost: rgba(197,199,208,1.0);
+//     --mine-shaft: rgba(50,51,56,1.0);
+//     --mist-gray: rgba(196,196,196,1.0);
+//   }

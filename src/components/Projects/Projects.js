@@ -10,9 +10,9 @@ const Projects = () => {
       <Navigation />
       <div className="project-form">
 
-        <div class="font-class-2 border-class-2">
+        <h1 class="font-class-2 border-class-2">
           Project Information
-        </div>
+        </h1>
 
         <p class="font-class-1 border-class-2">
           The information below will be published to Monday Bids as a project.
@@ -20,57 +20,97 @@ const Projects = () => {
           project on Monday Bids.
         </p>
 
+        <div className="project-form__info">
 
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">
+              Company Name
+          </div>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
 
-        <div class="company-name valign-text-middle font-class-1">
-          Company Name
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">
+              Project Name
         </div>
-        <input class="rectangle-18-C61RwL border-class-1"></input>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
 
-        <div class="project-name valign-text-middle font-class-1">
-          Project Name
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">
+              Project Number
         </div>
-        <input class="rectangle-18-VMr6Om border-class-1"></input>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
 
-        <div class="project-number valign-text-middle font-class-1">
-          Project Number
+
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">Start Date</div>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
+
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">End Date</div>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
+
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">Timezone</div>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
+
+          <div className="project-form__info__inputs">
+            <div class="valign-text-middle font-class-1">
+              Project Type
+            </div>
+            <input class="project-form__inputs--small border-class-1"></input>
+          </div>
+
+          <div className="project-form__info__amounts-sect">
+
+            <div className="project-form__info__amounts-sect--1">
+              <h3 class=" valign-text-middle font-class-1">
+                Project Amount $
+              </h3>
+              <span>
+                <div class="select-box border-class-3"></div>
+                <p class="valign-text-middle font-class-1">allow range</p>
+              </span>
+
+            </div>
+
+            <div className="project-form__info__amounts-sect--2">
+              <input id ="1" class="project-form__inputs--small border-class-1"></input>
+              <p class="valign-text-middle font-class-1">to</p>
+              <input id ="2" class="project-form__inputs--small border-class-1"></input>
+            </div>
+
+            {/* <div class="x-C61RwL valign-text-middle font-class-1">$</div> */}
+
+
+
+
+
+
+            {/* <div class="x-VMr6Om valign-text-middle font-class-1">$</div> */}
+          </div>
+
+
+          <div className="project-form__info__inputs">
+            <div class="project-description valign-text-middle font-class-1">
+              Project Description
         </div>
-        <input class="rectangle-176-VMr6Om border-class-1"></input>
-
-
-        <div class="start-date valign-text-middle font-class-1">Start Date</div>
-        <input class="rectangle-180-C61RwL border-class-1"></input>
-
-        <div class="end-date valign-text-middle font-class-1">End Date</div>
-        <input class="rectangle-181-C61RwL border-class-1"></input>
-
-        <div class="timezone valign-text-middle font-class-1">Timezone</div>
-        <input class="rectangle-182-C61RwL border-class-1"></input>
-
-        <div class="project-type valign-text-middle font-class-1">
-          Project Type
+            <input class="rectangle-175-VMr6Om border-class-1"></input>
+          </div>
         </div>
-        <input class="rectangle-189 border-class-1"></input>
-
-        <div class="project-amount valign-text-middle font-class-1">
-          Project Amount $
-        </div>
-        <input class="rectangle-190 border-class-1"></input>
-        <div class="x-C61RwL valign-text-middle font-class-1">$</div>
-
-        <div class="allow-range valign-text-middle font-class-1">allow range</div>
-        <div class="select-2P4qUJ border-class-3"></div>
-
-        <div class="to valign-text-middle font-class-1">to</div>
-
-        <input class="rectangle-191 border-class-1"></input>
-        <div class="x-VMr6Om valign-text-middle font-class-1">$</div>
 
 
-        <div class="project-description valign-text-middle font-class-1">
-          Project Description
-        </div>
-        <input class="rectangle-175-VMr6Om border-class-1"></input>
+
+
+
+
+
+
 
 
 
@@ -92,23 +132,23 @@ const Projects = () => {
 
         <input class="rectangle-184 border-class-1"></input>
         <div class="select-VMr6Om valign-text-middle font-class-1">Select</div>
-       {/* dropdown carrot */}
+        {/* dropdown carrot */}
         <img class="vector-7" src="" />
         <div class="state-province valign-text-middle font-class-1">
           State/Province
         </div>
 
-      <div class="city valign-text-middle font-class-1">City</div>
+        <div class="city valign-text-middle font-class-1">City</div>
         <input class="rectangle-185 border-class-1"></input>
-  
+
         <div class="address valign-text-middle font-class-1">Address</div>
         <input class="rectangle-186 border-class-1"></input>
-        
+
         <div class="zip-postal-code valign-text-middle font-class-1">
           Zip (Postal) Code
         </div>
         <input class="rectangle-188 border-class-1"></input>
-       
+
         <div class="included-items font-class-2 border-class-2">
           Included Items
         </div>
@@ -141,12 +181,6 @@ const Projects = () => {
         <p class="supports-j-if-pdf-png-VMr6Om valign-text-middle font-class-1">
           Supports: JPG, GIF, PDF, PNG
         </p>
-
-
-        
-    
-
-
 
 
 
@@ -203,7 +237,7 @@ const Projects = () => {
 
 export default Projects;
 
-    {/* <div class="select-mzXdH9 valign-text-middle font-class-1">Select</div>
+{/* <div class="select-mzXdH9 valign-text-middle font-class-1">Select</div>
         <img class="vector-8-C61RwL" src="" />
         <div class="select-QxM5SU valign-text-middle font-class-1">Select</div>
         <img class="vector-9" src="" />
