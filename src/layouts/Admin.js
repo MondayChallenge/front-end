@@ -48,13 +48,9 @@ class Admin extends React.Component {
       <div className="dashboard-projects">       
         <Navigation />
         <List />       
-<<<<<<< HEAD
         {/* <Messages/> */}
         {/* <Projects/> */}
         {JSON.stringify(this.state.boardData, null, 2)}
-=======
-        {/* {JSON.stringify(this.state.boardData, null, 2)} */}
->>>>>>> 80eae42f1fbfbf07e49edf19251f6a88ecf3bd57
       </div>
     );
   }
