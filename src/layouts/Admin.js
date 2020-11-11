@@ -43,11 +43,6 @@ class Admin extends React.Component {
       <div className="dashboard-projects">       
         <Navigation />
         <List />       
-<<<<<<< HEAD
-        {/* <Messages/> */}
-        {/* <Projects/> */}
-=======
->>>>>>> 255a45340e9236151131834153abbb8416989c02
         {JSON.stringify(this.state.boardData, null, 2)}
       </div>
     );
