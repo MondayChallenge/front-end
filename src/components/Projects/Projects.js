@@ -20,37 +20,37 @@ const Projects = () => {
         <div className="project-form__info">
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Company Name</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Project Name</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Project Number</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Start Date</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">End Date</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Timezone</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Project Type</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__amounts-sect">
@@ -63,9 +63,9 @@ const Projects = () => {
             </div>
 
             <div className="project-form__info__amounts-sect--2">
-              <input class="amt-1 project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
               <p class="valign-text-middle font-class-1">to</p>
-              <input class="amt-2 project-form__inputs--small border-class-1"></input>
+              <input class="project-form__inputs project-form__inputs--small"></input>
             </div>
 
             {/* <div class="x-C61RwL valign-text-middle font-class-1">$</div> */}
@@ -77,7 +77,7 @@ const Projects = () => {
             <div class=" valign-text-middle font-class-1">
               Project Description
             </div>
-            <input class="project-form__inputs--large border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--large"></input>
           </div>
         </div>
 
@@ -92,7 +92,7 @@ const Projects = () => {
         <div className="project-form__info">
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Country</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
             {/* <div class="select-C61RwL valign-text-middle font-class-1">Select</div> */}
             {/* dropdown carrot
             <img class="vector-6" src="" /> */}
@@ -100,7 +100,7 @@ const Projects = () => {
 
           <div className="project-form__info__inputs">
             <div class=" valign-text-middle font-class-1">State/Province</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
             {/* <div class="select-VMr6Om valign-text-middle font-class-1">
             Select
           </div> */}
@@ -110,7 +110,7 @@ const Projects = () => {
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">City</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           {/* TODO - NEED TO FIX GRID FOR THIS */}
@@ -125,7 +125,7 @@ const Projects = () => {
             <div class="zip-code valign-text-middle font-class-1">
               Zip (Postal) Code
             </div>
-            <input class="zip-code project-form__inputs--small border-class-1"></input>
+            <input class="zip-code project-form__inputs project-form__inputs--small"></input>
           </div>
         </div>
 
@@ -174,7 +174,7 @@ const Projects = () => {
         <div className="project-form__info">
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Internal Office</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
             {/* <div class="select-qr8e7q valign-text-middle font-class-1">
             Select
           </div> */}
@@ -184,27 +184,27 @@ const Projects = () => {
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Owner</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Architect</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Project Manager</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1">Email</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
 
           <div className="project-form__info__inputs">
             <div class="valign-text-middle font-class-1"> Phone Number</div>
-            <input class="project-form__inputs--small border-class-1"></input>
+            <input class="project-form__inputs project-form__inputs--small"></input>
           </div>
         </div>
 
