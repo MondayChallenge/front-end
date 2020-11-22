@@ -1,13 +1,16 @@
 .main-project {
   display: grid;
   grid-template-columns:
-    [full-start] minmax(8rem, 1fr)
-    [center-start] repeat(8, [col-start] minmax(min-content, 16rem) [col-end])
-    [center-end]
-    minmax(8rem, 1fr) [full-end];
+  $std-grid-column;
 
   margin: 4rem 0;
   column-gap: 2rem;
+
+  & h3{
+    margin-bottom: 1rem;
+    color:$color-azure-radiance;
+    font-weight: 500;
+  }
 
   & h1 {
     grid-column: center-start/center-end;
@@ -76,15 +79,32 @@
      
     }
 
-    & h3{
-        margin-bottom: 1rem;
-        color:$color-azure-radiance;
-        font-weight: 500;
-      }
+    
   }
 
   &__right {
     grid-column: col-end 5 / center-end;
-    background-color: blue;
+    // background-color: lightgray;
+
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    row-gap: 2rem;
+
+    &__cards{
+        border:$std-border;
+        border-radius: 2rem;
+        padding: 3rem;
+
+    }
+
+    &__bidding{
+
+
+    }
+
+    &__team{
+
+        
+    }
   }
 }
