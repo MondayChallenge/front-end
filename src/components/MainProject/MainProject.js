@@ -1,61 +1,33 @@
-import React from "react";
-import Navigation from "components/Navigation/Navigation";
-import building1 from "assets/img/building-1.png";
-import interior1 from "assets/img/interior-1.png";
-import interior2 from "assets/img/interior-2.png";
-import interior3 from "assets/img/interior-3.png";
+import React from 'react';
+import Navigation from 'components/Navigation/Navigation';
+import building1 from 'assets/img/building-1.png';
+import interior1 from 'assets/img/interior-1.png';
+import interior2 from 'assets/img/interior-2.png';
+import interior3 from 'assets/img/interior-3.png';
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-
-
-const FEED_QUERY = gql`
-  {
-    feed {
-      links {
-        id
-        createdAt
-        url
-        description
-      }
-    }
-  }
-`;
-
-// const POST_MUTATION = gql`
-//   mutation PostMutation($description: String!, $url: String!) {
-//     post(description: $description, url: $url) {
-//       id
-//       createdAt
-//       url
-//       description
-//     }
-//   }
-// `
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import { RegisterUser } from '../../apollo/user';
+import { useMutation } from '@apollo/client';
 
 const MainProject = () => {
-  return (
-    <Query query={FEED_QUERY}>
-      {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>
-          if (error) return <div>Error</div>
-    
-          const linksToRender = data.feed.links
-    
-          return (
-            <div>
-              {linksToRender}
-            </div>
-          )
-        }}
-    </Query>
-  );
+  const [newUser] = useMutation(RegisterUser);
+  React.useEffect(() => {
+    newUser({
+      variables: {
+        email: 'test@test1.com',
+        password: 'password',
+      },
+    });
+  }, []);
+
+  return <>{'Hello, World!'}</>;
 };
 
 export default MainProject;
 
-
-{/* <div className="dashboard-projects">
+{
+  /* <div className="dashboard-projects">
 <Navigation />
 <div className="main-project">
   <h1>Mattamy Development</h1>
@@ -117,4 +89,5 @@ export default MainProject;
     <div className="main-project__right__cards main-project__right__team "></div>
   </div>
 </div>
-</div> */}
+</div> */
+}
