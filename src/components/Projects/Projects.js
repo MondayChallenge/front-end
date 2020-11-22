@@ -4,7 +4,7 @@ import Navigation from "../Navigation/Navigation";
 
 import "components/Projects/Projects.css";
 
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
 
 class Projects extends React.Component {
 
