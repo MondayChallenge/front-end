@@ -54,7 +54,18 @@ const MainProject = () => {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         </div>
 
-        <div className="main-project__right"></div>
+        <div className="main-project__right">
+          <div className="main-project__right__cards main-project__right__bidding ">
+            <h3>Bidding Activity</h3>
+
+          </div>
+
+          <div className="main-project__right__cards main-project__right__team ">
+
+
+</div>
+
+        </div>
       </div>
     </div>
   );
