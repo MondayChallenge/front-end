@@ -34,6 +34,24 @@ const MainProject = () => {
               className="main-project__left__image--4"
             />
           </div>
+
+          <div className="main-project__left__details">
+              <ul className="main-project__left__details--1">
+                <li>Location</li>
+                <li>Project ID</li>
+                <li>Est. Completition Date</li>
+                <li>Budget</li>
+              </ul>
+              <ul className="main-project__left__details--2">
+                <li>1015 Market Street <span>San Francisco, CA 94103</span></li>
+                <li>1924561</li>
+                <li>September 2021</li>
+                <li>$7.2 million</li>
+              </ul>
+          </div>
+
+          <h3>Project Details</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         </div>
 
         <div className="main-project__right"></div>
