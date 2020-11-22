@@ -7,7 +7,7 @@ import interior3 from "assets/img/interior-3.png";
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-
+import { Mutation } from 'react-apollo'
 
 const FEED_QUERY = gql`
   {
