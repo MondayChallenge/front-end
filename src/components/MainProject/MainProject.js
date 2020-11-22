@@ -22,16 +22,16 @@ const FEED_QUERY = gql`
   }
 `;
 
-const POST_MUTATION = gql`
-  mutation PostMutation($description: String!, $url: String!) {
-    post(description: $description, url: $url) {
-      id
-      createdAt
-      url
-      description
-    }
-  }
-`
+// const POST_MUTATION = gql`
+//   mutation PostMutation($description: String!, $url: String!) {
+//     post(description: $description, url: $url) {
+//       id
+//       createdAt
+//       url
+//       description
+//     }
+//   }
+// `
 
 const MainProject = () => {
   return (
