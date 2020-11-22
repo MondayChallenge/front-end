@@ -19,8 +19,6 @@ const store = createStore(
 );
 
 
-
-
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
