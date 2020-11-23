@@ -11,7 +11,6 @@ import { Mutation } from 'react-apollo'
 
 
 
-<<<<<<< HEAD
 // const AddProject = gql`
 //   mutation AddProposal($name: String!) {
 //     createProposal(name: $name) {
@@ -22,18 +21,6 @@ import { Mutation } from 'react-apollo'
 //   }
 
 // `;
-=======
-const AddProject = gql`
-  mutation AddProposal($name: String!) {
-    createProposal(name: $name) {
-      proposal {
-        name
-      }
-    }
-  }
-
-`;
->>>>>>> 491377caff39fa11e210a87b3157efd0d41ab887
 
 //TODO: send data to apollo
 // client.mutate({
