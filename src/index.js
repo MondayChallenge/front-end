@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import reduxThunk from "redux-thunk";
-import * as serviceWorker from "./serviceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
+import * as serviceWorker from './serviceWorker';
 
 import App from "./App";
 import reducers from "./reducers";
+import { ApolloProvider } from '@apollo/client';
 
-import { ApolloProvider } from 'react-apollo';
 
 import client from 'apollo';
 
@@ -18,16 +18,12 @@ const store = createStore(
   composeEnhancers(applyMiddleware(reduxThunk))
 );
 
-
-
-
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <App />
     </Provider>
   </ApolloProvider>,
-
   document.getElementById("root")
 );
 
