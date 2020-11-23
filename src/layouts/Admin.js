@@ -43,6 +43,7 @@ class Admin extends React.Component {
         )
         .then((res) => {
           this.setState({ boardData: res.data });
+          // 
         });
     });
   }

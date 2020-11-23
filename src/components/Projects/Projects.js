@@ -11,16 +11,16 @@ import { Mutation } from 'react-apollo'
 
 
 
-// const AddProject = gql`
-//   mutation AddProposal($name: String!) {
-//     createProposal(name: $name) {
-//       proposal {
-//         name
-//       }
-//     }
-//   }
+const AddProject = gql`
+  mutation AddProposal($name: String!) {
+    createProposal(name: $name) {
+      proposal {
+        name
+      }
+    }
+  }
 
-// `;
+`;
 
 //TODO: send data to apollo
 // client.mutate({
@@ -39,10 +39,6 @@ import { Mutation } from 'react-apollo'
 // .then(result => { console.log(result) })
 // .catch(error => { console.log(error) });
 
-<<<<<<< HEAD
-// import { Formik } from 'formik';
-=======
->>>>>>>  rebase origin master
 
 class Projects extends React.Component {
 
@@ -66,10 +62,10 @@ class Projects extends React.Component {
     console.log(this.state);
     client.mutate({
       mutation: gql`
-        mutation AddProposal($name: String!) {
-          createProposal(name: $name) {
+        mutation AddProposal {
+          createProposal(input: { data: { Name: name } }) {
             proposal {
-              name
+              Name
             }
           }
         }
