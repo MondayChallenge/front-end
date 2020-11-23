@@ -9,9 +9,16 @@ const httpLink = createHttpLink({
 })
 
 
+<<<<<<< HEAD
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 })
 
 export default client;
+=======
+export const client = new ApolloClient({
+  uri: 'http://localhost:1337/graphql',
+  cache: new InMemoryCache(),
+});
+>>>>>>>  rebase origin master
