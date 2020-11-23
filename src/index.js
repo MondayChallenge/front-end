@@ -7,7 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 
 import App from "./App";
 import reducers from "./reducers";
-
+import { ApolloProvider } from 'react-apollo';
+import {client} from './apollo/index'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
@@ -16,9 +17,11 @@ const store = createStore(
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

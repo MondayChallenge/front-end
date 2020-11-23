@@ -7,6 +7,10 @@ import List from "../components/List/List";
 import mondaySdk from "monday-sdk-js";
 const monday = mondaySdk();
 
+
+
+
+
 class Admin extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +32,13 @@ class Admin extends React.Component {
       console.log(res.data);
       monday
         .api(
-          `query ($boardIds: [Int]) { boards (ids:$boardIds) { name items(limit:1) { name column_values { title text } } } }`,
+          `query ($boardIds: [Int]) { 
+            boards (ids:$boardIds) { 
+              name items(limit:1) { 
+                name column_values { title text } 
+              } 
+            } 
+          }`,
           { variables: { boardIds: this.state.context.boardIds } }
         )
         .then((res) => {
