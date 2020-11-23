@@ -3,29 +3,97 @@ import React from "react";
 import Navigation from "../Navigation/Navigation";
 
 import "components/Projects/Projects.css";
-
+// import {AddProject} from '../../apollo/project';
+import {client} from '../../apollo/index';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo'
 // import { Formik } from 'formik';
+
+
+
+// const AddProject = gql`
+//   mutation AddProposal($name: String!) {
+//     createProposal(name: $name) {
+//       proposal {
+//         name
+//       }
+//     }
+//   }
+
+// `;
+
+//TODO: send data to apollo
+// client.mutate({
+  
+//   mutation: gql`
+//     mutation AddProposal($name: String!) {
+//       createProposal(name: $name) {
+//         proposal {
+//           name
+//         }
+//       }
+//     }
+//   `,
+  
+// })
+// .then(result => { console.log(result) })
+// .catch(error => { console.log(error) });
+
 
 class Projects extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      
+      name: ''
     }
   }
 
   handleSubmit = (event) => {
-    // this.setState({
-    //   searchResult: this.state.value.toUpperCase(),
-    //   value: "",
-    // });
+  //   // this.setState({
+  //   //   searchResult: this.state.value.toUpperCase(),
+  //   //   value: "",
+  //   // });
 
     event.preventDefault(); //this is to avoid page from refreshing when you press submit
+  //   const project_name = document.getElementById("project_name").value
+  //   console.log(project_name)
+  //   // this.sendTo(project_name)
+    console.log(this.state);
+    client.mutate({
+      mutation: gql`
+        mutation AddProposal {
+          createProposal(input: { data: { Name: name } }) {
+            proposal {
+              Name
+            }
+          }
+        }
+      `,
+      
+    })
+    .then(result => { console.log('res',result) })
+    .catch(error => { console.log('err',error) });
+
   };
 
-  render(){
+  
 
+  // fetch = (name) => {
+  //   client.query({
+  //     query: gql`
+  //       {
+  //         users{
+  //          name
+  //          status
+  //         }
+  //       }
+  //     `
+  //   }).then(response => console.log(response.data.users))
+  // }
+
+  render(){
+    const { name } =  this.state
     return (
       <div className="dashboard-projects">
         <Navigation />
@@ -46,7 +114,7 @@ class Projects extends React.Component {
   
             <div className="project-form__info__inputs">
               <div class="valign-text-middle font-class-1">Project Name</div>
-              <input class="project-form__inputs project-form__inputs--small"></input>
+              <input id="project_name" class="project-form__inputs project-form__inputs--small" onChange={e => this.setState({ name: e.target.value })}></input>
             </div>
   
             <div className="project-form__info__inputs">
@@ -233,7 +301,10 @@ class Projects extends React.Component {
           <div class="submit valign-text-middle font-class-1 border-class-2">
   
           </div> */}
-          <input type="submit" value="Submit" className="project-form__submit-btn"></input>
+          <input type="submit" value="Submit" className="project-form__submit-btn" ></input>
+          {/* <Mutation mutation={AddProject} variables={{ name }} >
+            {AddProposal => <button  onClick={(e)=>{e.preventDefault();AddProposal()}} className="project-form__submit-btn">Submit</button>}
+          </Mutation> */}
         </form>
       </div>
     );

@@ -5,9 +5,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 
-import App from './App';
-import reducers from './reducers';
-
+import App from "./App";
+import reducers from "./reducers";
 import { ApolloProvider } from '@apollo/client';
 
 
@@ -25,8 +24,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </ApolloProvider>,
-
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -9,7 +9,7 @@ import Proposals from "./components/Proposals/Proposals";
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 
-
+ 
 
 const App = ()=> {
 
