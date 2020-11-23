@@ -17,12 +17,12 @@ const Navigation = (props) => {
         <div id="navLinks">
           <Link to="/" className="projects navLink" >Projects</Link>
           <Link to="/messages" className="messages navLink" >Messages</Link>
-          <Link to="/" className="proposals navLink" >Proposals</Link>
+          <Link to="/proposals" className="proposals navLink" >Proposals</Link>
           <Link to="/" className="documents navLink" >Documents</Link>
           <Link to="/" className="reports navLink" >Reports</Link>
-          <Link to="/" className="directory navLink" >Directory</Link>
+          <Link to="/" className="directory navLink" >Budget</Link>
           <Link to="/" className="calendar navLink" >Calendar</Link>
-          <Link to="/" className="admin navLink" >Admin</Link>
+          <Link to="/" className="admin navLink" >Directory</Link>
         </div>
         <div id="bar">
           <img

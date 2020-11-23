@@ -11,3 +11,13 @@ $color-mist-gray: rgba(196,196,196,1.0);
 
 //margin variables
 $margin-top-med: 3rem;
+
+//std project grid column
+
+$std-grid-column:   [full-start] minmax(4rem, 1fr)
+[center-start] repeat(8, [col-start] minmax(min-content, 16rem) [col-end])
+[center-end]
+minmax(4rem, 1fr) [full-end];
+
+//border
+$std-border:1px solid $color-ghost;
