@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const AddProject = gql`
+export const AddProject = gql`
   mutation AddProposal {
     createProposal(input: { data: { Name: "Proposal 1" } }) {
       proposal {
