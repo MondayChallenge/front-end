@@ -5,35 +5,44 @@ import interior1 from "assets/img/interior-1.png";
 import interior2 from "assets/img/interior-2.png";
 import interior3 from "assets/img/interior-3.png";
 import headshot from "assets/img/professional_woman_headshot.jpg";
-import { RegisterUser, LoginUser } from '../../apollo/user';
+import { RegisterUser, LoginUser } from "../../apollo/user";
 
-import { useMutation } from '@apollo/client';
+import { useMutation } from "@apollo/client";
 import mondaySdk from "monday-sdk-js";
-import { register } from 'serviceWorker';
+import { register } from "serviceWorker";
+
+import { getRandomInt } from "components/utils/getRandomInt";
+
 const monday = mondaySdk();
-monday.setToken('eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc')
-
-
+monday.setToken(
+  "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc"
+);
 
 const MainProject = () => {
-  const [newUser] = useMutation(RegisterUser,{
-    onCompleted: (data) => {console.log("Data from RegisterUser", data.register.user.id );setUserId(data.login.user.id)} ,
+  const [newUser] = useMutation(RegisterUser, {
+    onCompleted: (data) => {
+      console.log("Data from RegisterUser", data.register.user.id);
+      setUserId(data.login.user.id);
+    },
     onError: (error) => console.error("Error getting RegisterUser", error),
   });
-  const [user] = useMutation(LoginUser,{
-    onCompleted: (data) => {console.log("Data from LoginUser", data.login.user.id );setUserId(data.login.user.id)} ,
+  const [user] = useMutation(LoginUser, {
+    onCompleted: (data) => {
+      console.log("Data from LoginUser", data.login.user.id);
+      setUserId(data.login.user.id);
+    },
     onError: (error) => console.error("Error getting LoginUser", error),
   });
   const [setting, setSetting] = React.useState({});
-  const [name, setName] = React.useState("")
-  const [email, setEamil] = React.useState("")
-  const [password, setPassword]  = React.useState("")
-  const [userId, setUserId] = React.useState(null)
-  const [context, setContext] = React.useState(null)
+  const [name, setName] = React.useState("");
+  const [email, setEamil] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [userId, setUserId] = React.useState(null);
+  const [context, setContext] = React.useState(null);
 
-  const getUser = async() => {
-    try{
-      const {data} = await monday.api(`
+  const getUser = async () => {
+    try {
+      const { data } = await monday.api(`
         query {
           me {
             id,
@@ -41,64 +50,54 @@ const MainProject = () => {
             email
           }
         }
-        `)
+        `);
       // console.log('monday user: ',data.me)
-      setEamil(data.me.email)
-      setPassword(data.me.name+'_'+data.me.id);
-    }catch(err){
-      console.log('monday api error:',err)
+      setEamil(data.me.email);
+      setPassword(data.me.name + "_" + data.me.id);
+    } catch (err) {
+      console.log("monday api error:", err);
     }
-  }
+  };
 
-  const getRegisterUserID = async() => {
-    try{
+  const getRegisterUserID = async () => {
+    try {
       const userId = await newUser({
         variables: {
-          email ,
-          password 
-        }
-      })
-      return userId.data.register.user.id
-    }catch(err){
-      console.log('graphQL error:',err)
+          email,
+          password,
+        },
+      });
+      return userId.data.register.user.id;
+    } catch (err) {
+      console.log("graphQL error:", err);
     }
-  }
+  };
 
-  const getLoginUserID = async() => {
-    try{
+  const getLoginUserID = async () => {
+    try {
       const userId = await user({
         variables: {
-          email ,
-          password 
-        }
-      })
-      if(userId){
-        return userId.data.login.user.id
+          email,
+          password,
+        },
+      });
+      if (userId) {
+        return userId.data.login.user.id;
       } else {
-        return  null
+        return null;
       }
-      
-    }catch(err){
-      console.log('graphQL error:',err)
+    } catch (err) {
+      console.log("graphQL error:", err);
     }
+  };
 
-  }
-
-  
-  React.useEffect( () => {
-   
-    getUser()
-    if(password.length>0){
-      console.log('user info', email, password)
-      getLoginUserID() || getRegisterUserID() ;
+  React.useEffect(() => {
+    getUser();
+    if (password.length > 0) {
+      console.log("user info", email, password);
+      getLoginUserID() || getRegisterUserID();
     }
-    
-  
-    
   }, [password]);
-
- 
-
 
   const bids = [
     { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
@@ -118,20 +117,20 @@ const MainProject = () => {
   };
 
   const renderBidding = (bids, bidColors) => {
-    return bids.map((bid) => {
+    return bids.map((bid, i) => {
       const { name, type, status } = bid;
 
       return (
-        <div className="main-project__right__bidding__group">
-          <p className="main-project__right__bidding__group--1">{name}</p>
+        <div className="main-project__right__bidding__group" key={i}>
+          <p className="main-project__right__bidding__group--name">{name}</p>
           <p
-            className={`main-project__right__bidding__group--2 font-color--${
+            className={`main-project__right__bidding__group--status font-color--${
               bidColors[status.split(" ")[0]]
             }`}
           >
             {status}
           </p>
-          <p className="main-project__right__bidding__group--3">{type}</p>
+          <p className="main-project__right__bidding__group--type">{type}</p>
         </div>
       );
     });
@@ -160,24 +159,51 @@ const MainProject = () => {
     },
   ];
 
-  const backgroundColor = ["orange","green","blue","pink","purple"];
+  const backgroundColor = ["orange", "green", "blue", "pink", "purple"];
 
   const renderTeam = (team, backgroundColor) => {
     return team.map((member, i) => {
+      const { name, title, img } = member;
 
-      const {name,title,img} = member;
+      const renderImg = (img, name) => {
+        
+        const colorPicker = (colors) => {
+          const randInt = getRandomInt(0, colors.length);
+          return colors[randInt];
+        };
 
+        if (img === "" || img === null) {
+          const nameSplit = name.split(" ");
+          const nameInitials = [
+            nameSplit[0][0],
+            nameSplit[nameSplit.length - 1][0],
+          ].join("");
 
+          return (
+            <div
+              className={`main-project__right__team__group--placeholder image-background-color--${colorPicker(
+                backgroundColor
+              )}`}
+            >
+              {nameInitials}
+            </div>
+          );
+        } else {
+          return (
+            <img
+              src={img}
+              alt={`${name} headshot`}
+              className="main-project__right__team__group--img"
+            />
+          );
+        }
+      };
 
       return (
-        <div className="main-project__right__team__group">
-          <div className="main-project__right__team__group--placeholder image-background-color--green">
-            WT
-          </div>
+        <div className="main-project__right__team__group" key={i}>
+          {renderImg(img, name)}
 
-          <p className="main-project__right__team__group--name">
-            {name}
-          </p>
+          <p className="main-project__right__team__group--name">{name}</p>
           <p className="main-project__right__team__group--description">
             {title}
           </p>
@@ -251,55 +277,7 @@ const MainProject = () => {
           <div className="main-project__right__cards main-project__right__team ">
             <h3>Project Team</h3>
 
-            <div className="main-project__right__team__group">
-              <div className="main-project__right__team__group--placeholder image-background-color--pink">
-                DF
-              </div>
-
-              <p className="main-project__right__team__group--name">
-                David Felber
-              </p>
-              <p className="main-project__right__team__group--description">
-                Project Manager
-              </p>
-            </div>
-            <div className="main-project__right__team__group">
-              <div className="main-project__right__team__group--placeholder image-background-color--green">
-                WT
-              </div>
-
-              <p className="main-project__right__team__group--name">
-                Wesley Thomas
-              </p>
-              <p className="main-project__right__team__group--description">
-                VP of Business Development
-              </p>
-            </div>
-            <div className="main-project__right__team__group">
-              <img
-                src={headshot}
-                alt=""
-                className="main-project__right__team__group--img"
-              />
-
-              <p className="main-project__right__team__group--name">
-                Lauren Stevens
-              </p>
-              <p className="main-project__right__team__group--description">
-                Sr. Architect /Designer
-              </p>
-            </div>
-            <div className="main-project__right__team__group">
-              <div className="main-project__right__team__group--placeholder image-background-color--orange">
-                BN
-              </div>
-              <p className="main-project__right__team__group--name">
-                Brad Nichols
-              </p>
-              <p className="main-project__right__team__group--description">
-                Project Engineer
-              </p>
-            </div>
+            {renderTeam(team, backgroundColor)}
           </div>
         </div>
       </div>
