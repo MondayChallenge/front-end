@@ -6,6 +6,7 @@ import Navigation from 'components/Navigation/Navigation';
 import './CostBreakdown.css';
 
 import { v4 as uuidv4 } from 'uuid';
+
 function LeftRight({ mkey, val }) {
   return (
     <div className="row">
@@ -14,7 +15,13 @@ function LeftRight({ mkey, val }) {
     </div>
   );
 }
+
 export default function CostBreakdown({ projectId }) {
+
+  //for testing purposes
+  //you get this when you create a user account
+  sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA2MTY5ODYwLCJleHAiOjE2MDg3NjE4NjB9.1gIzcIh6xgg6J-02lfYqtqvr4NsqxVR34Ec9k_Bnseo");
+
   projectId = 'dsfsdlfksj';
   const { loading, error, data } = useQuery(GetProject, {
     //needs to be changed to projectId from props
@@ -24,6 +31,7 @@ export default function CostBreakdown({ projectId }) {
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
+    console.log(data);
     const materials = data.bid.material.data.map((data) => (
       <div className="row" key={uuidv4()}>
         <p className="costListItem">{data.item}</p>
