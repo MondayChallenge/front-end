@@ -94,10 +94,8 @@ const Projects = () => {
 
         <h1 className="form-section-header">Project Location</h1>
 
-        <p class="project-form__instruction ">
-          The information below will be published to Monday Bids as a project.
-          Please fill out the required fields below then hit publish to create a
-          project on Monday Bids.
+        <p className="form-section-subheader  ">
+        Please complete the fields below to indicate where the project will be taking place.
         </p>
 
         <div className="form-inputs-section">
@@ -140,35 +138,32 @@ const Projects = () => {
           </div>
         </div>
 
-        <h1 className="form-section-header">Included Items</h1>
+        <h1 className="form-section-header">Attachments</h1>
 
-        <p class="project-form__instruction font-class-1">
-          The information below will be published to Monday Bids as a project.
-          Please fill out the required fields below then hit publish to create a
-          project on Monday Bids.
+        <p className="form-section-subheader  ">
+         Please upload the scope of work, images, or additional documentation for bidders to review prior to submitting a project bid.
         </p>
 
         <div className="project-form__files">
-          <div class="project-form__files__drop ">
-            <p class="span1-9jb2op">
+          <div className="form-drop-file">
+            <p className="form-drop-file__title">
               Drag your file here, or
-              <span class="span2-9jb2op"> browse</span>
+              <span > browse</span>
             </p>
             {/* .supports-j-if-pdf-png-C61RwL used to be */}
-            <p class="project-form__files__drop--sub ">
+            <p className="form-drop-file__sub ">
               Supports: JPG, GIF, PDF, PNG
             </p>
           </div>
-          {/* <input class="rectangle-192 border-class-1"></input> */}
+          
 
-          {/* <input class="rectangle-193 border-class-1"></input> */}
-          <div class="project-form__files__drop">
-            <p class="span1-9jb2op">
+          <div className="form-drop-file">
+            <p className="form-drop-file__title">
               Drag your file here, or
-              <span class="span2-9jb2op"> browse</span>
+              <span > browse</span>
             </p>
-            {/* .supports-j-if-pdf-png-VMr6Om used to be */}
-            <p class="project-form__files__drop--sub ">
+            {/* .supports-j-if-pdf-png-C61RwL used to be */}
+            <p className="form-drop-file__sub ">
               Supports: JPG, GIF, PDF, PNG
             </p>
           </div>
@@ -176,7 +171,7 @@ const Projects = () => {
 
         <h1 className="form-section-header">Project Team</h1>
 
-        <p class="project-form__instruction  ">
+        <p className="form-section-subheader  ">
           The information below will be published to Monday Bids as a project.
           Please fill out the required fields below then hit publish to create a
           project on Monday Bids.

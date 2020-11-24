@@ -13,9 +13,6 @@
     grid-column: center-start/center-end;
   }
 
-  &__instruction {
-    color: $color-dolphin;
-  }
 
   &__info {
 
@@ -103,25 +100,6 @@
     // height: 96px;
     // width: 450px;
 
-    &__drop {
-      border: $std-border; //ghost
-      background-color: white;
-      border-radius: 4px;
-
-      padding: 5rem;
-      & p {
-        align-content: center;
-        justify-content: center;
-
-        text-align: center;
-      }
-
-      &--sub {
-        color: var(--ghost);
-        font-size: 14px;
-        white-space: nowrap;
-      }
-    }
   }
   
 

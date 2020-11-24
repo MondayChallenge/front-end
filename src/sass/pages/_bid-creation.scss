@@ -1,0 +1,28 @@
+.bid-creation{
+    display: grid;
+    grid-template-columns: $std-grid-column;
+  
+    margin: 4rem 0;
+
+    & h1 {
+        grid-column: center-start/center-end;
+        margin-top: $margin-top-med;
+      }
+    
+    & p {
+    grid-column: center-start/center-end;
+    }
+    
+    &__files {
+        grid-column: center-start/center-end;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 6rem;
+        margin-top: $margin-top-med;
+    
+        // height: 96px;
+        // width: 450px;
+    
+      }
+
+}
