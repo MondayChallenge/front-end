@@ -23,6 +23,7 @@ const App = ()=> {
           <Route path="/messages" exact component={Messages} />
           <Route path="/newProject" exact component={Projects} />
           <Route path="/newProject" exact component={Projects} />
+          <Route path="/costBreakdown" exact component={CostBreakdown} />
 
       </BrowserRouter>
     );
