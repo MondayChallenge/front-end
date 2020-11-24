@@ -24,3 +24,22 @@ body {
         color: $color-danger;
     }
 }
+
+.image-background-color{
+    &--orange{
+        background-color: $color-image-background-orange;
+    }
+
+    &--green{
+        background-color: $color-image-background-green;
+    }
+    &--blue{
+        background-color: $color-image-background-blue;
+    }
+    &--pink{
+        background-color: $color-image-background-pink;
+    }
+    &--purple{
+        background-color: $color-image-background-purple;
+    }
+}
