@@ -10,7 +10,9 @@ import reducers from "./reducers";
 import { ApolloProvider } from '@apollo/client';
 
 
-import {client} from '../src/apollo/index';
+
+import {client} from 'apollo';
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
