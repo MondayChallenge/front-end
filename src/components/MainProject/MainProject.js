@@ -12,6 +12,8 @@ import mondaySdk from "monday-sdk-js";
 import { register } from 'serviceWorker';
 const monday = mondaySdk();
 monday.setToken('eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc')
+// import headshot from "assets/img/professional_woman_headshot.jpg";
+
 
 const MainProject = () => {
   const [newUser] = useMutation(RegisterUser,{
@@ -156,9 +158,60 @@ const MainProject = () => {
         <div className="main-project__right">
           <div className="main-project__right__cards main-project__right__bidding ">
             <h3>Bidding Activity</h3>
+            <div className="main-project__right__bidding__group">
+              <p className="main-project__right__bidding__group--1">
+                Cupertino Electric, Inc.
+              </p>
+              <p className="main-project__right__bidding__group--2 font-color--warning">
+                Awarded
+              </p>
+              <p className="main-project__right__bidding__group--3">
+                Utilities
+              </p>
+            </div>
+            <div className="main-project__right__bidding__group">
+              <p className="main-project__right__bidding__group--1">
+                Bay Electric
+              </p>
+              <p className="main-project__right__bidding__group--2 font-color--danger">
+                Declined
+              </p>
+              <p className="main-project__right__bidding__group--3">
+                Utilities
+              </p>
+            </div>
+            <div className="main-project__right__bidding__group">
+              <p className="main-project__right__bidding__group--1">
+                A&A Concrete Supply
+              </p>
+              <p className="main-project__right__bidding__group--2 font-color--warning">
+                Awarded
+              </p>
+              <p className="main-project__right__bidding__group--3">Concrete</p>
+            </div>
+            <div className="main-project__right__bidding__group">
+              <p className="main-project__right__bidding__group--1">
+                SAS Stressteel, Inc.
+              </p>
+              <p className="main-project__right__bidding__group--2 font-color--success">
+                Awaiting Response
+              </p>
+              <p className="main-project__right__bidding__group--3">
+                Structural Steel
+              </p>
+            </div>
           </div>
 
-          <div className="main-project__right__cards main-project__right__team "></div>
+          <div className="main-project__right__cards main-project__right__team ">
+            <h3>Project Team</h3>
+
+            <div className="main-project__right__team__group">
+                {/* <img src={headshot} alt="" className="main-project__right__team__group--img"/> */}
+                <p className="main-project__right__team__group--name">David Felber</p>
+                <p className="main-project__right__team__group--description">Project Manager</p>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
