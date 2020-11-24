@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+// import gql from 'graphql-tag';
 
 export const RegisterUser = gql`
   mutation Register($email: String!, $password: String!) {
@@ -11,9 +12,20 @@ export const RegisterUser = gql`
   }
 `;
 
-const LoginUser = gql`
+// mutation CreateRegister {
+//   register (input: {email: "111@test.com",password: "123" ,username: "testname"}){
+//    jwt
+//    user{
+//      id
+//    }
+//  }
+ 
+// }
+
+
+export const LoginUser = gql`
   mutation Login($email: String!, $password: String!) {
-    login(input: { password: $password, identifier: $email }) {
+    login(input: { identifier: $email, password: $password }) {
       jwt
       user {
         id
@@ -21,3 +33,13 @@ const LoginUser = gql`
     }
   }
 `;
+
+// mutation Login {
+//   login(input:{identifier: "12345@test.com",password:"123"})
+//   {
+//     jwt 
+//     user{
+//       id
+//     }
+//   }
+// }
