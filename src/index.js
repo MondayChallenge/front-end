@@ -8,7 +8,10 @@ import * as serviceWorker from './serviceWorker';
 import App from "./App";
 import reducers from "./reducers";
 import { ApolloProvider } from '@apollo/client';
-import {client} from './apollo/index'
+
+
+import {client} from '../src/apollo/index';
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
