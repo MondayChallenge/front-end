@@ -6,6 +6,7 @@
 }
 
 
+
 .form-inputs-block{
     display: grid;
       grid-row: repeat(2, 1fr);
@@ -58,4 +59,40 @@
 
 .form-section-subheader{
     color: $color-dolphin;
+}
+
+.form-drop-file{
+    border: $std-border; //ghost
+    background-color: white;
+    border-radius: 4px;
+
+    padding: 5rem;
+    // align-content: center;
+    // justify-content: center;
+
+    text-align: center;
+
+    &__title{
+     
+        font-size: 1.6rem;
+        font-style: normal;
+        font-weight: 400;
+      
+        line-height: 2.4rem;
+      
+
+        & span{
+            color: $color-azure-radiance;
+         
+            font-size: inherit;
+           
+        }
+    }
+
+
+    &__sub {
+        color: $color-ghost;
+        font-size: 1.4rem;
+        white-space: nowrap;
+      }
 }
