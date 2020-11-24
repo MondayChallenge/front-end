@@ -18,16 +18,9 @@
   }
 
   &__info {
-    grid-column: center-start/center-end;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 4rem;
 
     &__inputs {
-      display: grid;
-      grid-row: repeat(2, 1fr);
-      margin-top: $margin-top-med;
-
+     
       & .address {
         &__text {
         }
@@ -97,6 +90,7 @@
       grid-column: 1/-1;
       margin-top: $margin-top-med;
     }
+
   }
 
   &__files {
@@ -129,22 +123,7 @@
       }
     }
   }
-  &__inputs {
-    border-radius: 4px;
-    border: $std-border; //ghost
-    background-color: white;
-    margin-top: 1rem;
-
-    &--small {
-      // width: 28.2rem;
-      height: 4rem;
-      width: 100%;
-    }
-    &--large {
-      height: 17.5rem;
-      width: 100%;
-    }
-  }
+  
 
   &__submit-btn {
     background-color: $color-azure-radiance;
