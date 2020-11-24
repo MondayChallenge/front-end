@@ -9,11 +9,99 @@ import Proposals from "./components/Proposals/Proposals";
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
+import { RegisterUser, LoginUser } from "./apollo/user";
 
+import { useMutation } from "@apollo/client";
+import mondaySdk from "monday-sdk-js";
+
+const monday = mondaySdk();
+monday.setToken(
+  "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc"
+);
  
 
 const App = ()=> {
+  const [newUser] = useMutation(RegisterUser, {
+    onCompleted: (data) => {
+      console.log("Data from RegisterUser", data.register.user.id);     
+      setUserId(data.register.user.id);
+      sessionStorage.setItem('jwtToken',  data.register.jwt);
+    },
+    onError: (error) => console.error("Error getting RegisterUser", error),
+  });
+  const [user] = useMutation(LoginUser, {
+    onCompleted: (data) => {
+      console.log("Data from LoginUser", data.login.user.id);
+      setUserId(data.login.user.id);
+      // sessionStorage.removeItem('jwtToken');
+      sessionStorage.setItem('jwtToken',  data.login.jwt);
+    },
+    onError: (error) => console.error("Error getting LoginUser", error),
+  });
 
+  const [email, setEamil] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [userId, setUserId] = React.useState(null);
+
+  const getUser = async () => {
+    try {
+      const { data } = await monday.api(`
+        query {
+          me {
+            id,
+            name,
+            email
+          }
+        }
+        `);
+      // console.log('monday user: ',data.me)
+      setEamil(data.me.email);
+      setPassword(data.me.name + "_" + data.me.id);
+    } catch (err) {
+      console.log("monday api error:", err);
+    }
+  };
+
+  const getRegisterUserID = async (email, password) => {
+    try {
+      const userInfo = await newUser({
+        variables: {
+          email,
+          password,
+        },
+      });
+      return userInfo.data.register.user.id;
+    } catch (err) {
+      console.log("graphQL register error:", err);
+    }
+  };
+
+  const getLoginUserID = async (email, password) => {
+    try {
+      const userInfo = await user({
+        variables: {
+          email,
+          password,
+        },
+      });
+      if (userInfo) {
+        return userInfo.data.login.user.id;
+      } else {
+        return null;
+      }
+    } catch (err) {
+      console.log("graphQL login error:", err);
+    }
+  };
+
+  React.useEffect(() => {
+    const token = sessionStorage.getItem('jwtToken');
+    getUser();
+    if (password.length > 0 && !token) {
+      console.log("user info", email, password);
+      getLoginUserID(email, password) || getRegisterUserID(email, password);
+    }
+  }, [password]);
   
     return (
       <BrowserRouter >
