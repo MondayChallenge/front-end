@@ -4,24 +4,101 @@ import building1 from "assets/img/building-1.png";
 import interior1 from "assets/img/interior-1.png";
 import interior2 from "assets/img/interior-2.png";
 import interior3 from "assets/img/interior-3.png";
-
 import headshot from "assets/img/professional_woman_headshot.jpg";
+import { RegisterUser, LoginUser } from '../../apollo/user';
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { RegisterUser } from "apollo/user";
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
+import mondaySdk from "monday-sdk-js";
+import { register } from 'serviceWorker';
+const monday = mondaySdk();
+monday.setToken('eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc')
+
+
 
 const MainProject = () => {
-  // const [newUser] = useMutation(RegisterUser);
-  // React.useEffect(() => {
-  //   newUser({
-  //     variables: {
-  //       email: "tawefeamamamamamst@test1.com",
-  //       password: "pasawefsword",
-  //     },
-  //   });
-  // }, []);
+  const [newUser] = useMutation(RegisterUser,{
+    onCompleted: (data) => {console.log("Data from RegisterUser", data.register.user.id );setUserId(data.login.user.id)} ,
+    onError: (error) => console.error("Error getting RegisterUser", error),
+  });
+  const [user] = useMutation(LoginUser,{
+    onCompleted: (data) => {console.log("Data from LoginUser", data.login.user.id );setUserId(data.login.user.id)} ,
+    onError: (error) => console.error("Error getting LoginUser", error),
+  });
+  const [setting, setSetting] = React.useState({});
+  const [name, setName] = React.useState("")
+  const [email, setEamil] = React.useState("")
+  const [password, setPassword]  = React.useState("")
+  const [userId, setUserId] = React.useState(null)
+  const [context, setContext] = React.useState(null)
+
+  const getUser = async() => {
+    try{
+      const {data} = await monday.api(`
+        query {
+          me {
+            id,
+            name,
+            email
+          }
+        }
+        `)
+      // console.log('monday user: ',data.me)
+      setEamil(data.me.email)
+      setPassword(data.me.name+'_'+data.me.id);
+    }catch(err){
+      console.log('monday api error:',err)
+    }
+  }
+
+  const getRegisterUserID = async() => {
+    try{
+      const userId = await newUser({
+        variables: {
+          email ,
+          password 
+        }
+      })
+      return userId.data.register.user.id
+    }catch(err){
+      console.log('graphQL error:',err)
+    }
+  }
+
+  const getLoginUserID = async() => {
+    try{
+      const userId = await user({
+        variables: {
+          email ,
+          password 
+        }
+      })
+      if(userId){
+        return userId.data.login.user.id
+      } else {
+        return  null
+      }
+      
+    }catch(err){
+      console.log('graphQL error:',err)
+    }
+
+  }
+
+  
+  React.useEffect( () => {
+   
+    getUser()
+    if(password.length>0){
+      console.log('user info', email, password)
+      getLoginUserID() || getRegisterUserID() ;
+    }
+    
+  
+    
+  }, [password]);
+
+ 
+
 
   const bids = [
     { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
