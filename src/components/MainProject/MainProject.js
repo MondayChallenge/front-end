@@ -5,23 +5,100 @@ import interior1 from "assets/img/interior-1.png";
 import interior2 from "assets/img/interior-2.png";
 import interior3 from "assets/img/interior-3.png";
 
-import headshot from "assets/img/professional_woman_headshot.jpg";
+import { RegisterUser, LoginUser } from '../../apollo/user';
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { RegisterUser } from "apollo/user";
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
+import mondaySdk from "monday-sdk-js";
+import { register } from 'serviceWorker';
+const monday = mondaySdk();
+monday.setToken('eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc')
+// import headshot from "assets/img/professional_woman_headshot.jpg";
+
 
 const MainProject = () => {
-  // const [newUser] = useMutation(RegisterUser);
-  // React.useEffect(() => {
-  //   newUser({
-  //     variables: {
-  //       email: "tawefeamamamamamst@test1.com",
-  //       password: "pasawefsword",
-  //     },
-  //   });
-  // }, []);
+  const [newUser] = useMutation(RegisterUser,{
+    onCompleted: (data) => {console.log("Data from RegisterUser", data.register.user.id );setUserId(data.login.user.id)} ,
+    onError: (error) => console.error("Error getting RegisterUser", error),
+  });
+  const [user] = useMutation(LoginUser,{
+    onCompleted: (data) => {console.log("Data from LoginUser", data.login.user.id );setUserId(data.login.user.id)} ,
+    onError: (error) => console.error("Error getting LoginUser", error),
+  });
+  const [setting, setSetting] = React.useState({});
+  const [name, setName] = React.useState("")
+  const [email, setEamil] = React.useState("")
+  const [password, setPassword]  = React.useState("")
+  const [userId, setUserId] = React.useState(null)
+  const [context, setContext] = React.useState(null)
+
+  const getUser = async() => {
+    try{
+      const {data} = await monday.api(`
+        query {
+          me {
+            id,
+            name,
+            email
+          }
+        }
+        `)
+      // console.log('monday user: ',data.me)
+      setEamil(data.me.email)
+      setPassword(data.me.name+'_'+data.me.id);
+    }catch(err){
+      console.log('monday api error:',err)
+    }
+  }
+
+  const getRegisterUserID = async() => {
+    try{
+      const userId = await newUser({
+        variables: {
+          email ,
+          password 
+        }
+      })
+      return userId.data.register.user.id
+    }catch(err){
+      console.log('graphQL error:',err)
+    }
+  }
+
+  const getLoginUserID = async() => {
+    try{
+      const userId = await user({
+        variables: {
+          email ,
+          password 
+        }
+      })
+      if(userId){
+        return userId.data.login.user.id
+      } else {
+        return  null
+      }
+      
+    }catch(err){
+      console.log('graphQL error:',err)
+    }
+
+  }
+
+  
+  React.useEffect( () => {
+   
+    getUser()
+    if(password.length>0){
+      console.log('user info', email, password)
+      getLoginUserID() || getRegisterUserID() ;
+    }
+    
+  
+    
+  }, [password]);
+
+ 
+  // return <>{`Hello, World! ${userId}` }</>;
 
   return (
     <div className="dashboard-projects">
@@ -129,7 +206,7 @@ const MainProject = () => {
             <h3>Project Team</h3>
 
             <div className="main-project__right__team__group">
-                <img src={headshot} alt="" className="main-project__right__team__group--img"/>
+                {/* <img src={headshot} alt="" className="main-project__right__team__group--img"/> */}
                 <p className="main-project__right__team__group--name">David Felber</p>
                 <p className="main-project__right__team__group--description">Project Manager</p>
 
@@ -143,66 +220,67 @@ const MainProject = () => {
 
 export default MainProject;
 
-/* <div className="dashboard-projects">
-<Navigation />
-<div className="main-project">
-  <h1>Mattamy Development</h1>
-  <div className="main-project__left">
-    <div className="main-project__left__image">
-      <img
-        src={building1}
-        alt="building-1"
-        className="main-project__left__image--1"
-      />
-      <img
-        src={interior1}
-        alt="interior-1"
-        className="main-project__left__image--2"
-      />
-      <img
-        src={interior2}
-        alt="interior-2"
-        className="main-project__left__image--3"
-      />
-      <img
-        src={interior3}
-        alt="interior-3"
-        className="main-project__left__image--4"
-      />
-    </div>
 
-    <div className="main-project__left__details">
-      <ul className="main-project__left__details--1">
-        <li>Location</li>
-        <li>Project ID</li>
-        <li>Est. Completition Date</li>
-        <li>Budget</li>
-      </ul>
-      <ul className="main-project__left__details--2">
-        <li>
-          1015 Market Street <span>San Francisco, CA 94103</span>
-        </li>
-        <li>1924561</li>
-        <li>September 2021</li>
-        <li>$7.2 million</li>
-      </ul>
-    </div>
+//  <div className="dashboard-projects">
+// <Navigation />
+// <div className="main-project">
+//   <h1>Mattamy Development</h1>
+//   <div className="main-project__left">
+//     <div className="main-project__left__image">
+//       <img
+//         src={building1}
+//         alt="building-1"
+//         className="main-project__left__image--1"
+//       />
+//       <img
+//         src={interior1}
+//         alt="interior-1"
+//         className="main-project__left__image--2"
+//       />
+//       <img
+//         src={interior2}
+//         alt="interior-2"
+//         className="main-project__left__image--3"
+//       />
+//       <img
+//         src={interior3}
+//         alt="interior-3"
+//         className="main-project__left__image--4"
+//       />
+//     </div>
 
-    <h3>Project Details</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
-      aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur.
-    </p>
-  </div>
+//     <div className="main-project__left__details">
+//       <ul className="main-project__left__details--1">
+//         <li>Location</li>
+//         <li>Project ID</li>
+//         <li>Est. Completition Date</li>
+//         <li>Budget</li>
+//       </ul>
+//       <ul className="main-project__left__details--2">
+//         <li>
+//           1015 Market Street <span>San Francisco, CA 94103</span>
+//         </li>
+//         <li>1924561</li>
+//         <li>September 2021</li>
+//         <li>$7.2 million</li>
+//       </ul>
+//     </div>
 
-  <div className="main-project__right">
-    <div className="main-project__right__cards main-project__right__bidding ">
-      <h3>Bidding Activity</h3>
-    </div>
+//     <h3>Project Details</h3>
+//     <p>
+//       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+//       eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
+//       aute irure dolor in reprehenderit in voluptate velit esse cillum
+//       dolore eu fugiat nulla pariatur.
+//     </p>
+//   </div>
 
-    <div className="main-project__right__cards main-project__right__team "></div>
-  </div>
-</div>
-</div> */
+//   <div className="main-project__right">
+//     <div className="main-project__right__cards main-project__right__bidding ">
+//       <h3>Bidding Activity</h3>
+//     </div>
+
+//     <div className="main-project__right__cards main-project__right__team "></div>
+//   </div>
+// </div>
+// </div> 

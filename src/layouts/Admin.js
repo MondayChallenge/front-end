@@ -42,6 +42,7 @@ class Admin extends React.Component {
           { variables: { boardIds: this.state.context.boardIds } }
         )
         .then((res) => {
+          console.log('user data>>>>>',res.data)
           this.setState({ boardData: res.data });
         });
     });
