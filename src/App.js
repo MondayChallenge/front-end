@@ -9,6 +9,7 @@ import Proposals from "./components/Proposals/Proposals";
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
+import BidCreation from './components/BidCreation/BidCreation';
 
  
 
@@ -23,6 +24,7 @@ const App = ()=> {
           <Route path="/messages" exact component={Messages} />
           <Route path="/newProject" exact component={Projects} />
           <Route path="/costBreakdown" exact component={CostBreakdown} />
+          <Route path="/bidCreation" exact component={BidCreation} />
 
       </BrowserRouter>
     );
