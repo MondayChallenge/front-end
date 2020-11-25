@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import Navigation from 'components/Navigation/Navigation'
 import { CREATE_BID } from '../../apollo/bid';
 import { useMutation } from '@apollo/client';
+import { useHistory } from "react-router-dom";
+
 
 const BidCreation = () => {
 
-    const [createBid, someData] = useMutation(CREATE_BID);
+    let history = useHistory();
+
+    const [createBid,data] = useMutation(CREATE_BID);
+    //const [bidId,setBidId] = useState("");
 
     const testData = {
         notes: "Hello, World",
         license_number: "PPR11722P",
-        material: {data: [{'name': 'brick1','cost': 50000}, {'name': 'brick2','cost': 1000}]},
-        labor: {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
-        miscExpense: {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+        material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
+        labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
+        miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
         contactName: "Tony",
         phone: "+91 999999999",
         classType: "A Class",
@@ -21,8 +26,9 @@ const BidCreation = () => {
         project: 1,
         amount: 100000000000,
         estTime: "20 Days"
-      };
-      //createBid(testData);
+    };
+
+
     const inputHeader = [
         "Company Name",
         "Contact Name",
@@ -40,7 +46,7 @@ const BidCreation = () => {
     const renderBidInfo = (infos) => {
         return infos.map((info, i) => {
             return (
-                <div className="form-inputs-block form-inputs-block--small" key ={i} >
+                <div className="form-inputs-block form-inputs-block--small" key={i} >
                     <h4 className="form-inputs-label" >{info}</h4>
                     <input className="form-inputs form-inputs--small"></input>
                 </div>
@@ -48,19 +54,24 @@ const BidCreation = () => {
         })
     }
 
-    const handleSubmit = (event)=>{
+    const handleSubmit =  () => {
         console.log('this was triggered');
-        createBid({variables: testData});
-
-        console.log(someData);
-        event.preventDefault();
+        
+         createBid({ variables: testData }).then(res =>{
+             //console.log(res);
+             //setBidId(res.data.createBid.bid.id);
+         }).catch(err => {throw err});
+         alert("You have successfully placed your bid");
+       history.push('/');
+       
+ 
     }
 
     return (
         <div className="dashboard-projects">
             <Navigation />
-            <form action="" className="bid-creation" onSubmit={handleSubmit}>
-                <h1 className="form-section-header">Bidder's Information</h1>
+            <form action="" className="bid-creation" onSubmit={(e)=>handleSubmit(e)}>
+                <h1 className="form-section-header">{`Bidder's Information`}</h1>
 
                 <p className="form-section-subheader ">
                     Please fill out the required fields below to provide us with the details of the company bidding on this proposal.
@@ -108,8 +119,8 @@ const BidCreation = () => {
 
                 <h1 className="form-section-header">Bid Details</h1>
                 <p className="form-section-subheader ">
-                    Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance, 
-                    licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to, 
+                    Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance,
+                    licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to,
                     the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package.
                 </p>
 
@@ -155,11 +166,11 @@ const BidCreation = () => {
                 <div className="bid-creation__summary">
                     <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
                      for a period of ninety (90) days from the date that bids are due to be received.</p>
-                    
+
                     <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
                     <p className="bid-creation__summary__price">$191,987.41</p>
                 </div>
-                
+
                 <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
 
 
