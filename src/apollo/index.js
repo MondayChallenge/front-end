@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:1337/graphql',
+  uri: 'https://strapi.therohitjain.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

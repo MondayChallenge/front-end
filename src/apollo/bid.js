@@ -6,49 +6,49 @@ export const GetProject = gql`
       labor
       classType
       contactName
-      miscExpenses
+      miscExpense
       estTime
       organization {
-        Name
-        About
+        name
+        about
       }
       project {
         id
-        Name
+        name
       }
     }
   }
 `;
 
 export const createBid = gql`
-  mutation createBid(
-    $amount: Float!
+mutation createBid(
+    $amount: Long
     $organization: ID
-    $estTime: String!
-    $availability: Date!
-    $material: JSON!
-    $labor: JSON!
-    $miscExpense: JSON!
-    $contactName: String!
-    $phone: String!
-    $license_number: String!
-    $classType: String!
-    $notes: String!
-    $project: ID!
+    $estTime: String
+    $availability: Date
+    $material: JSON
+    $labor: JSON
+    $miscExpense: JSON
+    $contactName: String
+    $phone: String
+    $license_number: String
+    $classType: String
+    $notes: String
+    $project: ID
   ) {
     createBid(
       input: {
         data: {
-          Amount: $amount
+          amount: $amount
           organization: $organization
           estTime: $estTime
           availability: $availability
           material: $material
           labor: $labor
-          miscExpenses: $miscExpense
+          miscExpense: $miscExpense
           contactName: $contactName
           phone: $phone
-          stateLicenseNumber: $license_number
+          license_number: $license_number
           classType: $classType
           notes: $notes
           project: $project
