@@ -1,0 +1,41 @@
+# Write your query or mutation here
+mutation CreateProject {
+    createProposal(
+      input: {
+        data: {
+          organization:  "tony"
+          
+          Name: "tony"
+          Description:  "tony"
+          Address: "tony"
+          endDate:  "1993-10-09"
+          minBid: 11
+          representative: 1
+          estTime:  "tofffny"
+          invitations:  "tony"
+          status:  "tony"
+          email:  "tony"
+          phone:  "tony"
+          startDate:  "1992-10-09"
+          projectType:  "tony"
+    
+          numBuildings:  "tony"
+          numStories:  "tony"
+          maxBudgetRange: 111
+          City:  "tony"
+          State:  "tony"
+          Country:  "tony"
+          Zip:  "tony"
+          squareFootage: "awef"
+          
+          published_at: "2007-12-03T10:15:30Z"
+        }
+      }
+    ) {
+      proposal {
+        id
+      }
+    }
+  }
+
+

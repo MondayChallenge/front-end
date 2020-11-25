@@ -22,7 +22,7 @@ export const GetProject = gql`
 
 export const createBid = gql`
   mutation createBid(
-    $amount: Long!
+    $amount: Float!
     $organization: ID
     $estTime: String!
     $availability: Date!
@@ -39,16 +39,16 @@ export const createBid = gql`
     createBid(
       input: {
         data: {
-          amount: $amount
+          Amount: $amount
           organization: $organization
           estTime: $estTime
           availability: $availability
           material: $material
           labor: $labor
-          miscExpense: $miscExpense
+          miscExpenses: $miscExpense
           contactName: $contactName
           phone: $phone
-          license_number: $license_number
+          stateLicenseNumber: $license_number
           classType: $classType
           notes: $notes
           project: $project
