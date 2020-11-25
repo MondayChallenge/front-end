@@ -15,7 +15,7 @@ const BidCreation = () => {
         "Country",
         "State/Province",
         "City"
-    ]
+    ];
 
     const renderBidInfo = (infos) => {
         return infos.map((info, i) => {
@@ -80,13 +80,62 @@ const BidCreation = () => {
 
                 <h1 className="form-section-header">Bid Details</h1>
                 <p className="form-section-subheader ">
-                Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance, licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to, the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package. 
+                    Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance, 
+                    licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to, 
+                    the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package.
                 </p>
+
+                <div className="form-inputs-section">
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Materials</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Units</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Cost</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Labor</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Units</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Cost</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Miscellaneous Expenses</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Units</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                    <div className="form-inputs-block form-inputs-block--small">
+                        <h4 className="form-inputs-label" >Cost</h4>
+                        <input className="form-inputs form-inputs--small"></input>
+                    </div>
+                </div>
+
+                <div className="bid-creation__summary">
+                    <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
+                     for a period of ninety (90) days from the date that bids are due to be received.</p>
+                    
+                    <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
+                    <p className="bid-creation__summary__price">$191,987.41</p>
+                </div>
+                
+                <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
 
 
             </div>
-
-
         </div>
     )
 }

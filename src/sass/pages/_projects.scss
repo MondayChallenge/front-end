@@ -104,16 +104,12 @@
   
 
   &__submit-btn {
-    background-color: $color-azure-radiance;
-    height: 40px;
-    width: 160px;
-    color: white;
-    border-radius: 6px;
 
     grid-column: center-start/center-end;
     margin-top: 10rem;
     justify-self: end;
   }
+
 }
 
 .select-box {
