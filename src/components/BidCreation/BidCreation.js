@@ -1,8 +1,28 @@
 import React from 'react';
 import Navigation from 'components/Navigation/Navigation'
+import { CREATE_BID } from '../../apollo/bid';
+import { useMutation } from '@apollo/client';
 
 const BidCreation = () => {
 
+    const [createBid,someData] = useMutation(CREATE_BID);
+
+    const testData = {
+        notes: "Hello, World",
+        license_number: "PPR11722P",
+        material: {data: [{'name': 'brick1','cost': 50000}, {'name': 'brick2','cost': 1000}]},
+        labor: {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+        miscExpense: {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+        contactName: "Tony",
+        phone: "+91 999999999",
+        classType: "A Class",
+        organization: 1,
+        availability: "2020-12-01",
+        project: 1,
+        amount: 100000000000,
+        estTime: "20 Days"
+      };
+      //createBid(testData);
     const inputHeader = [
         "Company Name",
         "Contact Name",
@@ -20,7 +40,7 @@ const BidCreation = () => {
     const renderBidInfo = (infos) => {
         return infos.map((info, i) => {
             return (
-                <div className="form-inputs-block form-inputs-block--small">
+                <div className="form-inputs-block form-inputs-block--small" key ={i} >
                     <h4 className="form-inputs-label" >{info}</h4>
                     <input className="form-inputs form-inputs--small"></input>
                 </div>
@@ -28,10 +48,18 @@ const BidCreation = () => {
         })
     }
 
+    const handleSubmit = (event)=>{
+        console.log('this was triggered');
+        createBid({variables: testData});
+
+        console.log(someData);
+        event.preventDefault();
+    }
+
     return (
         <div className="dashboard-projects">
             <Navigation />
-            <div className="bid-creation">
+            <form action="" className="bid-creation" onSubmit={handleSubmit}>
                 <h1 className="form-section-header">Bidder's Information</h1>
 
                 <p className="form-section-subheader ">
@@ -135,7 +163,7 @@ const BidCreation = () => {
                 <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
 
 
-            </div>
+            </form>
         </div>
     )
 }

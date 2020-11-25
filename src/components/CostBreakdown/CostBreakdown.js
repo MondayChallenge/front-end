@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Loader, LoaderStoryLine } from 'monday-ui-react-core';
-import { GetProject } from '../../apollo/bid';
+import { GetBid } from '../../apollo/bid';
 import Navigation from 'components/Navigation/Navigation';
 import './CostBreakdown.css';
 
@@ -23,11 +23,11 @@ export default function CostBreakdown({ projectId }) {
   sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
 
   projectId = 'dsfsdlfksj';
-  const { loading, error, data } = useQuery(GetProject, {
+  const { loading, error, data } = useQuery(GetBid, {
     //needs to be changed to projectId from props
     variables: { id: 1 },
   });
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
