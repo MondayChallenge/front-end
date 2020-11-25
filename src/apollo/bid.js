@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-export const GetProject = gql`
+export const GetBid = gql`
   query bid($id: ID!) {
     bid(id: $id) {
       material
@@ -20,7 +20,7 @@ export const GetProject = gql`
   }
 `;
 
-export const createBid = gql`
+export const CREATE_BID = gql`
 mutation createBid(
     $amount: Long
     $organization: ID
@@ -65,9 +65,9 @@ mutation createBid(
 {
   "notes": "Hello, World",
   "license_number": "PPR11722P",
-  "material": "{data: [{name: 'brick1','cost': 500}, {name: 'brick2','cost': 1000}]}",
-  "labor": "{data: [{name: 'brick1','cost': 500}, {name: 'brick2','cost': 1000}]}",
-  "miscExpense": "{data: [{name: 'brick1','cost': 500}, {name: 'brick2','cost': 1000}]}",
+  "material": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+  "labor": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+  "miscExpense": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
   "contactName": "Rohit",
   "phone": "+91 999999999",
   "classType": "A Class",

@@ -106,3 +106,74 @@ export const AddProject = gql`
   "projectType": "Lol Lol"
 }
 */
+
+export const getProjects = gql`
+  query($id: ID) {
+    projects(sort: "endDate:asc", where: { representatives_in: $id }) {
+      id
+      name
+      owner {
+        username
+      }
+      status
+      endDate
+      published_at
+      invitations {
+        id
+      }
+      bids {
+        id
+      }
+    }
+  }
+`;
+/*
+{
+  "id": "1"
+}
+*/
+
+export const getProject = gql`
+  query($id: ID!) {
+    project(id: $id) {
+      name
+      address
+      city
+      state
+      zip
+      id
+      estTime
+      maxBudgetRange
+      description
+      team {
+        username
+      }
+      owner {
+        username
+      }
+      architect {
+        username
+      }
+      manager {
+        username
+      }
+      status
+      email
+      phone
+      type
+      numBuildings
+      numStories
+      squareFootage
+      bids {
+        amount
+        classType
+        organization {
+          name
+          owner {
+            username
+          }
+        }
+      }
+    }
+  }
+`;

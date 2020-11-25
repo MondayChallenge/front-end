@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Loader, LoaderStoryLine } from 'monday-ui-react-core';
-import { GetProject } from '../../apollo/bid';
+import { GetBid } from '../../apollo/bid';
 import Navigation from 'components/Navigation/Navigation';
 import './CostBreakdown.css';
 
@@ -20,29 +20,32 @@ export default function CostBreakdown({ projectId }) {
 
   //for testing purposes
   //you get this when you create a user account
-  sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA2MTY5ODYwLCJleHAiOjE2MDg3NjE4NjB9.1gIzcIh6xgg6J-02lfYqtqvr4NsqxVR34Ec9k_Bnseo");
+  sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
 
   projectId = 'dsfsdlfksj';
-  const { loading, error, data } = useQuery(GetProject, {
+  const { loading, error, data } = useQuery(GetBid, {
     //needs to be changed to projectId from props
     variables: { id: 1 },
   });
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
-    console.log(data);
+    console.log(data.bid);
+    // console.log(data.bid.contactName);
+    console.log(data.bid.material);
     const materials = data.bid.material.data.map((data) => (
       <div className="row" key={uuidv4()}>
         <p className="costListItem">{data.item}</p>
       </div>
     ));
+
     const labor = data.bid.labor.data.map((data) => (
       <div className="row" key={uuidv4()}>
         <p className="costListItem">{data.item}</p>
       </div>
     ));
-    const misc = data.bid.miscExpenses.data.map((data) => (
+    const misc = data.bid.miscExpense.data.map((data) => (
       <div className="row" key={uuidv4()}>
         <p className="costListItem">{data.item}</p>
       </div>
@@ -61,7 +64,7 @@ export default function CostBreakdown({ projectId }) {
         <p>{data.totalCost}</p>
       </div>
     ));
-    const miscPrices = data.bid.miscExpenses.data.map((data) => (
+    const miscPrices = data.bid.miscExpense.data.map((data) => (
       <div className="row2" key={uuidv4()}>
         <p>{data.qty}</p>
         <p>{data.unitCost}</p>
@@ -70,7 +73,7 @@ export default function CostBreakdown({ projectId }) {
     ));
     const Tot = () => {
       let arr = [];
-      data.bid.miscExpenses.data.map((data) => {
+      data.bid.miscExpense.data.map((data) => {
         if (data.totalCost) arr.push(data.totalCost);
       });
       data.bid.labor.data.map((data) => {
