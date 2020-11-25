@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 
 const BidCreation = () => {
 
-    const [createBid,someData] = useMutation(CREATE_BID);
+    const [createBid, someData] = useMutation(CREATE_BID);
 
     const testData = {
         notes: "Hello, World",
