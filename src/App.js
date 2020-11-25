@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Router, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 import "sass/main.scss";
 
 import ScrollToTop from './ScrollToTop';
@@ -20,6 +21,7 @@ monday.setToken(
   "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc"
 );
  
+// const hist = createBrowserHistory();
 
 const App = ()=> {
   const [newUser] = useMutation(RegisterUser, {
