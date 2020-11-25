@@ -20,9 +20,8 @@ monday.setToken(
   "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc"
 );
  
-
+ 
 const App = ()=> {
-
   const [newUser] = useMutation(RegisterUser, {
     onCompleted: (data) => {
       console.log("Data from RegisterUser", data.register.user.id);     
@@ -31,14 +30,12 @@ const App = ()=> {
     },
     onError: (error) => console.error("Error getting RegisterUser", error),
   });
-
   const [user] = useMutation(LoginUser, {
     onCompleted: (data) => {
       console.log("Data from LoginUser", data.login.user.id);
       setUserId(data.login.user.id);
       // sessionStorage.removeItem('jwtToken');
       sessionStorage.setItem('jwtToken',  data.login.jwt);
-      setToken(data.login.jwt)
     },
     onError: (error) => console.error("Error getting LoginUser", error),
   });
@@ -46,8 +43,7 @@ const App = ()=> {
   const [email, setEamil] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userId, setUserId] = React.useState(null);
-  const [token, setToken] = React.useState(sessionStorage.getItem('jwtToken'))
-  
+
   const getUser = async () => {
     try {
       const { data } = await monday.api(`
@@ -100,12 +96,11 @@ const App = ()=> {
   };
 
   React.useEffect(() => {
-    // const token = sessionStorage.getItem('jwtToken');
+    const token = sessionStorage.getItem('jwtToken');
     getUser();
-    if (password.length > 0 && userId && token &&!token) {
+    if (password.length > 0 && !token) {
       console.log("user info", email, password);
-      getLoginUserID(email, password)
-      getRegisterUserID(email, password);
+      getLoginUserID(email, password) || getRegisterUserID(email, password);
     }
   }, [password]);
   
