@@ -5,7 +5,13 @@
     column-gap: 4rem;
 }
 
+.form-inputs-row{
+    grid-column: 1/-1;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4rem;
 
+}
 
 .form-inputs-block{
     display: grid;
@@ -37,7 +43,7 @@
     }
 
     &--large{
-
+        
         height: 17.5rem;
         width: 100%;
     }
