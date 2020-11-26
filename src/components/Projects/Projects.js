@@ -4,21 +4,88 @@ import Navigation from "../Navigation/Navigation";
 
 import "components/Projects/Projects.css";
 // import {AddProject} from '../../apollo/project';
-import { client } from '../../apollo/index';
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo'
 // import { Formik } from 'formik';
+import {AddProject} from '../../apollo/project'
+import { useMutation } from '@apollo/client';
 
-
-
-
+  
 const Projects = () => {
-  const [name, useName] = useState("")
+  
+  const [organization, setOrgID] = useState(1);
+  const [name, setName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [timezone, setTimezone] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [minBid, setMinBid] = useState("");
+  const [maxBudgetRange, setMaxBudgetRange] = useState("");
+  const [description, setDescription] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [zip, setZip] = useState("");
+  const [address, setAddress] = useState("");
+  const [owner, setOwner] = useState(1);
+  const [architect, setArchitect] = useState(1);
+  const [manager, setManager] = useState(1);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [representatives] = useState(sessionStorage.getItem('userId'));
+  const [createProject, {data}] = useMutation(AddProject,{
+    onCompleted: (data) => {
+      console.log('succeed adding project', data.createProject.project.id)
+      return data
+    },
+    onError: (error) => console.error("Error getting RegisterUser", error)
+  })
+  
+
+
+  const testData = {
+    "zip": zip,
+    "published_at": "2019-12-03T10:15:30Z",
+    "status": new Date()- Date.parse(endDate) > 0 ? "Closed to Bid" : new Date()- Date.parse(startDate) < 0 ? "Upcoming" :"Open to Bid",
+    "endDate": endDate,
+    "minBid": parseFloat(minBid),
+    "city": city,
+    "name": name,
+    "numStories": "2000",
+    "manager": manager,
+    "category": "Office",
+    "team": [1,2,3],
+    "estTime": "3 Month",
+    "representatives": representatives,
+    "description": description,
+    "email": email,
+    "invitations": [1,2,3],
+    "type": "Whatever",
+    "organization": organization,
+    "numBuildings": "1",
+    "country": country,
+    "architect": architect,
+    "address": address,
+    "squareFootage": "100",
+    "maxBudgetRange": parseFloat(maxBudgetRange),
+    "owner": owner,
+    "state": state,
+    "startDate": startDate,
+    "phone": phone,
+    "projectType": projectType
+  }
+  const handleSubmit = (event)=>{
+    console.log('click button');
+    event.preventDefault();
+    const token = sessionStorage.getItem('jwtToken');
+    sessionStorage.setItem('jwt',token);
+    // sessionStorage.setItem('jwt',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
+    createProject({variables: testData});
+  }
+
 
   return (
     <div className="dashboard-projects">
       <Navigation />
-      <form action="" className="project-form"  >
+      <form action="" className="project-form" onSubmit={handleSubmit} >
         <h1 className="form-section-header">Project Information</h1>
 
         <p className="form-section-subheader ">
@@ -30,12 +97,12 @@ const Projects = () => {
         <div className="form-inputs-section">
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Company Name</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" ></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Project Name</h4>
-            <input id="project_name" className="form-inputs form-inputs--small" ></input>
+            <input id="project_name" className="form-inputs form-inputs--small" onChange={e=>setName(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
@@ -45,22 +112,22 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Start Date</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input type="date" className="form-inputs form-inputs--small" onChange={e=>setStartDate(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >End Date</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input type="date" className="form-inputs form-inputs--small" onChange={e=>setEndDate(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Timezone</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" onChange={e=>setTimezone(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Project Type</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" onChange={e=>setProjectType(e.target.value)}></input>
           </div>
 
           <div className="project-form__info__amounts-sect">
@@ -73,9 +140,9 @@ const Projects = () => {
             </div>
 
             <div className="project-form__info__amounts-sect--2">
-              <input className="form-inputs form-inputs--small"></input>
+              <input className="form-inputs form-inputs--small" onChange={e=>setMinBid(e.target.value)}></input>
               <p className="form-inputs-label">to</p>
-              <input className="form-inputs form-inputs--small"></input>
+              <input className="form-inputs form-inputs--small" onChange={e=>setMaxBudgetRange(e.target.value)}></input>
             </div>
 
             {/* <div class="x-C61RwL valign-text-middle font-class-1">$</div> */}
@@ -87,7 +154,7 @@ const Projects = () => {
             <h4 className="form-inputs-label" >
               Project Description
             </h4>
-            <input className="form-inputs form-inputs--large"></input>
+            <input className="form-inputs form-inputs--large" onChange={e=>setDescription(e.target.value)}></input>
           </div>
           
         </div>
@@ -101,7 +168,7 @@ const Projects = () => {
         <div className="form-inputs-section">
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Country</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" onChange={e=>setCountry(e.target.value)}></input>
             {/* <div class="select-C61RwL valign-text-middle font-class-1">Select</div> */}
             {/* dropdown carrot
             <img class="vector-6" src="" /> */}
@@ -109,7 +176,7 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >State/Province</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" onChange={e=>setState(e.target.value)}></input>
             {/* <div class="select-VMr6Om valign-text-middle font-class-1">
             Select
           </div> */}
@@ -119,7 +186,7 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >City</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small" onChange={e=>setCity(e.target.value)}></input>
           </div>
 
           {/* TODO - NEED TO FIX GRID FOR THIS */}
@@ -127,14 +194,14 @@ const Projects = () => {
             <div class="address address-text form-inputs-label">
               Address
             </div>
-            <input class="address address-input form-inputs form-inputs--small"></input>
+            <input class="address address-input form-inputs form-inputs--small" onChange={e=>setAddress(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <div class="zip-code form-inputs-label">
               Zip (Postal) Code
             </div>
-            <input class="zip-code form-inputs form-inputs--small"></input>
+            <input class="zip-code form-inputs form-inputs--small" onChange={e=>setZip(e.target.value)}></input>
           </div>
         </div>
 
@@ -205,12 +272,12 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Email</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small"  onChange={e=>setEmail(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" > Phone Number</h4>
-            <input className="form-inputs form-inputs--small"></input>
+            <input className="form-inputs form-inputs--small"  onChange={e=>setPhone(e.target.value)}></input>
           </div>
         </div>
 
@@ -229,86 +296,4 @@ const Projects = () => {
 
 
 export default Projects;
-
-
- // handleSubmit = (event) => {
-  //   // this.setState({
-  //   //   searchResult: this.state.value.toUpperCase(),
-  //   //   value: "",
-  //   // });
-
-  //   event.preventDefault(); //this is to avoid page from refreshing when you press submit
-  // //   const project_name = document.getElementById("project_name").value
-  // //   console.log(project_name)
-  // //   // this.sendTo(project_name)
-  //   console.log(this.state);
-  //   client.mutate({
-  //     mutation: gql`
-  //       mutation AddProposal {
-  //         createProposal(input: { data: { Name: name } }) {
-  //           proposal {
-  //             Name
-  //           }
-  //         }
-  //       }
-  //     `,
-
-  //   })
-  //   .then(result => { console.log('res',result) })
-  //   .catch(error => { console.log('err',error) });
-
-  // };
-
-
-
-// const AddProject = gql`
-//   mutation AddProposal($name: String!) {
-//     createProposal(name: $name) {
-//       proposal {
-//         name
-//       }
-//     }
-//   }
-
-// `;
-
-//TODO: send data to apollo
-// client.mutate({
-
-//   mutation: gql`
-//     mutation AddProposal($name: String!) {
-//       createProposal(name: $name) {
-//         proposal {
-//           name
-//         }
-//       }
-//     }
-//   `,
-
-// })
-// .then(result => { console.log(result) })
-// .catch(error => { console.log(error) });
-
-  // fetch = (name) => {
-  //   client.query({
-  //     query: gql`
-  //       {
-  //         users{
-  //          name
-  //          status
-  //         }
-  //       }
-  //     `
-  //   }).then(response => console.log(response.data.users))
-  // }
-
-
-
-
-  /* <div class="select-mzXdH9 valign-text-middle font-class-1">Select</div>
-        <img class="vector-8-C61RwL" src="" />
-        <div class="select-QxM5SU valign-text-middle font-class-1">Select</div>
-        <img class="vector-9" src="" />
-        <img class="image-102" src="" />
-        <img class="image-103" src="" /> */
 
