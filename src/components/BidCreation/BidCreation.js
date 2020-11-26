@@ -32,6 +32,10 @@ const BidCreation = () => {
     const [miscCounter, setMiscCounter] = useState(0);
     const formRef = useRef();
 
+    const MATERIAL = "Material";
+    const LABOR = "Labor";
+    const MISCELLANEOUS = "Miscellaneous";
+
     //console.log(formRef.current.values)
 
     // $amount: Long
@@ -77,24 +81,7 @@ const BidCreation = () => {
         // "City":"city"
     };
 
-    const testData = {
 
-        organization: 1,
-        contactName: "Tony",
-        phone: "+91 999999999",
-        license_number: "PPR11722P",
-        classType: "A Class",
-        estTime: "20 Days",
-        availability: "2020-12-01",
-        notes: "Hello, World",
-        project: 1,
-
-        material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
-        labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
-        miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
-        amount: 100000000000,
-
-    };
 
 
 
@@ -124,14 +111,13 @@ const BidCreation = () => {
     const handleCounter = (name) => {
         console.log(`handleCounter ${name}`)
         switch (name) {
-            case "Material":
+            case MATERIAL:
                 setMaterialCounter(materialCounter + 1);
-                console.log(materialCounter)
                 break;
-            case "Labor":
+            case LABOR:
                 setLaborCounter(laborCounter + 1);
                 break;
-            case "Miscellaneous Expenses":
+            case MISCELLANEOUS:
                 setMiscCounter(miscCounter + 1);
                 break;
             default:
@@ -140,46 +126,108 @@ const BidCreation = () => {
         }
     }
 
-    //     let gridElements = []
-    //   for (let i = 0; i < 10; i++) {
-    //     gridElements.push(<div id="box" key={i}>{i}</div>)
-    //   }
 
 
     const renderBidDetails = (counter, name) => {
 
         let renderElement = [];
-        for(let i=0;i<=counter;i++){
+        for (let i = 0; i <= counter; i++) {
             renderElement.push(<div className="form-inputs-row">
-            <div className="form-inputs-block form-inputs-block--small">
-                <h4 className="form-inputs-label" >{name}</h4>
-                <Field name={`${name}_${i}`} className="form-inputs form-inputs--small" />
+                <div className="form-inputs-block form-inputs-block--small">
+                    <h4 className="form-inputs-label" >{name}</h4>
+                    <Field name={`${name}_item_${i}`} className="form-inputs form-inputs--small" />
+                </div>
+                {/* <div className="form-inputs-block form-inputs-block--small">
+                    <h4 className="form-inputs-label" >Units</h4>
+                    <Field name={`${name}_units_${i}`} className="form-inputs form-inputs--small"></Field>
+                </div> */}
+                <div className="form-inputs-block form-inputs-block--small">
+                    <h4 className="form-inputs-label" >Cost</h4>
+                    <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
+                </div>
             </div>
-            <div className="form-inputs-block form-inputs-block--small">
-                <h4 className="form-inputs-label" >Units</h4>
-                <Field name={`${name}_units_${i}`} className="form-inputs form-inputs--small"></Field>
-            </div>
-            <div className="form-inputs-block form-inputs-block--small">
-                <h4 className="form-inputs-label" >Cost</h4>
-                <Field name={`${name}_costs_${i}`} className="form-inputs form-inputs--small"></Field>
-            </div>
-        </div>
-        )
+            )
         }
-      
+
 
         return renderElement;
 
     }
 
 
+    const testData = {
 
-    // useEffect(() => {
-    //     renderBidDetails(materialCounter,"Material")
-    // }, [materialCounter, laborCounter, miscCounter])
+        organization: 1,
+        contactName: "Tony",
+        phone: "+91 999999999",
+        license_number: "PPR11722P",
+        classType: "A Class",
+        estTime: "20 Days",
+        availability: "2020-12-01",
+        notes: "Hello, World",
+        project: 1,
+
+        material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
+        labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
+        miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
+        amount: 100000000000,
+
+    };
+
+
+    const gqlInputType = ["organization", "contactName", "phone", "license_number", "classType", "estTime", "availability", "notes", "project", "material", "labor", "miscExpense", "amount"];
+
+    const inputMapping = {
+
+    }
+
+    const shapingValues = (values) => {
+        const arrValues = Object.entries(values);
+        let gqlData = {};
+        let materialData = { data: [] }
+        let laborData = { data: [] }
+        let miscData = { data: [] }
+        let innerMatCount = 0;
+        let innerLaborCount = 0;
+        let innerMiscCount = 0;
+
+        for (let i = 0; i < arrValues.length; i++) {
+           
+
+            if (arrValues[i][0].includes(`${MATERIAL}_item_`)) {
+                // console.log(arrValues[i]);
+                // console.log(arrValues[i][1]);
+               
+                materialData.data.push({ "name": arrValues[i][1], "cost": null });
+            } else if(arrValues[i][0].includes(`${MATERIAL}_cost_`)){
+                materialData.data[innerMatCount]["cost"] = parseInt(arrValues[i][1]);
+                innerMatCount +=1;
+
+            } else if(arrValues[i][0].includes(`${LABOR}_item_`)){
+                console.log('labor name triggered')
+                laborData.data.push({ "name": arrValues[i][1], "cost": null });
+           
+            } else if(arrValues[i][0].includes(`${LABOR}_cost_`)){
+                console.log('labor cost triggered')
+                laborData.data[innerLaborCount]["cost"] = parseInt(arrValues[i][1]);
+                innerLaborCount +=1;
+            }
+            
+            else {
+                gqlData[arrValues[i][0]] = arrValues[i][1];
+            }
 
 
 
+        }
+
+        gqlData["material"] = materialData;
+        gqlData["labor"] = materialData;
+        gqlData["miscExpense"] = materialData;
+
+
+        return gqlData;
+    }
 
 
     return (
@@ -198,7 +246,7 @@ const BidCreation = () => {
                     availability: "",
                     notes: "",
                     project: "",//from where you chose the project
-                    
+
 
                 }}
 
@@ -207,7 +255,13 @@ const BidCreation = () => {
 
                 onSubmit={values => {
                     // same shape as initial values
-                    console.log(values);
+                    const some = shapingValues(values);
+                    console.log(some);
+
+                    // console.log(values);
+
+                    // console.log(values["Material_0"]);
+                    //need to input values here and manupulate it
                 }}
             >
                 {({ errors, touched }) => (
@@ -289,14 +343,14 @@ const BidCreation = () => {
 
                         <div className="form-inputs-section">
 
-                            {renderBidDetails(materialCounter, "Material")}
-                            <button type="button" onClick={() => { handleCounter("Material") }}>Plus</button>
-                            {renderBidDetails(laborCounter, "Labor")}
-                            <button type="button" onClick={() => { handleCounter("Labor") }}>Plus</button>
-                            {renderBidDetails(miscCounter, "Miscellaneous Expenses")}
-                            <button type="button" onClick={() => { handleCounter("Miscellaneous Expenses") }}>Plus</button>
+                            {renderBidDetails(materialCounter, MATERIAL)}
+                            <button type="button" onClick={() => { handleCounter(MATERIAL) }}>Plus</button>
+                            {renderBidDetails(laborCounter, LABOR)}
+                            <button type="button" onClick={() => { handleCounter(LABOR) }}>Plus</button>
+                            {renderBidDetails(miscCounter, MISCELLANEOUS)}
+                            <button type="button" onClick={() => { handleCounter(MISCELLANEOUS) }}>Plus</button>
 
-                         
+
                         </div>
 
                         <div className="bid-creation__summary">
