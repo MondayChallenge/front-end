@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navigation from 'components/Navigation/Navigation'
 import { CREATE_BID } from '../../apollo/bid';
 import { useMutation } from '@apollo/client';
@@ -24,9 +24,15 @@ const BidCreation = () => {
 
     const [createBid, data] = useMutation(CREATE_BID);
     //const [bidId,setBidId] = useState("");
-    const [allValues, setAllValues] = useState("");
+    const [material, setMaterial] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [labor, setLabor] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [misc, setMisc] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [materialCounter, setMaterialCounter] = useState(0);
+    const [laborCounter, setLaborCounter] = useState(0);
+    const [miscCounter, setMiscCounter] = useState(0);
+    const formRef = useRef();
 
-
+    //console.log(formRef.current.values)
 
     // $amount: Long
     // $organization: ID
@@ -106,13 +112,74 @@ const BidCreation = () => {
     const handleSubmit = () => {
         console.log('this was triggered');
 
-        createBid({ variables: testData }).then(res => {
-            //console.log(res);
-            //setBidId(res.data.createBid.bid.id);
-        }).catch(err => { throw err });
+        // createBid({ variables: testData }).then(res => {
+        //     //console.log(res);
+        //     //setBidId(res.data.createBid.bid.id);
+        // }).catch(err => { throw err });
         alert("You have successfully placed your bid");
         history.push('/');
     }
+
+
+    const handleCounter = (name) => {
+        console.log(`handleCounter ${name}`)
+        switch (name) {
+            case "Material":
+                setMaterialCounter(materialCounter + 1);
+                console.log(materialCounter)
+                break;
+            case "Labor":
+                setLaborCounter(laborCounter + 1);
+                break;
+            case "Miscellaneous Expenses":
+                setMiscCounter(miscCounter + 1);
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
+
+    //     let gridElements = []
+    //   for (let i = 0; i < 10; i++) {
+    //     gridElements.push(<div id="box" key={i}>{i}</div>)
+    //   }
+
+
+    const renderBidDetails = (counter, name) => {
+
+        let renderElement = [];
+        for(let i=0;i<=counter;i++){
+            renderElement.push(<div className="form-inputs-row">
+            <div className="form-inputs-block form-inputs-block--small">
+                <h4 className="form-inputs-label" >{name}</h4>
+                <Field name={`${name}_${i}`} className="form-inputs form-inputs--small" />
+            </div>
+            <div className="form-inputs-block form-inputs-block--small">
+                <h4 className="form-inputs-label" >Units</h4>
+                <Field name={`${name}_units_${i}`} className="form-inputs form-inputs--small"></Field>
+            </div>
+            <div className="form-inputs-block form-inputs-block--small">
+                <h4 className="form-inputs-label" >Cost</h4>
+                <Field name={`${name}_costs_${i}`} className="form-inputs form-inputs--small"></Field>
+            </div>
+        </div>
+        )
+        }
+      
+
+        return renderElement;
+
+    }
+
+
+
+    // useEffect(() => {
+    //     renderBidDetails(materialCounter,"Material")
+    // }, [materialCounter, laborCounter, miscCounter])
+
+
+
 
 
     return (
@@ -122,7 +189,7 @@ const BidCreation = () => {
             <Formik
                 initialValues={{
 
-                    organization: null,
+                    organization: "",
                     contactName: "",
                     phone: "",
                     license_number: "",
@@ -130,26 +197,21 @@ const BidCreation = () => {
                     estTime: "",
                     availability: "",
                     notes: "",
-                    project: null,//from where you chose the project
-
-                    material: {},
-                    labor: {},
-                    miscExpense: {},
-                    amount: null,
+                    project: "",//from where you chose the project
+                    
 
                 }}
 
-                validationSchema={SignupSchema}
+                // validationSchema={SignupSchema}
+                innerRef={formRef}
 
                 onSubmit={values => {
                     // same shape as initial values
-
                     console.log(values);
-
                 }}
             >
                 {({ errors, touched }) => (
-                    <Form action="" className="bid-creation">
+                    <Form action="" className="bid-creation" >
                         <h1 className="form-section-header">{`Bidder's Information`}</h1>
 
                         <p className="form-section-subheader ">
@@ -184,7 +246,6 @@ const BidCreation = () => {
                                 <h4 className="form-inputs-label" >Notes</h4>
                                 <Field name="notes" className="form-inputs form-inputs--large"></Field>
                             </div>
-
 
                         </div>
 
@@ -227,42 +288,15 @@ const BidCreation = () => {
                         </p>
 
                         <div className="form-inputs-section">
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Materials</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Units</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Cost</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Labor</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Units</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Cost</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Miscellaneous Expenses</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Units</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
-                            <div className="form-inputs-block form-inputs-block--small">
-                                <h4 className="form-inputs-label" >Cost</h4>
-                                <input className="form-inputs form-inputs--small"></input>
-                            </div>
+
+                            {renderBidDetails(materialCounter, "Material")}
+                            <button type="button" onClick={() => { handleCounter("Material") }}>Plus</button>
+                            {renderBidDetails(laborCounter, "Labor")}
+                            <button type="button" onClick={() => { handleCounter("Labor") }}>Plus</button>
+                            {renderBidDetails(miscCounter, "Miscellaneous Expenses")}
+                            <button type="button" onClick={() => { handleCounter("Miscellaneous Expenses") }}>Plus</button>
+
+                         
                         </div>
 
                         <div className="bid-creation__summary">
@@ -286,19 +320,19 @@ const BidCreation = () => {
 
 export default BidCreation;
 
-{/* <Field name="firstName" />
-{errors.firstName && touched.firstName ? (
-    <div>{errors.firstName}</div>
-) : null}
+//  <Field name="firstName" />
+// {errors.firstName && touched.firstName ? (
+//     <div>{errors.firstName}</div>
+// ) : null}
 
-<Field name="lastName" />
-{errors.lastName && touched.lastName ? (
-    <div>{errors.lastName}</div>
-) : null}
+// <Field name="lastName" />
+// {errors.lastName && touched.lastName ? (
+//     <div>{errors.lastName}</div>
+// ) : null}
 
-<Field name="email" type="email" />
-{errors.email && touched.email ? <div>{errors.email}</div> : null}
-<button type="submit">Submit</button> */}
+// <Field name="email" type="email" />
+// {errors.email && touched.email ? <div>{errors.email}</div> : null}
+// <button type="submit">Submit</button> 
 
 
 
