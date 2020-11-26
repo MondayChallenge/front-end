@@ -177,3 +177,49 @@ export const getProject = gql`
     }
   }
 `;
+
+export const getTenProposals = gql`
+  query {
+    projects(limit: 10, sort: "published_at:asc") {
+      name
+      address
+      city
+      state
+      zip
+      id
+      estTime
+      maxBudgetRange
+      description
+      team {
+        username
+      }
+      owner {
+        username
+      }
+      architect {
+        username
+      }
+      manager {
+        username
+      }
+      status
+      email
+      phone
+      type
+      endDate
+      numBuildings
+      numStories
+      squareFootage
+      bids {
+        amount
+        classType
+        organization {
+          name
+          owner {
+            username
+          }
+        }
+      }
+    }
+  }
+`;
