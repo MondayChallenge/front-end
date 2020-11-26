@@ -101,25 +101,27 @@ const App = ()=> {
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
-      console.log("user info", email, password);
+      console.log('user info', email, password);
       getLoginUserID(email, password) || getRegisterUserID(email, password);
     }
   }, [password]);
-  
-    return (
-      <BrowserRouter >
-        <ScrollToTop />      
-          <Route path="/" exact component={MainProject} /> 
-          <Route path="/proposals" exact component={Proposals} />
-          <Route path="/messages" exact component={Messages} />
-          <Route path="/newProject" exact component={Projects} />
-          <Route path="/costBreakdown" exact component={CostBreakdown} />
-          <Route path="/bidCreation" exact component={BidCreation} />
 
-      </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Route path="/" exact component={MainProject} />
+      <Route path="/proposals" exact component={Proposals} />
+      <Route path="/messages" exact component={Messages} />
+      <Route path="/newProject" exact component={Projects} />
+      <Route path="/costBreakdown" exact component={CostBreakdown} />
+      <Route path="/bidCreation" exact component={BidCreation} />
+      <Route path="/findProject" exact component={FindProject} />
+    </BrowserRouter>
+  );
+};
 
 export default App;
 
-{/* {JSON.stringify(this.state.boardData, null, 2)}  */}
+{
+  /* {JSON.stringify(this.state.boardData, null, 2)}  */
+}
