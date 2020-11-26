@@ -204,26 +204,32 @@ const BidCreation = () => {
                 innerMatCount +=1;
 
             } else if(arrValues[i][0].includes(`${LABOR}_item_`)){
-                console.log('labor name triggered')
+               
                 laborData.data.push({ "name": arrValues[i][1], "cost": null });
            
             } else if(arrValues[i][0].includes(`${LABOR}_cost_`)){
-                console.log('labor cost triggered')
+
                 laborData.data[innerLaborCount]["cost"] = parseInt(arrValues[i][1]);
                 innerLaborCount +=1;
+            }else if(arrValues[i][0].includes(`${MISCELLANEOUS}_item_`)){
+               
+                miscData.data.push({ "name": arrValues[i][1], "cost": null });
+           
+            } else if(arrValues[i][0].includes(`${MISCELLANEOUS}_cost_`)){
+
+                miscData.data[innerMiscCount]["cost"] = parseInt(arrValues[i][1]);
+                innerMiscCount +=1;
             }
             
             else {
                 gqlData[arrValues[i][0]] = arrValues[i][1];
             }
 
-
-
         }
 
         gqlData["material"] = materialData;
-        gqlData["labor"] = materialData;
-        gqlData["miscExpense"] = materialData;
+        gqlData["labor"] = laborData;
+        gqlData["miscExpense"] = miscData;
 
 
         return gqlData;
