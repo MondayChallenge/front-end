@@ -96,13 +96,12 @@ const BidCreation = () => {
         })
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (data) => {
         console.log('this was triggered');
 
-        // createBid({ variables: testData }).then(res => {
-        //     //console.log(res);
-        //     //setBidId(res.data.createBid.bid.id);
-        // }).catch(err => { throw err });
+        createBid({ variables: data }).then(res => {
+            
+        }).catch(err => { throw err });
         alert("You have successfully placed your bid");
         history.push('/');
     }
@@ -132,15 +131,11 @@ const BidCreation = () => {
 
         let renderElement = [];
         for (let i = 0; i <= counter; i++) {
-            renderElement.push(<div className="form-inputs-row">
+            renderElement.push(<div className="form-inputs-row"key = {`${name}_${i}`}>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >{name}</h4>
                     <Field name={`${name}_item_${i}`} className="form-inputs form-inputs--small" />
                 </div>
-                {/* <div className="form-inputs-block form-inputs-block--small">
-                    <h4 className="form-inputs-label" >Units</h4>
-                    <Field name={`${name}_units_${i}`} className="form-inputs form-inputs--small"></Field>
-                </div> */}
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >Cost</h4>
                     <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
@@ -154,6 +149,58 @@ const BidCreation = () => {
 
     }
 
+
+ 
+
+
+    const shapingValues = (values) => {
+        const arrValues = Object.entries(values);
+        let gqlData = {};
+        let materialData = { data: [] }
+        let laborData = { data: [] }
+        let miscData = { data: [] }
+        let innerMatCount = 0;
+        let innerLaborCount = 0;
+        let innerMiscCount = 0;
+
+        arrValues.map(value => {
+
+            if (value[0].includes(`${MATERIAL}_item_`)) {
+                materialData.data.push({ "name": value[1], "cost": null });
+            } else if (value[0].includes(`${MATERIAL}_cost_`)) {
+                materialData.data[innerMatCount]["cost"] = parseInt(value[1]);
+                innerMatCount += 1;
+
+            } else if (value[0].includes(`${LABOR}_item_`)) {
+
+                laborData.data.push({ "name": value[1], "cost": null });
+
+            } else if (value[0].includes(`${LABOR}_cost_`)) {
+
+                laborData.data[innerLaborCount]["cost"] = parseInt(value[1]);
+                innerLaborCount += 1;
+            } else if (value[0].includes(`${MISCELLANEOUS}_item_`)) {
+
+                miscData.data.push({ "name": value[1], "cost": null });
+
+            } else if (value[0].includes(`${MISCELLANEOUS}_cost_`)) {
+
+                miscData.data[innerMiscCount]["cost"] = parseInt(value[1]);
+                innerMiscCount += 1;
+            }
+            else {
+                gqlData[value[0]] = value[1];
+            }
+
+        }
+        )
+
+        gqlData["material"] = materialData;
+        gqlData["labor"] = laborData;
+        gqlData["miscExpense"] = miscData;
+
+        return gqlData;
+    }
 
     const testData = {
 
@@ -175,66 +222,6 @@ const BidCreation = () => {
     };
 
 
-    const gqlInputType = ["organization", "contactName", "phone", "license_number", "classType", "estTime", "availability", "notes", "project", "material", "labor", "miscExpense", "amount"];
-
-    const inputMapping = {
-
-    }
-
-    const shapingValues = (values) => {
-        const arrValues = Object.entries(values);
-        let gqlData = {};
-        let materialData = { data: [] }
-        let laborData = { data: [] }
-        let miscData = { data: [] }
-        let innerMatCount = 0;
-        let innerLaborCount = 0;
-        let innerMiscCount = 0;
-
-        for (let i = 0; i < arrValues.length; i++) {
-           
-
-            if (arrValues[i][0].includes(`${MATERIAL}_item_`)) {
-                // console.log(arrValues[i]);
-                // console.log(arrValues[i][1]);
-               
-                materialData.data.push({ "name": arrValues[i][1], "cost": null });
-            } else if(arrValues[i][0].includes(`${MATERIAL}_cost_`)){
-                materialData.data[innerMatCount]["cost"] = parseInt(arrValues[i][1]);
-                innerMatCount +=1;
-
-            } else if(arrValues[i][0].includes(`${LABOR}_item_`)){
-               
-                laborData.data.push({ "name": arrValues[i][1], "cost": null });
-           
-            } else if(arrValues[i][0].includes(`${LABOR}_cost_`)){
-
-                laborData.data[innerLaborCount]["cost"] = parseInt(arrValues[i][1]);
-                innerLaborCount +=1;
-            }else if(arrValues[i][0].includes(`${MISCELLANEOUS}_item_`)){
-               
-                miscData.data.push({ "name": arrValues[i][1], "cost": null });
-           
-            } else if(arrValues[i][0].includes(`${MISCELLANEOUS}_cost_`)){
-
-                miscData.data[innerMiscCount]["cost"] = parseInt(arrValues[i][1]);
-                innerMiscCount +=1;
-            }
-            
-            else {
-                gqlData[arrValues[i][0]] = arrValues[i][1];
-            }
-
-        }
-
-        gqlData["material"] = materialData;
-        gqlData["labor"] = laborData;
-        gqlData["miscExpense"] = miscData;
-
-
-        return gqlData;
-    }
-
 
     return (
         <div className="dashboard-projects">
@@ -243,31 +230,29 @@ const BidCreation = () => {
             <Formik
                 initialValues={{
 
-                    organization: "",
+                    organization: 1,
                     contactName: "",
                     phone: "",
                     license_number: "",
                     classType: "",
                     estTime: "",
-                    availability: "",
+                    availability: "2020-12-01",
                     notes: "",
-                    project: "",//from where you chose the project
+                    project: 1,//from where you chose the project
 
-
+                    amount: 1
                 }}
 
                 // validationSchema={SignupSchema}
                 innerRef={formRef}
 
                 onSubmit={values => {
-                    // same shape as initial values
-                    const some = shapingValues(values);
-                    console.log(some);
 
-                    // console.log(values);
-
-                    // console.log(values["Material_0"]);
+                    const finalValues = shapingValues(values)
+                    console.log(finalValues);
                     //need to input values here and manupulate it
+                    handleSubmit(finalValues);
+                     //handleSubmit(testData)
                 }}
             >
                 {({ errors, touched }) => (

@@ -25,50 +25,60 @@ export default function CostBreakdown({ projectId }) {
   projectId = 'dsfsdlfksj';
   const { loading, error, data } = useQuery(GetBid, {
     //needs to be changed to projectId from props
-    variables: { id: 1 },
+    variables: { id: 324 },
   });
   // useEffect(() => {}, []);
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
-    console.log(data.bid);
+    
     // console.log(data.bid.contactName);
-    console.log(data.bid.material);
-    const materials = data.bid.material.data.map((data) => (
-      <div className="row" key={uuidv4()}>
-        <p className="costListItem">{data.item}</p>
-      </div>
-    ));
+    console.log(data.bid.material.data);
+    const materials = data.bid.material.data.map((data) => {
+      return (
 
-    const labor = data.bid.labor.data.map((data) => (
-      <div className="row" key={uuidv4()}>
-        <p className="costListItem">{data.item}</p>
-      </div>
-    ));
-    const misc = data.bid.miscExpense.data.map((data) => (
-      <div className="row" key={uuidv4()}>
-        <p className="costListItem">{data.item}</p>
-      </div>
-    ));
+        <div className="row" key={uuidv4()}>
+          <p className="costListItem">{data.name}</p>
+        </div>
+      )
+
+    });
+
+    const labor = data.bid.labor.data.map((data) => {
+      return (
+        <div className="row" key={uuidv4()}>
+          <p className="costListItem">{data.name}</p>
+        </div>
+      )
+
+    });
+    const misc = data.bid.miscExpense.data.map((data) => {
+      return (
+        <div className="row" key={uuidv4()}>
+          <p className="costListItem">{data.name}</p>
+        </div>
+      )
+
+    });
     const materialPrices = data.bid.material.data.map((data) => (
       <div className="row2" key={uuidv4()}>
-        <p>{data.qty}</p>
-        <p>{data.unitCost}</p>
-        <p>{data.totalCost}</p>
+        {/* <p>{data.qty}</p>
+        <p>{data.unitCost}</p> */}
+        <p>{data.cost}</p>
       </div>
     ));
     const laborPrices = data.bid.labor.data.map((data) => (
       <div className="row2" key={uuidv4()}>
-        <p>{data.qty}</p>
-        <p>{data.unitCost}</p>
-        <p>{data.totalCost}</p>
+        {/* <p>{data.qty}</p>
+        <p>{data.unitCost}</p> */}
+        <p>{data.cost}</p>
       </div>
     ));
     const miscPrices = data.bid.miscExpense.data.map((data) => (
       <div className="row2" key={uuidv4()}>
-        <p>{data.qty}</p>
-        <p>{data.unitCost}</p>
-        <p>{data.totalCost}</p>
+        {/* <p>{data.qty}</p>
+        <p>{data.unitCost}</p> */}
+        <p>{data.cost}</p>
       </div>
     ));
     const Tot = () => {
@@ -82,7 +92,7 @@ export default function CostBreakdown({ projectId }) {
       data.bid.material.data.map((data) => {
         if (data.totalCost) arr.push(data.totalCost);
       });
-      console.log(arr);
+      //console.log(arr);
       let sum = arr.reduce(function (a, b) {
         return parseFloat(a) + parseFloat(b);
       }, 0);
