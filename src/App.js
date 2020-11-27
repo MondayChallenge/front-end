@@ -11,6 +11,7 @@ import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
 import BidCreation from './components/BidCreation/BidCreation';
+import FindProject from './components/FindProject/FindProject';
 import BidPage from 'components/BidPage/BidPage';
 
 import { RegisterUser, LoginUser } from "./apollo/user";
@@ -108,7 +109,7 @@ const App = ()=> {
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
-      console.log("user info", email, password);
+      console.log('user info', email, password);
       getLoginUserID(email, password) || getRegisterUserID(email, password);
     }
     // make sure to have both userId and jwtToken stored on sessionStorage
@@ -117,21 +118,24 @@ const App = ()=> {
       getLoginUserID(email, password)
     }
   }, [password]);
-  
-    return (
-      <BrowserRouter >
-        <ScrollToTop />      
-          <Route path="/" exact component={MainProject} /> 
-          <Route path="/proposals" exact component={Proposals} />
-          <Route path="/messages" exact component={Messages} />
-          <Route path="/newProject" exact component={Projects} />
-          <Route path="/costBreakdown" exact component={CostBreakdown} />
-          <Route path="/bidCreation" exact component={BidCreation} />
-          <Route path="/bidPage" exact component={BidPage} />
-      </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Route path="/mainproject/:id" exact component={MainProject} />
+      <Route path="/proposals" exact component={Proposals} />
+      <Route path="/messages" exact component={Messages} />
+      <Route path="/newProject" exact component={Projects} />
+      <Route path="/costBreakdown" exact component={CostBreakdown} />
+      <Route path="/bidCreation" exact component={BidCreation} />
+      <Route path="/findProject" exact component={FindProject} />
+      <Route path="/bidPage" exact component={BidPage} />
+    </BrowserRouter>
+  );
+};
+
 
 export default App;
 
-{/* {JSON.stringify(this.state.boardData, null, 2)}  */}
+{
+  /* {JSON.stringify(this.state.boardData, null, 2)}  */
+}
