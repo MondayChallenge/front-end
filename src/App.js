@@ -110,7 +110,7 @@ const App = ()=> {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Route path="/" exact component={MainProject} />
+      <Route path="/mainproject/:id" exact component={MainProject} />
       <Route path="/proposals" exact component={Proposals} />
       <Route path="/messages" exact component={Messages} />
       <Route path="/newProject" exact component={Projects} />
