@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: $std-grid-column;
 
-  margin: 4rem 0;
+  margin: $margin-top-page 0;
   column-gap: 2rem;
 
   & h3 {

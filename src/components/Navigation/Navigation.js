@@ -20,7 +20,7 @@ const Navigation = (props) => {
           <Link to="/proposals" className="proposals navLink" >Proposals</Link>
           <Link to="/costBreakdown" className="documents navLink" >Documents</Link>
           <Link to="/bidCreation" className="reports navLink" >Reports</Link>
-          <Link to="/" className="directory navLink" >Budget</Link>
+          <Link to="/bidPage" className="directory navLink" >Budget</Link>
           <Link to="/" className="calendar navLink" >Calendar</Link>
           <Link to="/" className="admin navLink" >Directory</Link>
         </div>

@@ -2,11 +2,11 @@
     display: grid;
     grid-template-columns: $std-grid-column;
   
-    margin: 4rem 0;
+    margin: $margin-top-page 0;
 
     & h1 {
         grid-column: center-start/center-end;
-        margin-top: $margin-top-med;
+       
       }
     
     & p {

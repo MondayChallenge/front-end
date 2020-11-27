@@ -10,9 +10,10 @@ import Proposals from "./components/Proposals/Proposals";
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
-import { RegisterUser, LoginUser } from "./apollo/user";
 import BidCreation from './components/BidCreation/BidCreation';
+import BidPage from 'components/BidPage/BidPage';
 
+import { RegisterUser, LoginUser } from "./apollo/user";
 import { useMutation } from "@apollo/client";
 import mondaySdk from "monday-sdk-js";
 
@@ -126,7 +127,7 @@ const App = ()=> {
           <Route path="/newProject" exact component={Projects} />
           <Route path="/costBreakdown" exact component={CostBreakdown} />
           <Route path="/bidCreation" exact component={BidCreation} />
-
+          <Route path="/bidPage" exact component={BidPage} />
       </BrowserRouter>
     );
   }
