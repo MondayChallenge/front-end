@@ -36,9 +36,28 @@ export const LoginUser = gql`
 // mutation Login {
 //   login(input:{identifier: "12345@test.com",password:"123"})
 //   {
-//     jwt 
+//     jwt
 //     user{
 //       id
 //     }
 //   }
 // }
+
+export const getCurrUser = gql`
+  query {
+    me {
+      id
+    }
+  }
+`;
+
+export const getUserInfo = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      username
+      organization {
+        city
+      }
+    }
+  }
+`;
