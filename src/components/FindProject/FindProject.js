@@ -46,7 +46,7 @@ function TableRow({ title, owner, status, due, id }) {
       <td className="listItem title font-class-1 ">
         <Link
           style={{ textDecoration: 'none', color: 'rgba(0,154,255,1.0)' }}
-          to={`:${id}`}>
+          to={`mainproject/${id}`}>
           {title}
         </Link>
       </td>
