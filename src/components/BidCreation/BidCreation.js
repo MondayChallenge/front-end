@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
-const BidCreation = () => {
+const BidCreation = (props) => {
 
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string()
@@ -22,7 +22,9 @@ const BidCreation = () => {
 
     let history = useHistory();
 
-    const [createBid, data] = useMutation(CREATE_BID);
+    const [createBid, data] = useMutation(CREATE_BID,{
+        variables:{project:props.match.params.id}
+    });
     //const [bidId,setBidId] = useState("");
     const [material, setMaterial] = useState({ data: [{ 'name': '', 'cost': 0 }] });
     const [labor, setLabor] = useState({ data: [{ 'name': '', 'cost': 0 }] });
@@ -103,7 +105,7 @@ const BidCreation = () => {
             
         }).catch(err => { throw err });
         alert("You have successfully placed your bid");
-        history.push('/');
+        history.push('/bidpage');
     }
 
 
