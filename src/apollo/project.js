@@ -111,6 +111,13 @@ export const getProjects = gql`
   query($id: ID) {
     projects(sort: "endDate:asc", where: { representatives_in: $id }) {
       id
+      address
+      city
+      zip
+      state
+      estTime
+      minBid
+      description
       name
       owner {
         username
