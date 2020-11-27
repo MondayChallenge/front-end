@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from 'components/Navigation/Navigation';
+import renderImgBubble from 'components/utils/renderImgBubble';
 
 const BidPage = () => {
     return (
