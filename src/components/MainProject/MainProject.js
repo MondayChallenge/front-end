@@ -136,7 +136,7 @@ const MainProject = (props) => {
         <Navigation />
         <div className="main-project">
           <h1>{currProject.name}</h1>
-          <Link to="/test">bid now</Link>
+          <Link to={'/bidCreation/' + props.match.params.id}>bid now</Link>
           <div className="main-project__left">
             <div className="main-project__left__image">
               {renderImgBuilding(imgBuildingArray)}
