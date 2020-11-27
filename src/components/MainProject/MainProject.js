@@ -7,13 +7,10 @@ import interior3 from "assets/img/interior-3.png";
 import headshot from "assets/img/professional_woman_headshot.jpg";
 
 import { getRandomInt } from "components/utils/getRandomInt";
+import { renderImgBubble } from 'components/utils/renderImgBubble';
 
 const MainProject = () => {
-  
 
-  React.useEffect(() => {
-  
-  }, []);
 
   const bids = [
     { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
@@ -42,7 +39,7 @@ const MainProject = () => {
           <p
             className={`main-project__right__bidding__group--status font-color--${
               bidColors[status.split(" ")[0]]
-            }`}
+              }`}
           >
             {status}
           </p>
@@ -75,49 +72,17 @@ const MainProject = () => {
     },
   ];
 
-  const backgroundColor = ["orange", "green", "blue", "pink", "purple"];
 
-  const renderTeam = (team, backgroundColor) => {
+  const renderTeam = (team) => {
     return team.map((member, i) => {
       const { name, title, img } = member;
 
-      const renderImg = (img, name) => {
-        
-        const colorPicker = (colors) => {
-          const randInt = getRandomInt(0, colors.length);
-          return colors[randInt];
-        };
-
-        if (img === "" || img === null) {
-          const nameSplit = name.split(" ");
-          const nameInitials = [
-            nameSplit[0][0],
-            nameSplit[nameSplit.length - 1][0],
-          ].join("");
-
-          return (
-            <div
-              className={`main-project__right__team__group--placeholder image-background-color--${colorPicker(
-                backgroundColor
-              )}`}
-            >
-              {nameInitials}
-            </div>
-          );
-        } else {
-          return (
-            <img
-              src={img}
-              alt={`${name} headshot`}
-              className="main-project__right__team__group--img"
-            />
-          );
-        }
-      };
-
       return (
         <div className="main-project__right__team__group" key={i}>
-          {renderImg(img, name)}
+
+          <div className="main-project__right__team__group--img">
+            {renderImgBubble(img, name)}
+          </div>
 
           <p className="main-project__right__team__group--name">{name}</p>
           <p className="main-project__right__team__group--description">
@@ -128,34 +93,31 @@ const MainProject = () => {
     });
   };
 
+const imgBuildingArray = [building1,interior1,interior2,interior3];
+  const renderImgBuilding = (imgs) => {
+    const imgArr = [];
+    for (let i = 0; i < 4; i++) {
+      imgArr.push(<img
+        src={imgs[i]}
+        alt={`building_${i + 1}`}
+        className={`main-project__left__image--${i + 1}`}
+      />)
+
+    }
+
+    return imgArr;
+  }
+
+
   return (
     <div className="dashboard-projects">
       <Navigation />
       <div className="main-project">
         <h1>Mattamy Development</h1>
         <div className="main-project__left">
-         <div className="main-project__left__image">
-            <img
-              src={building1}
-              alt="building-1"
-              className="main-project__left__image--1"
-            />
-            <img
-              src={interior1}
-              alt="interior-1"
-              className="main-project__left__image--2"
-            />
-            <img
-              src={interior2}
-              alt="interior-2"
-              className="main-project__left__image--3"
-            />
-            <img
-              src={interior3}
-              alt="interior-3"
-              className="main-project__left__image--4"
-            />
-          </div> 
+          <div className="main-project__left__image">
+            {renderImgBuilding(imgBuildingArray)}
+          </div>
 
           <div className="main-project__left__details">
             <ul className="main-project__left__details--1">
@@ -193,7 +155,7 @@ const MainProject = () => {
           <div className="main-project__right__cards main-project__right__team ">
             <h3>Project Team</h3>
 
-            {renderTeam(team, backgroundColor)}
+            {renderTeam(team)}
           </div>
         </div>
       </div>
