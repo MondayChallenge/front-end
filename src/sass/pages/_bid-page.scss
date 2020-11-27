@@ -8,11 +8,8 @@
     &__thead{
         grid-column: center-start/center-end;
         background-color: $color-mystic;
-        grid-column: center-start/center-end;
         display: grid;
-        grid-template-columns: repeat(5,minmax(max-content,1fr));
-
-
+        grid-template-columns: repeat(5,minmax(7rem,1fr));
 
         column-gap: 2rem;
         height: 5rem;
@@ -20,21 +17,22 @@
         align-items: center;
         justify-items: center;
         
-        font-style: normal;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 2.4rem;
+        // font-style: normal;
+        // font-size: 1.8rem;
+        // font-weight: 400;
+        // line-height: 2.4rem;
     }
 
     &__trow{
         margin-top: 2rem;
         grid-column:  center-start/center-end;
         display: grid;
-        grid-template-columns: repeat(5,minmax(max-content,1fr));
+        grid-template-columns: repeat(5,minmax(7rem,1fr));
         column-gap: 2rem;
         height: 5rem;
         font-weight: 400;
         align-items: center;
         justify-items: center;
+        text-align: center;
     }
 }
