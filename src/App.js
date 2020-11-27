@@ -12,6 +12,7 @@ import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
 import { RegisterUser, LoginUser } from "./apollo/user";
 import BidCreation from './components/BidCreation/BidCreation';
+import FindProject from './components/FindProject/FindProject';
 
 import { useMutation } from "@apollo/client";
 import mondaySdk from "monday-sdk-js";
