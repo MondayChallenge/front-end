@@ -17,7 +17,7 @@ const BidPage = () => {
                 <div className="bid-page__trow">
                     <p >Cupertino Electric, Inc.</p>
                     <p >David Felb</p>
-                    <p >Open to Bid</p>
+                    <p className = "font-color--success">Open to Bid</p>
                     <p >Nov 12, 2020</p>
                     <p >Mattamy Development</p>
                 </div>

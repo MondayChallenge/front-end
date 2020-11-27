@@ -3,7 +3,7 @@
   grid-template-columns: $std-grid-column;
 
   margin: $margin-top-page 0;
-  column-gap: 2rem;
+  // column-gap: 2rem;
 
   & h3 {
     margin-bottom: 1rem;
@@ -17,38 +17,41 @@
   }
 
   &__left {
-    grid-column: center-start / col-start 6;
+    grid-column: center-start / col-start 5;
+    margin-right: 2rem;
     // background-color: red;
 
     &__image {
-      // height: 40vh;
+      
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(3, min-content);
+      grid-template-columns: repeat(3, minmax(min-content,20rem));
+      grid-template-rows: repeat(2, min-content);
       row-gap: 0.5rem;
       column-gap: 0.5rem;
-
-      & img {
-        // width: 100%;
-      }
+      
+      
 
       &--1 {
-        grid-column: 1;
-        grid-row: 1/4;
-        // height: 100%;
-        height: 50rem;
+        grid-column: 1/-1;
+        grid-row: 1;
+        width:100%;
+        // width: 30rem;
+        
       }
       &--2 {
-        grid-column: 2;
-        grid-row: 1;
+        grid-column: 1;
+        grid-row: 2;
+        width:100%;
       }
       &--3 {
         grid-column: 2;
         grid-row: 2;
+        width:100%;
       }
       &--4 {
-        grid-column: 2;
-        grid-row: 3;
+        grid-column: 3;
+        grid-row: 2;
+        width:100%;
       }
     }
 
@@ -81,19 +84,17 @@
     grid-column: col-end 5 / center-end;
     // background-color: lightgray;
 
-    width: 45rem;
+    // width: 45rem;
 
     display: grid;
     grid-template-rows: repeat(2, max-content);
     row-gap: 2rem;
 
+
     &__cards {
       border: $std-border;
       border-radius: 2rem;
       padding: 3rem;
-
-      height: 35rem;
-
       
     }
 
@@ -105,17 +106,17 @@
 
       &__group {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(4rem,1fr));
         grid-template-rows: repeat(2, max-content);
-        
- 
+        column-gap: 2rem;
+      
 
         &--name {
           grid-row: 1;
           grid-column: 1;
-          overflow: hidden;
+          //overflow: hidden;
           // white-space: nowrap;
-          text-overflow: ellipsis;
+          //text-overflow: ellipsis;
       
 
         }
@@ -138,7 +139,7 @@
 
       &__group {
         display: grid;
-        grid-template-columns: max-content 1fr;
+        grid-template-columns: max-content minmax(4rem,1fr);
         grid-template-rows: repeat(2, max-content);
         column-gap: 2rem;
 
@@ -175,18 +176,18 @@
           color: $color-azure-radiance;
           grid-column: 2;
           grid-row: 1;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+          // overflow: hidden;
+          // white-space: nowrap;
+          // text-overflow: ellipsis;
       
         }
 
         &--description {
           grid-column: 2;
           grid-row: 2;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+          // overflow: hidden;
+          // white-space: nowrap;
+          // text-overflow: ellipsis;
       
         }
       }

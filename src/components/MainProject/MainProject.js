@@ -22,7 +22,7 @@ const MainProject = () => {
     {
       name: "SAS Stressteel, Inc.",
       type: "Structural Steel",
-      status: "Awaiting Response",
+      status: "Awaiting",
     },
   ];
 
@@ -134,7 +134,7 @@ const MainProject = () => {
       <div className="main-project">
         <h1>Mattamy Development</h1>
         <div className="main-project__left">
-          <div className="main-project__left__image">
+         <div className="main-project__left__image">
             <img
               src={building1}
               alt="building-1"
@@ -155,7 +155,7 @@ const MainProject = () => {
               alt="interior-3"
               className="main-project__left__image--4"
             />
-          </div>
+          </div> 
 
           <div className="main-project__left__details">
             <ul className="main-project__left__details--1">

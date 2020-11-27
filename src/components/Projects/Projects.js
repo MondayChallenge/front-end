@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Navigation from "../Navigation/Navigation";
 
-import "components/Projects/Projects.css";
+
 // import {AddProject} from '../../apollo/project';
 // import { Formik } from 'formik';
 import {AddProject} from '../../apollo/project'
