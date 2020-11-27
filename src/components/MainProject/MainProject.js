@@ -1,18 +1,17 @@
-import React from 'react';
-import Navigation from 'components/Navigation/Navigation';
-import building1 from 'assets/img/building-1.png';
-import interior1 from 'assets/img/interior-1.png';
-import interior2 from 'assets/img/interior-2.png';
-import interior3 from 'assets/img/interior-3.png';
-import headshot from 'assets/img/professional_woman_headshot.jpg';
-import { useQuery } from '@apollo/client';
-import { getRandomInt } from 'components/utils/getRandomInt';
-import { useHistory } from 'react-router-dom';
-import { getProjects } from '../../apollo/project';
-import { getCurrUser } from '../../apollo/user';
-import { getUserInfo } from '../../apollo/user';
-import { Link } from 'react-router-dom';
-import { renderImgBubble } from 'components/utils/renderImgBubble';
+import React from "react";
+import Navigation from "components/Navigation/Navigation";
+import building1 from "assets/img/building-1.png";
+import interior1 from "assets/img/interior-1.png";
+import interior2 from "assets/img/interior-2.png";
+import interior3 from "assets/img/interior-3.png";
+import headshot from "assets/img/professional_woman_headshot.jpg";
+import { useQuery } from "@apollo/client";
+import { getRandomInt } from "components/utils/getRandomInt";
+import { useHistory } from "react-router-dom";
+import { getProjects } from "../../apollo/project";
+import { getCurrUser } from "../../apollo/user";
+import { Link } from "react-router-dom";
+import { renderImgBubble } from "components/utils/renderImgBubble";
 
 const MainProject = (props) => {
   const { loading, error, data } = useQuery(getProjects, {
@@ -25,20 +24,20 @@ const MainProject = (props) => {
   );
 
   const bids = [
-    { name: 'Cupertino Electric, Inc.', type: 'Utilities', status: 'Awarded' },
-    { name: 'Bay Electric', type: 'Utilities', status: 'Declined' },
-    { name: 'A&A Concrete Supply', type: 'Concrete', status: 'Awarded' },
+    { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
+    { name: "Bay Electric", type: "Utilities", status: "Declined" },
+    { name: "A&A Concrete Supply", type: "Concrete", status: "Awarded" },
     {
-      name: 'SAS Stressteel, Inc.',
-      type: 'Structural Steel',
-      status: 'Awaiting',
+      name: "SAS Stressteel, Inc.",
+      type: "Structural Steel",
+      status: "Awaiting",
     },
   ];
 
   const bidColors = {
-    Awarded: 'success',
-    Awaiting: 'warning',
-    Declined: 'danger',
+    Awarded: "success",
+    Awaiting: "warning",
+    Declined: "danger",
   };
 
   const renderBidding = (bids, bidColors) => {
@@ -50,8 +49,9 @@ const MainProject = (props) => {
           <p className="main-project__right__bidding__group--name">{name}</p>
           <p
             className={`main-project__right__bidding__group--status font-color--${
-              bidColors[status.split(' ')[0]]
-            }`}>
+              bidColors[status.split(" ")[0]]
+            }`}
+          >
             {status}
           </p>
           <p className="main-project__right__bidding__group--type">{type}</p>
@@ -62,24 +62,24 @@ const MainProject = (props) => {
 
   const team = [
     {
-      name: 'David Felber',
-      title: 'Project Manager',
-      img: '',
+      name: "David Felber",
+      title: "Project Manager",
+      img: "",
     },
     {
-      name: 'Welsey Thomas',
-      title: 'VP of Business Development',
-      img: '',
+      name: "Welsey Thomas",
+      title: "VP of Business Development",
+      img: "",
     },
     {
-      name: 'Lauren Stevens',
-      title: 'Sr. Architect/Designer',
+      name: "Lauren Stevens",
+      title: "Sr. Architect/Designer",
       img: headshot,
     },
     {
-      name: 'Brad Nichols',
-      title: 'Project Engineer',
-      img: '',
+      name: "Brad Nichols",
+      title: "Project Engineer",
+      img: "",
     },
   ];
 
@@ -152,7 +152,7 @@ const MainProject = (props) => {
               </ul>
               <ul className="main-project__left__details--2">
                 <li>
-                  {currProject.address}{' '}
+                  {currProject.address}{" "}
                   <span>
                     {currProject.city}, {currProject.state} {currProject.zip}
                   </span>
