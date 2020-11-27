@@ -20,14 +20,22 @@ const MainProject = (props) => {
   const { loading: userLoading, error: userError, data: userData } = useQuery(
     getCurrUser
   );
+import { renderImgBubble } from 'components/utils/renderImgBubble';
+
+
+
+const MainProject = () => {
+
+
   const bids = [
     { name: 'Cupertino Electric, Inc.', type: 'Utilities', status: 'Awarded' },
     { name: 'Bay Electric', type: 'Utilities', status: 'Declined' },
     { name: 'A&A Concrete Supply', type: 'Concrete', status: 'Awarded' },
     {
-      name: 'SAS Stressteel, Inc.',
-      type: 'Structural Steel',
-      status: 'Awaiting Response',
+
+      name: "SAS Stressteel, Inc.",
+      type: "Structural Steel",
+      status: "Awaiting",
     },
   ];
 
@@ -48,6 +56,7 @@ const MainProject = (props) => {
             className={`main-project__right__bidding__group--status font-color--${
               bidColors[status.split(' ')[0]]
             }`}>
+
             {status}
           </p>
           <p className="main-project__right__bidding__group--type">{type}</p>
@@ -79,47 +88,17 @@ const MainProject = (props) => {
     },
   ];
 
-  const backgroundColor = ['orange', 'green', 'blue', 'pink', 'purple'];
 
-  const renderTeam = (team, backgroundColor) => {
+  const renderTeam = (team) => {
     return team.map((member, i) => {
       const { name, title, img } = member;
 
-      const renderImg = (img, name) => {
-        const colorPicker = (colors) => {
-          const randInt = getRandomInt(0, colors.length);
-          return colors[randInt];
-        };
-
-        if (img === '' || img === null) {
-          const nameSplit = name.split(' ');
-          const nameInitials = [
-            nameSplit[0][0],
-            nameSplit[nameSplit.length - 1][0],
-          ].join('');
-
-          return (
-            <div
-              className={`main-project__right__team__group--placeholder image-background-color--${colorPicker(
-                backgroundColor
-              )}`}>
-              {nameInitials}
-            </div>
-          );
-        } else {
-          return (
-            <img
-              src={img}
-              alt={`${name} headshot`}
-              className="main-project__right__team__group--img"
-            />
-          );
-        }
-      };
-
       return (
         <div className="main-project__right__team__group" key={i}>
-          {renderImg(img, name)}
+
+          <div className="main-project__right__team__group--img">
+            {renderImgBubble(img, name)}
+          </div>
 
           <p className="main-project__right__team__group--name">{name}</p>
           <p className="main-project__right__team__group--description">
@@ -144,6 +123,21 @@ const MainProject = (props) => {
 
     console.log(data.projects[0]);
     var currProject = data.projects[0];
+
+const imgBuildingArray = [building1,interior1,interior2,interior3];
+  const renderImgBuilding = (imgs) => {
+    const imgArr = [];
+    for (let i = 0; i < 4; i++) {
+      imgArr.push(<img
+        src={imgs[i]}
+        alt={`building_${i + 1}`}
+        className={`main-project__left__image--${i + 1}`}
+      />)
+
+    }
+
+    return imgArr;
+  }
     return (
       <div className="dashboard-projects">
         <Navigation />
@@ -152,26 +146,8 @@ const MainProject = (props) => {
           <Link to="/test">bid now</Link>
           <div className="main-project__left">
             <div className="main-project__left__image">
-              <img
-                src={building1}
-                alt="building-1"
-                className="main-project__left__image--1"
-              />
-              <img
-                src={interior1}
-                alt="interior-1"
-                className="main-project__left__image--2"
-              />
-              <img
-                src={interior2}
-                alt="interior-2"
-                className="main-project__left__image--3"
-              />
-              <img
-                src={interior3}
-                alt="interior-3"
-                className="main-project__left__image--4"
-              />
+            {renderImgBuilding(imgBuildingArray)}
+
             </div>
 
             <div className="main-project__left__details">
@@ -207,9 +183,7 @@ const MainProject = (props) => {
 
             <div className="main-project__right__cards main-project__right__team ">
               <h3>Project Team</h3>
-
-              {renderTeam(team, backgroundColor)}
-            </div>
+            {renderTeam(team)}
           </div>
         </div>
       </div>

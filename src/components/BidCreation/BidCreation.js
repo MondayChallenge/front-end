@@ -1,33 +1,56 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navigation from 'components/Navigation/Navigation'
 import { CREATE_BID } from '../../apollo/bid';
 import { useMutation } from '@apollo/client';
 import { useHistory } from "react-router-dom";
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from "yup";
 
 const BidCreation = () => {
 
+    const SignupSchema = Yup.object().shape({
+        firstName: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        lastName: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        email: Yup.string().email('Invalid email').required('Required'),
+    });
+
     let history = useHistory();
 
-    const [createBid,data] = useMutation(CREATE_BID);
+    const [createBid, data] = useMutation(CREATE_BID);
     //const [bidId,setBidId] = useState("");
+    const [material, setMaterial] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [labor, setLabor] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [misc, setMisc] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [materialCounter, setMaterialCounter] = useState(0);
+    const [laborCounter, setLaborCounter] = useState(0);
+    const [miscCounter, setMiscCounter] = useState(0);
+    const formRef = useRef();
 
-    const testData = {
-        notes: "Hello, World",
-        license_number: "PPR11722P",
-        material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
-        labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
-        miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
-        contactName: "Tony",
-        phone: "+91 999999999",
-        classType: "A Class",
-        organization: 1,
-        availability: "2020-12-01",
-        project: 1,
-        amount: 100000000000,
-        estTime: "20 Days"
-    };
+    const MATERIAL = "Material";
+    const LABOR = "Labor";
+    const MISCELLANEOUS = "Miscellaneous";
 
+    //console.log(formRef.current.values)
+
+    // $amount: Long
+    // $organization: ID
+    // $estTime: String
+    // $availability: Date
+    // $material: JSON
+    // $labor: JSON
+    // $miscExpense: JSON
+    // $contactName: String
+    // $phone: String
+    // $license_number: String
+    // $classType: String
+    // $notes: String
+    // $project: ID
 
     const inputHeader = [
         "Company Name",
@@ -35,148 +58,440 @@ const BidCreation = () => {
         "Contact Phone",
         "Contractors State License Number",
         "Class Type",
-        "Bids Due",
-        "Address",
-        "Zip (Postal) Code",
-        "Country",
-        "State/Province",
-        "City"
+        "Estimated Time to Build",
+        // "Address",
+        // "Zip (Postal) Code",
+        // "Country",
+        // "State/Province",
+        // "City"
     ];
 
-    const renderBidInfo = (infos) => {
+    const fieldNames = {
+        "Company Name": "organization", //maybe carry your org info from page to page? 
+        "Contact Name": "contactName",
+        "Contact Phone": "phone",
+        "Contractors State License Number": "license_number",
+        "Class Type": "classType",
+        "Estimated Time to Build": "estTime",
+        "Available Start Date": "availability",
+        // "Address":"address",
+        // "Zip (Postal) Code":"zipCode",
+        // "Country":"country",
+        // "State/Province":"state",
+        // "City":"city"
+    };
+
+
+
+
+
+    const renderBidInfo = (infos, fieldNames) => {
         return infos.map((info, i) => {
             return (
                 <div className="form-inputs-block form-inputs-block--small" key={i} >
                     <h4 className="form-inputs-label" >{info}</h4>
-                    <input className="form-inputs form-inputs--small"></input>
+                    <Field name={fieldNames[info]} className="form-inputs form-inputs--small" />
                 </div>
             )
         })
     }
 
-    const handleSubmit =  () => {
+    const handleSubmit = (data) => {
         console.log('this was triggered');
-        
-         createBid({ variables: testData }).then(res =>{
-             //console.log(res);
-             //setBidId(res.data.createBid.bid.id);
-         }).catch(err => {throw err});
-         alert("You have successfully placed your bid");
-       history.push('/');
-       
- 
+
+        createBid({ variables: data }).then(res => {
+            
+        }).catch(err => { throw err });
+        alert("You have successfully placed your bid");
+        history.push('/');
     }
+
+
+    const handleCounter = (name) => {
+        console.log(`handleCounter ${name}`)
+        switch (name) {
+            case MATERIAL:
+                setMaterialCounter(materialCounter + 1);
+                break;
+            case LABOR:
+                setLaborCounter(laborCounter + 1);
+                break;
+            case MISCELLANEOUS:
+                setMiscCounter(miscCounter + 1);
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
+
+
+
+    const renderBidDetails = (counter, name) => {
+
+        let renderElement = [];
+        for (let i = 0; i <= counter; i++) {
+            renderElement.push(<div className="form-inputs-row"key = {`${name}_${i}`}>
+                <div className="form-inputs-block form-inputs-block--small">
+                    <h4 className="form-inputs-label" >{name}</h4>
+                    <Field name={`${name}_item_${i}`} className="form-inputs form-inputs--small" />
+                </div>
+                <div className="form-inputs-block form-inputs-block--small">
+                    <h4 className="form-inputs-label" >Cost</h4>
+                    <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
+                </div>
+            </div>
+            )
+        }
+
+
+        return renderElement;
+
+    }
+
+
+ 
+
+
+    const shapingValues = (values) => {
+        const arrValues = Object.entries(values);
+        let gqlData = {};
+        let materialData = { data: [] }
+        let laborData = { data: [] }
+        let miscData = { data: [] }
+        let innerMatCount = 0;
+        let innerLaborCount = 0;
+        let innerMiscCount = 0;
+
+        arrValues.map(value => {
+
+            if (value[0].includes(`${MATERIAL}_item_`)) {
+                materialData.data.push({ "name": value[1], "cost": null });
+            } else if (value[0].includes(`${MATERIAL}_cost_`)) {
+                materialData.data[innerMatCount]["cost"] = parseInt(value[1]);
+                innerMatCount += 1;
+
+            } else if (value[0].includes(`${LABOR}_item_`)) {
+
+                laborData.data.push({ "name": value[1], "cost": null });
+
+            } else if (value[0].includes(`${LABOR}_cost_`)) {
+
+                laborData.data[innerLaborCount]["cost"] = parseInt(value[1]);
+                innerLaborCount += 1;
+            } else if (value[0].includes(`${MISCELLANEOUS}_item_`)) {
+
+                miscData.data.push({ "name": value[1], "cost": null });
+
+            } else if (value[0].includes(`${MISCELLANEOUS}_cost_`)) {
+
+                miscData.data[innerMiscCount]["cost"] = parseInt(value[1]);
+                innerMiscCount += 1;
+            }
+            else {
+                gqlData[value[0]] = value[1];
+            }
+
+        }
+        )
+
+        gqlData["material"] = materialData;
+        gqlData["labor"] = laborData;
+        gqlData["miscExpense"] = miscData;
+
+        return gqlData;
+    }
+
+    const testData = {
+
+        organization: 1,
+        contactName: "Tony",
+        phone: "+91 999999999",
+        license_number: "PPR11722P",
+        classType: "A Class",
+        estTime: "20 Days",
+        availability: "2020-12-01",
+        notes: "Hello, World",
+        project: 1,
+
+        material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
+        labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
+        miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
+        amount: 100000000000,
+
+    };
+
+
 
     return (
         <div className="dashboard-projects">
             <Navigation />
-            <form action="" className="bid-creation" onSubmit={(e)=>handleSubmit(e)}>
-                <h1 className="form-section-header">{`Bidder's Information`}</h1>
 
-                <p className="form-section-subheader ">
-                    Please fill out the required fields below to provide us with the details of the company bidding on this proposal.
-                </p>
+            <Formik
+                initialValues={{
 
-                <div className="form-inputs-section">
-                    {renderBidInfo(inputHeader)}
+                    organization: 1,
+                    contactName: "",
+                    phone: "",
+                    license_number: "",
+                    classType: "",
+                    estTime: "",
+                    availability: "2020-12-01",
+                    notes: "",
+                    project: 1,//from where you chose the project
 
-                    <div className="form-inputs-block form-inputs-block--large">
-                        <h4 className="form-inputs-label" >Notes</h4>
-                        <input className="form-inputs form-inputs--large"></input>
-                    </div>
-                </div>
+                    amount: 1
+                }}
 
-                <h1 className="form-section-header">Attachments</h1>
-                <p className="form-section-subheader ">
-                    Please upload the scope of work, images, or additional documentation for bidders to review prior to submitting a project bid.
-                </p>
+                // validationSchema={SignupSchema}
+                innerRef={formRef}
 
-                <div className="bid-creation__files">
-                    <div className="form-drop-file">
-                        <p className="form-drop-file__title">
-                            Drag your file here, or
-                            <span > browse</span>
+                onSubmit={values => {
+
+                    const finalValues = shapingValues(values)
+                    console.log(finalValues);
+                    //need to input values here and manupulate it
+                    handleSubmit(finalValues);
+                     //handleSubmit(testData)
+                }}
+            >
+                {({ errors, touched }) => (
+                    <Form action="" className="bid-creation" >
+                        <h1 className="form-section-header">{`Bidder's Information`}</h1>
+
+                        <p className="form-section-subheader ">
+                            Please fill out the required fields below to provide us with the details of the company bidding on this proposal.
                         </p>
 
-                        <p className="form-drop-file__sub ">
-                            Supports: JPG, GIF, PDF, PNG
+                        <div className="form-inputs-section">
+                            {renderBidInfo(inputHeader, fieldNames)}
+
+                            <div className="form-inputs-block form-inputs-block--small">
+                                <h4 className="form-inputs-label" >Address</h4>
+                                <input className="form-inputs form-inputs--small"></input>
+                            </div>
+                            <div className="form-inputs-block form-inputs-block--small">
+                                <h4 className="form-inputs-label" >Zip(Postal) Code</h4>
+                                <input className="form-inputs form-inputs--small"></input>
+                            </div>
+                            <div className="form-inputs-block form-inputs-block--small">
+                                <h4 className="form-inputs-label" >Country</h4>
+                                <input className="form-inputs form-inputs--small"></input>
+                            </div>
+                            <div className="form-inputs-block form-inputs-block--small">
+                                <h4 className="form-inputs-label" >State/Province</h4>
+                                <input className="form-inputs form-inputs--small"></input>
+                            </div>
+                            <div className="form-inputs-block form-inputs-block--small">
+                                <h4 className="form-inputs-label" >City</h4>
+                                <input className="form-inputs form-inputs--small"></input>
+                            </div>
+
+                            <div className="form-inputs-block form-inputs-block--large">
+                                <h4 className="form-inputs-label" >Notes</h4>
+                                <Field name="notes" className="form-inputs form-inputs--large"></Field>
+                            </div>
+
+                        </div>
+
+                        <h1 className="form-section-header">Attachments</h1>
+                        <p className="form-section-subheader ">
+                            Please upload the scope of work, images, or additional documentation for bidders to review prior to submitting a project bid.
                         </p>
-                    </div>
+
+                        <div className="bid-creation__files">
+                            <div className="form-drop-file">
+                                <p className="form-drop-file__title">
+                                    Drag your file here, or
+                                    <span > browse</span>
+                                </p>
+
+                                <p className="form-drop-file__sub ">
+                                    Supports: JPG, GIF, PDF, PNG
+                                </p>
+                            </div>
 
 
-                    <div className="form-drop-file">
-                        <p className="form-drop-file__title">
-                            Drag your file here, or
-                            <span > browse</span>
+                            <div className="form-drop-file">
+                                <p className="form-drop-file__title">
+                                    Drag your file here, or
+                                    <span > browse</span>
+                                </p>
+
+                                <p className="form-drop-file__sub ">
+                                    Supports: JPG, GIF, PDF, PNG
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <h1 className="form-section-header">Bid Details</h1>
+                        <p className="form-section-subheader ">
+                            Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance,
+                            licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to,
+                            the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package.
                         </p>
 
-                        <p className="form-drop-file__sub ">
-                            Supports: JPG, GIF, PDF, PNG
-                        </p>
-                    </div>
+                        <div className="form-inputs-section">
 
-                </div>
-
-                <h1 className="form-section-header">Bid Details</h1>
-                <p className="form-section-subheader ">
-                    Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance,
-                    licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to,
-                    the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package.
-                </p>
-
-                <div className="form-inputs-section">
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Materials</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Units</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Cost</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Labor</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Units</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Cost</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Miscellaneous Expenses</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Units</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                    <div className="form-inputs-block form-inputs-block--small">
-                        <h4 className="form-inputs-label" >Cost</h4>
-                        <input className="form-inputs form-inputs--small"></input>
-                    </div>
-                </div>
-
-                <div className="bid-creation__summary">
-                    <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
-                     for a period of ninety (90) days from the date that bids are due to be received.</p>
-
-                    <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
-                    <p className="bid-creation__summary__price">$191,987.41</p>
-                </div>
-
-                <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
+                            {renderBidDetails(materialCounter, MATERIAL)}
+                            <button type="button" onClick={() => { handleCounter(MATERIAL) }}>Plus</button>
+                            {renderBidDetails(laborCounter, LABOR)}
+                            <button type="button" onClick={() => { handleCounter(LABOR) }}>Plus</button>
+                            {renderBidDetails(miscCounter, MISCELLANEOUS)}
+                            <button type="button" onClick={() => { handleCounter(MISCELLANEOUS) }}>Plus</button>
 
 
-            </form>
+                        </div>
+
+                        <div className="bid-creation__summary">
+                            <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
+     for a period of ninety (90) days from the date that bids are due to be received.</p>
+
+                            <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
+                            <p className="bid-creation__summary__price">$191,987.41</p>
+                        </div>
+
+                        <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
+
+
+                    </Form>
+                )}
+            </Formik>
+
         </div>
     )
 }
 
 export default BidCreation;
+
+//  <Field name="firstName" />
+// {errors.firstName && touched.firstName ? (
+//     <div>{errors.firstName}</div>
+// ) : null}
+
+// <Field name="lastName" />
+// {errors.lastName && touched.lastName ? (
+//     <div>{errors.lastName}</div>
+// ) : null}
+
+// <Field name="email" type="email" />
+// {errors.email && touched.email ? <div>{errors.email}</div> : null}
+// <button type="submit">Submit</button> 
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <form action="" className="bid-creation" onSubmit={(e)=>handleSubmit(e)}>
+<h1 className="form-section-header">{`Bidder's Information`}</h1>
+
+<p className="form-section-subheader ">
+    Please fill out the required fields below to provide us with the details of the company bidding on this proposal.
+</p>
+
+<div className="form-inputs-section">
+    {renderBidInfo(inputHeader)}
+
+    <div className="form-inputs-block form-inputs-block--large">
+        <h4 className="form-inputs-label" >Notes</h4>
+        <input className="form-inputs form-inputs--large"></input>
+    </div>
+</div>
+
+<h1 className="form-section-header">Attachments</h1>
+<p className="form-section-subheader ">
+    Please upload the scope of work, images, or additional documentation for bidders to review prior to submitting a project bid.
+</p>
+
+<div className="bid-creation__files">
+    <div className="form-drop-file">
+        <p className="form-drop-file__title">
+            Drag your file here, or
+            <span > browse</span>
+        </p>
+
+        <p className="form-drop-file__sub ">
+            Supports: JPG, GIF, PDF, PNG
+        </p>
+    </div>
+
+
+    <div className="form-drop-file">
+        <p className="form-drop-file__title">
+            Drag your file here, or
+            <span > browse</span>
+        </p>
+
+        <p className="form-drop-file__sub ">
+            Supports: JPG, GIF, PDF, PNG
+        </p>
+    </div>
+
+</div>
+
+<h1 className="form-section-header">Bid Details</h1>
+<p className="form-section-subheader ">
+    Bidders shall include in their bid the cost of providing all labor, material, equipment, supervision, services, taxes, insurance,
+    licenses, fees, overhead and profit, etc. necessary or incidentally required to complete the subcontract work including, but not limited to,
+    the attached scope of work and clarifications and in accordance with the contract documents and specifications with this bid package.
+</p>
+
+<div className="form-inputs-section">
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Materials</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Units</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Cost</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Labor</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Units</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Cost</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Miscellaneous Expenses</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Units</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+    <div className="form-inputs-block form-inputs-block--small">
+        <h4 className="form-inputs-label" >Cost</h4>
+        <input className="form-inputs form-inputs--small"></input>
+    </div>
+</div>
+
+<div className="bid-creation__summary">
+    <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
+     for a period of ninety (90) days from the date that bids are due to be received.</p>
+
+    <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
+    <p className="bid-creation__summary__price">$191,987.41</p>
+</div>
+
+<input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
+
+
+</form> */}

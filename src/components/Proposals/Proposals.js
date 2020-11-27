@@ -1,8 +1,28 @@
 import React from "react";
 import "./Proposals.css";
 import Navigation from "components/Navigation/Navigation";
+import {getProjects} from '../../apollo/project'
+import { useQuery } from '@apollo/client';
 
 const Proposals = () => {
+  const token = sessionStorage.getItem('jwtToken');
+  const userId = sessionStorage.getItem('userId');
+  sessionStorage.setItem('jwt',token);
+
+  // sessionStorage.setItem('jwt',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI")
+  const { data } = useQuery(getProjects,{
+    variables: {id:userId},
+  });
+  const [projects, setProjects] = React.useState([])
+  
+  React.useEffect(()=>{
+    if(data){
+      console.log('data',data)
+      setProjects(data.projects)
+    }
+  },[data])
+  
+ 
   return (
     <div className="dashboard-projects">
       <Navigation />
@@ -141,6 +161,28 @@ const Proposals = () => {
               <td className="listItem font-class-1 ">49</td>
               <td className="listItem font-class-1 ">78</td>
             </tr>
+            {projects && projects.map((project,i) => 
+            <tr className="listEntry " key={project.name+i}>
+              <td className="listItem title font-class-1 ">
+                {project.name}
+              </td>
+              <td className="listItem font-class-1 ">
+                <img
+                  className="listItem-image"
+                  alt=""
+                  src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-17@2x.png"
+                />
+                <span className="listItem-projectOwner font-class-1 ">
+                  {project.owner ? project.owner.username : ""}
+                </span>
+              </td>
+              <td className="listItem font-class-1 status">{project.status}</td>
+              <td className="listItem font-class-1 endDate">{project.endDate}</td>
+              <td className="listItem font-class-1 items">0</td>
+              <td className="listItem font-class-1 invited">{project.invitations.length}</td>
+            </tr>
+              
+              )}
           </tbody>
         </table>
       </div>

@@ -10,10 +10,11 @@ import Proposals from "./components/Proposals/Proposals";
 import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
-import { RegisterUser, LoginUser } from "./apollo/user";
 import BidCreation from './components/BidCreation/BidCreation';
 import FindProject from './components/FindProject/FindProject';
+import BidPage from 'components/BidPage/BidPage';
 
+import { RegisterUser, LoginUser } from "./apollo/user";
 import { useMutation } from "@apollo/client";
 import mondaySdk from "monday-sdk-js";
 
@@ -29,6 +30,7 @@ const App = ()=> {
     onCompleted: (data) => {
       console.log("Data from RegisterUser", data.register.user.id);     
       setUserId(data.register.user.id);
+      sessionStorage.setItem('userId',  data.register.user.id);
       sessionStorage.setItem('jwtToken',  data.register.jwt);
     },
     onError: (error) => console.error("Error getting RegisterUser", error),
@@ -38,9 +40,13 @@ const App = ()=> {
       console.log("Data from LoginUser", data.login.user.id);
       setUserId(data.login.user.id);
       // sessionStorage.removeItem('jwtToken');
+      sessionStorage.setItem('userId',  data.login.user.id);
       sessionStorage.setItem('jwtToken',  data.login.jwt);
     },
-    onError: (error) => console.error("Error getting LoginUser", error),
+    onError: (error) => {
+      getRegisterUserID(email, password)
+      // console.error("Error getting LoginUser", error)
+    },
   });
 
   const [email, setEamil] = React.useState("");
@@ -99,14 +105,19 @@ const App = ()=> {
   };
 
   React.useEffect(() => {
+    const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
       console.log('user info', email, password);
       getLoginUserID(email, password) || getRegisterUserID(email, password);
     }
+    // make sure to have both userId and jwtToken stored on sessionStorage
+    if(!userId && token){
+      sessionStorage.removeItem('jwtToken');
+      getLoginUserID(email, password)
+    }
   }, [password]);
-
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -117,9 +128,11 @@ const App = ()=> {
       <Route path="/costBreakdown" exact component={CostBreakdown} />
       <Route path="/bidCreation" exact component={BidCreation} />
       <Route path="/findProject" exact component={FindProject} />
+      <Route path="/bidPage" exact component={BidPage} />
     </BrowserRouter>
   );
 };
+
 
 export default App;
 

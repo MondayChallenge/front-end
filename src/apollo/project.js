@@ -32,13 +32,13 @@ export const AddProject = gql`
     $team: [ID]
     $published_at: DateTime!
   ) {
-    createProposal(
+    createProject(
       input: {
         data: {
           organization: $organization
           category: $category
-          Name: $name
-          Description: $description
+          name: $name
+          description: $description
           address: $address
           endDate: $endDate
           minBid: $minBid
