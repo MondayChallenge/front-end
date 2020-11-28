@@ -1,0 +1,28 @@
+.table-blocks{
+
+    &__thead{
+        column-gap: 2rem;
+        height: 5rem;
+        font-weight: 400;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+        
+    }
+
+    &__trow{
+       
+        column-gap: 2rem;
+        height: 5rem;
+        font-weight: 400;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+    }
+
+    &__trow:hover{
+        background-color:$color-mystic--lighter;
+        color: $default-font-color;
+        text-decoration: none;
+    }
+}

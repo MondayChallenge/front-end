@@ -30,8 +30,9 @@ const BidPage = () => {
     console.log(data)
     const renderRow = (data) => {
         return data.bids.map((datum, i) => {
-            return (<Link className="bid-page__trow" to={`costBreakdown/${datum.id}`} key ={datum.id}>
-                <p >{datum.project.name}</p>
+            return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key ={datum.id}>
+                {/* <Link to={`mainProject/${datum.project.id}`}>{datum.project.name}</Link> */}
+                <p>{datum.project.name}</p>
                 <p >{datum.project.manager.organization.name}</p>
                 <p >{datum.project.manager.name}</p>
                 <p >${datum.amount}</p>
@@ -54,7 +55,7 @@ const BidPage = () => {
         <div className="dashboard-projects">
             <Navigation />
             <div className="bid-page">
-                <div className="bid-page__thead">
+                <div className="bid-page__thead table-blocks__thead">
                     <p>Project Name</p>
                     <p>Organization</p>
                     <p>Project Manager</p>
