@@ -9,21 +9,27 @@ import DF_headshot from "assets/img/David_Felber_headshot.png";
 import { useQuery } from "@apollo/client";
 import { getRandomInt } from "components/utils/getRandomInt";
 import { useHistory } from "react-router-dom";
-import { getProjects } from "../../apollo/project";
+import { getProject } from "../../apollo/project";
 import { getCurrUser } from "../../apollo/user";
 import { Link } from "react-router-dom";
 import { renderImgBubble } from "components/utils/renderImgBubble";
 
 const MainProject = (props) => {
 
-  const { loading, error, data } = useQuery(getProjects, {
+  const [currProject, setProject] = React.useState({})
+  // const token = sessionStorage.getItem('jwtToken');
+  // const userId = sessionStorage.getItem('userId');
+  // sessionStorage.setItem('jwt',token);
+  const { loading, error, data } = useQuery(getProject, {
     variables: { id: props.match.params.id },
   });
   console.log('prop',props);
-  const history = useHistory();
-  const { loading: userLoading, error: userError, data: userData } = useQuery(
-    getCurrUser
-  );
+ 
+
+  // const history = useHistory();
+  // const { loading: userLoading, error: userError, data: userData } = useQuery(
+  //   getCurrUser
+  // );
 
   const bids = [
     { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
@@ -103,21 +109,21 @@ const MainProject = (props) => {
       );
     });
   };
-  const {
-    loading: userInfoLoading,
-    error: userInfoError,
-    data: userInfoData,
-  } = useQuery(getCurrUser, {
-    variables: { id: userData ? userData.me.id : null },
-  });
-  if (loading) return <div>Loading</div>;
-  else if (error) return <div>{JSON.stringify(error)}</div>;
-  else {
-    console.log('a',userInfoData);
-    console.log('b',userInfoError);
-    console.log('Project????',data.projects);
-    console.log('currProject',data.projects[0]);
-    var currProject = data.projects[0];
+  // const {
+  //   loading: userInfoLoading,
+  //   error: userInfoError,
+  //   data: userInfoData,
+  // } = useQuery(getCurrUser, {
+  //   variables: { id: userData ? userData.me.id : null },
+  // });
+  // if (loading) return <div>Loading</div>;
+  // else if (error) return <div>{JSON.stringify(error)}</div>;
+  // else {
+    // console.log('a',userInfoData);
+    // console.log('b',userInfoError);
+    // console.log('Project>>>>',data.projects);
+    // console.log('currProject',data.projects[0]);
+    // var currProject = data.projects[0];
 
     const imgBuildingArray = [building1, interior1, interior2, interior3];
     const renderImgBuilding = (imgs) => {
@@ -134,6 +140,14 @@ const MainProject = (props) => {
 
       return imgArr;
     };
+
+    React.useEffect(()=>{
+      
+      if(data){
+        console.log('data', data);
+        setProject(data.project)
+      } 
+    })
 
  
 
@@ -187,7 +201,7 @@ const MainProject = (props) => {
         </div>
       </div>
     );
-  }
+  // }
 };
 
 export default MainProject;

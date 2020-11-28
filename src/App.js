@@ -114,7 +114,6 @@ const App = ()=> {
   React.useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
-    console.log('userid, aaaa',userId)
     getUser();
     if (password.length > 0 && !token) {
       console.log("user info", email, password, name);

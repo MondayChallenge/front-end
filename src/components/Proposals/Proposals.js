@@ -167,7 +167,7 @@ const Proposals = () => {
             {projects && projects.map((project,i) => 
             <tr className="listEntry " key={project.name+i}>
               <td className="listItem title font-class-1 ">
-              <Link to={`/projects/1`}>{project.name}</Link>
+              <Link to={`/projects/${project.id}`}>{project.name}</Link>
                 {/* <Link to={`/proposals/${project.id}`}>{project.name}</Link> */}
               </td>
               <td className="listItem font-class-1 ">
