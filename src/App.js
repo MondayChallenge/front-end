@@ -26,6 +26,7 @@ monday.setToken(
 // const hist = createBrowserHistory();
 
 const App = ()=> {
+
   const [newUser] = useMutation(RegisterUser, {
     onCompleted: (data) => {
       console.log("Data from RegisterUser", data.register.user.id);     
@@ -35,6 +36,7 @@ const App = ()=> {
     },
     onError: (error) => console.error("Error getting RegisterUser", error),
   });
+
   const [user] = useMutation(LoginUser, {
     onCompleted: (data) => {
       console.log("Data from LoginUser", data.login.user.id);
@@ -45,10 +47,11 @@ const App = ()=> {
     },
     onError: (error) => {
       getRegisterUserID(email, password)
-      // console.error("Error getting LoginUser", error)
+      console.error("Error getting LoginUser", error)
     },
   });
 
+  const [name, setName] = React.useState("");
   const [email, setEamil] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userId, setUserId] = React.useState(null);
@@ -65,6 +68,7 @@ const App = ()=> {
         }
         `);
       // console.log('monday user: ',data.me)
+      setName(data.me.name);
       setEamil(data.me.email);
       setPassword(data.me.name + "_" + data.me.id);
     } catch (err) {
@@ -72,12 +76,13 @@ const App = ()=> {
     }
   };
 
-  const getRegisterUserID = async (email, password) => {
+  const getRegisterUserID = async (email, password, name) => {
     try {
       const userInfo = await newUser({
         variables: {
           email,
           password,
+          name
         },
       });
       return userInfo.data.register.user.id;
@@ -104,25 +109,31 @@ const App = ()=> {
     }
   };
 
+  
+
   React.useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
-      console.log('user info', email, password);
-      getLoginUserID(email, password) || getRegisterUserID(email, password);
+      console.log("user info", email, password, name);
+      getLoginUserID(email, password, name) || getRegisterUserID(email, password, name);
     }
     // make sure to have both userId and jwtToken stored on sessionStorage
     if(!userId && token){
       sessionStorage.removeItem('jwtToken');
-      getLoginUserID(email, password)
+      getLoginUserID(email, password,name)
     }
+
+    
   }, [password]);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Route path="/mainproject/:id" exact component={MainProject} />
-      <Route path="/proposals" exact component={Proposals} />
+      {/* <Route path="/mainproject/:id" exact component={MainProject} /> */}
+      <Route path="/" exact component={Proposals} />
+      <Route path="/projects/:id" exact component={MainProject} />
       <Route path="/messages" exact component={Messages} />
       <Route path="/newProject" exact component={Projects} />
       <Route path="/costBreakdown/:id" exact component={CostBreakdown} />
@@ -131,6 +142,7 @@ const App = ()=> {
       <Route path="/bidPage" exact component={BidPage} />
     </BrowserRouter>
   );
+  
 };
 
 

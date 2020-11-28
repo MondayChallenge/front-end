@@ -2,8 +2,9 @@ import React from "react";
 import "./Proposals.css";
 import Navigation from "components/Navigation/Navigation";
 import {getProjects} from '../../apollo/project'
+import {GetAllUsers} from '../../apollo/user'
 import { useQuery } from '@apollo/client';
-
+import { Link } from 'react-router-dom';
 const Proposals = () => {
   const token = sessionStorage.getItem('jwtToken');
   const userId = sessionStorage.getItem('userId');
@@ -13,12 +14,18 @@ const Proposals = () => {
   const { data } = useQuery(getProjects,{
     variables: {id:userId},
   });
+
+  const users =useQuery(GetAllUsers);
+
   const [projects, setProjects] = React.useState([])
   
   React.useEffect(()=>{
     if(data){
       console.log('data',data)
       setProjects(data.projects)
+    }
+    if(users.data){
+      console.log('get user>>>>',users.data.users);
     }
   },[data])
   
@@ -43,8 +50,7 @@ const Proposals = () => {
           <tbody>
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
-                Mattamy Development
+                <Link to={`/projects/1`}>Mattamy Development</Link>
               </td>
               <td className="listItem font-class-1 ">
                 <img
@@ -56,14 +62,14 @@ const Proposals = () => {
                   David Felb
                 </span>
               </td>
-              <td className="listItem font-class-1 ">Open to Bid</td>
+              <td className="listItem font-class-1 ">Closed to Bid</td>
               <td className="listItem font-class-1 ">Nov 12, 2020</td>
               <td className="listItem font-class-1 ">14</td>
               <td className="listItem font-class-1 ">2</td>
             </tr>
+            {/* 
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
                 Greystone Estates
               </td>
               <td className="listItem font-class-1 ">
@@ -83,7 +89,6 @@ const Proposals = () => {
             </tr>
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
                 Fairview Shopping Center
               </td>
               <td className="listItem font-class-1 ">
@@ -103,7 +108,6 @@ const Proposals = () => {
             </tr>
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
                 NorthCoast Development
               </td>
               <td className="listItem font-class-1 ">
@@ -123,7 +127,6 @@ const Proposals = () => {
             </tr>
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
                 Royal Homes Corporation
               </td>
               <td className="listItem font-class-1 ">
@@ -143,7 +146,6 @@ const Proposals = () => {
             </tr>
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
-                {" "}
                 Capstone Project
               </td>
               <td className="listItem font-class-1 ">
@@ -161,10 +163,12 @@ const Proposals = () => {
               <td className="listItem font-class-1 ">49</td>
               <td className="listItem font-class-1 ">78</td>
             </tr>
+             */}
             {projects && projects.map((project,i) => 
             <tr className="listEntry " key={project.name+i}>
               <td className="listItem title font-class-1 ">
-                {project.name}
+              <Link to={`/projects/${project.id}`}>{project.name}</Link>
+                {/* <Link to={`/proposals/${project.id}`}>{project.name}</Link> */}
               </td>
               <td className="listItem font-class-1 ">
                 <img
