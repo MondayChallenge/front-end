@@ -18,6 +18,7 @@ const MainProject = (props) => {
   const { loading, error, data } = useQuery(getProjects, {
     variables: { id: props.match.params.id },
   });
+  console.log(props);
   const history = useHistory();
   const { loading: userLoading, error: userError, data: userData } = useQuery(
     getCurrUser

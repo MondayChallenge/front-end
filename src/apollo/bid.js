@@ -20,6 +20,54 @@ export const GetBid = gql`
   }
 `;
 
+export const GET_ALL_BIDS = gql`
+query GET_ALL_BIDS {
+  bids{
+    id
+    amount
+    published_at
+    created_at
+    contactName
+    organization {
+      name
+      about
+    }
+    project {
+      id
+      name
+      owner{
+        id
+        username
+        name
+      }
+      architect{
+        id
+        username
+        name
+      }
+      manager{
+        id
+        username
+        name
+        organization{
+          name
+        }
+      }
+      team{
+        id
+        username
+        name
+      }
+      organization {
+        name
+        about
+      }
+    }
+  }
+}
+
+`;
+
 export const CREATE_BID = gql`
 mutation createBid(
     $amount: Long
