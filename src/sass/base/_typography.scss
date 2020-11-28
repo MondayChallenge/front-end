@@ -21,6 +21,9 @@ body {
         color: $color-warning;
     }
 
+    &--neutral{
+        color: $default-font-color;
+    }
     &--danger{
         color: $color-danger;
     }

@@ -9,7 +9,7 @@
         grid-column: center-start/center-end;
         background-color: $color-mystic;
         display: grid;
-        grid-template-columns: repeat(5,minmax(7rem,1fr));
+        grid-template-columns: repeat(6,minmax(7rem,1fr));
 
         column-gap: 2rem;
         height: 5rem;
@@ -27,7 +27,7 @@
         margin-top: 2rem;
         grid-column:  center-start/center-end;
         display: grid;
-        grid-template-columns: repeat(5,minmax(7rem,1fr));
+        grid-template-columns: repeat(6,minmax(7rem,1fr));
         column-gap: 2rem;
         height: 5rem;
         font-weight: 400;

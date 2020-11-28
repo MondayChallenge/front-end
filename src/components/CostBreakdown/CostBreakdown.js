@@ -16,16 +16,16 @@ function LeftRight({ mkey, val }) {
   );
 }
 
-export default function CostBreakdown({ projectId }) {
+export default function CostBreakdown(props) {
 
   //for testing purposes
   //you get this when you create a user account
   sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
-
-  projectId = 'dsfsdlfksj';
+console.log(props);
+  let projectId = 'dsfsdlfksj';
   const { loading, error, data } = useQuery(GetBid, {
     //needs to be changed to projectId from props
-    variables: { id: 324 },
+    variables: { id: props.match.params.id },
   });
   // useEffect(() => {}, []);
   if (loading) return <div>Loading</div>;
