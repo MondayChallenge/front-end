@@ -109,9 +109,12 @@ const App = ()=> {
     }
   };
 
+  
+
   React.useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
+    console.log('userid, aaaa',userId)
     getUser();
     if (password.length > 0 && !token) {
       console.log("user info", email, password, name);
@@ -122,13 +125,16 @@ const App = ()=> {
       sessionStorage.removeItem('jwtToken');
       getLoginUserID(email, password,name)
     }
-    getLoginUserID(email, password,name)
+
+    
   }, [password]);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Route path="/mainproject/:id" exact component={MainProject} />
-      <Route path="/proposals" exact component={Proposals} />
+      {/* <Route path="/mainproject/:id" exact component={MainProject} /> */}
+      <Route path="/" exact component={Proposals} />
+      <Route path="/projects/:id" exact component={MainProject} />
       <Route path="/messages" exact component={Messages} />
       <Route path="/newProject" exact component={Projects} />
       <Route path="/costBreakdown/:id" exact component={CostBreakdown} />
@@ -137,6 +143,7 @@ const App = ()=> {
       <Route path="/bidPage" exact component={BidPage} />
     </BrowserRouter>
   );
+  
 };
 
 

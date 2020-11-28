@@ -5,6 +5,7 @@ import interior1 from "assets/img/interior-1.png";
 import interior2 from "assets/img/interior-2.png";
 import interior3 from "assets/img/interior-3.png";
 import headshot from "assets/img/professional_woman_headshot.jpg";
+import DF_headshot from "assets/img/David_Felber_headshot.png";
 import { useQuery } from "@apollo/client";
 import { getRandomInt } from "components/utils/getRandomInt";
 import { useHistory } from "react-router-dom";
@@ -14,10 +15,11 @@ import { Link } from "react-router-dom";
 import { renderImgBubble } from "components/utils/renderImgBubble";
 
 const MainProject = (props) => {
+
   const { loading, error, data } = useQuery(getProjects, {
     variables: { id: props.match.params.id },
   });
-  console.log(props);
+  console.log('prop',props);
   const history = useHistory();
   const { loading: userLoading, error: userError, data: userData } = useQuery(
     getCurrUser
@@ -64,7 +66,7 @@ const MainProject = (props) => {
     {
       name: "David Felber",
       title: "Project Manager",
-      img: "",
+      img: DF_headshot,
     },
     {
       name: "Welsey Thomas",
@@ -111,10 +113,10 @@ const MainProject = (props) => {
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
-    console.log(userInfoData);
-    console.log(userInfoError);
-
-    console.log(data.projects[0]);
+    console.log('a',userInfoData);
+    console.log('b',userInfoError);
+    console.log('Project????',data.projects);
+    console.log('currProject',data.projects[0]);
     var currProject = data.projects[0];
 
     const imgBuildingArray = [building1, interior1, interior2, interior3];
@@ -132,6 +134,9 @@ const MainProject = (props) => {
 
       return imgArr;
     };
+
+ 
+
     return (
       <div className="dashboard-projects">
         <Navigation />
