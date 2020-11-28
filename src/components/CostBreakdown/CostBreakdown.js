@@ -78,7 +78,7 @@ export default function CostBreakdown(props) {
     });
     const materialPrices = data.bid.material.data.map((data) => (
       <div className="row row-reverse" key={uuidv4()}>
-    
+
         <p className="costListItem">${data.cost}</p>
       </div>
     ));
@@ -123,64 +123,67 @@ export default function CostBreakdown(props) {
     return (
       <div className="dashboard-projects">
         <Navigation />
-        <div className="row3">
-          <h4>Bid Proposal</h4>
-          <button className="aef" onClick={() => { handleChangeStatus(AWARDED) }}>Accept Bid</button>
-          <button className="aef" onClick={() => { handleChangeStatus(DECLINED) }}>Reject Bid</button>
-        </div>
-        <div className="grid">
-          <div className="col">
-            <LeftRight mkey={'Project Name'} val={data.bid.project.Name} />
-            <LeftRight
-              mkey={'Project Manager'}
-              val={data.bid.organization.Name}
-            />
-            <LeftRight mkey={'Project ID'} val={data.bid.project.id} />
-            <br />
-            <div className="row">
-              <p className="header">Materials</p>
+        <div className="cost-breakdown">
+          <div className="row3">
+            <h1 className="form-section-header">Bid Proposal</h1>
+            <div className="bid-btn-group">
+              <button className="bid-btn submit-btn button-background-color--success" onClick={() => { handleChangeStatus(AWARDED) }}>Accept Bid</button>
+              <button className="bid-btn submit-btn button-background-color--danger" onClick={() => { handleChangeStatus(DECLINED) }}>Reject Bid</button>
             </div>
-            {materials}
-            <div className="row">
-              <p className="header">Labor</p>
-            </div>
-            {labor}
-            <div className="row">
-              <p className="header">Misc</p>
-            </div>
-            {misc}
           </div>
-          <div className="col">
-            
-            <LeftRight mkey={'Org. Name'} val={data.bid.organization.Name} />
-            <LeftRight mkey={'Submitted by'} val={data.bid.contactName} />
-            <LeftRight mkey={'Est. Time'} val={data.bid.estTime} />
-            {/* <div className = "custom-br"></div> */}
-            <br />
-            <div className="m-table">
-              <div className="row row-reverse">
-               
-                <p className="header">Total cost</p>
-              </div>
-              {materialPrices}
+          <div className="grid">
+            <div className="col">
+              <LeftRight mkey={'Project Name'} val={data.bid.project.Name} />
+              <LeftRight
+                mkey={'Project Manager'}
+                val={data.bid.organization.Name}
+              />
+              <LeftRight mkey={'Project ID'} val={data.bid.project.id} />
+              <br />
               <div className="row">
-               
-               <p className="header custom-br">.</p>
-             </div>
-              {laborPrices}
-              <div className="row ">
-                <p className="header custom-br">.</p>
+                <p className="header">Materials</p>
               </div>
-              {miscPrices}
+              {materials}
+              <div className="row">
+                <p className="header">Labor</p>
+              </div>
+              {labor}
+              <div className="row">
+                <p className="header">Misc</p>
+              </div>
+              {misc}
             </div>
-            <div className="est-tot">ESTIMATED TOTAL</div>
-            <Tot />
-          </div>
-          <div className="col">
-            <div className="row"></div>
+            <div className="col">
+
+              <LeftRight mkey={'Org. Name'} val={data.bid.organization.Name} />
+              <LeftRight mkey={'Submitted by'} val={data.bid.contactName} />
+              <LeftRight mkey={'Est. Time'} val={data.bid.estTime} />
+              {/* <div className = "custom-br"></div> */}
+              <br />
+              <div className="m-table">
+                <div className="row row-reverse">
+
+                  <p className="header">Total cost</p>
+                </div>
+                {materialPrices}
+                <div className="row">
+
+                  <p className="header custom-br">.</p>
+                </div>
+                {laborPrices}
+                <div className="row ">
+                  <p className="header custom-br">.</p>
+                </div>
+                {miscPrices}
+              </div>
+              <div className="est-tot">ESTIMATED TOTAL</div>
+              <Tot />
+            </div>
+
           </div>
         </div>
       </div>
+
     );
   }
 }
