@@ -12,13 +12,13 @@
   align-items: center;
   flex-basis: 100%;
   width: 27%;
-  padding: 0px 3% 0px 3%;
+  padding: 0 3% 0 3%;
 }
 .row {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 2% 5% 2% 5%;
+  padding: .5rem 1rem .5rem 1rem;
 }
 .left {
   display: inline-block;
@@ -27,9 +27,11 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   /* or 171% */
+
+
 
   display: flex;
   align-items: center;
@@ -40,8 +42,8 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   /* or 171% */
   text-align: right !important;
   display: flex;
@@ -53,28 +55,28 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 1.4rem;
+  line-height: 3rem;
   display: flex;
   align-items: center;
   color: #0085ff;
 }
 
 .costListItem {
-  padding-left: 30px;
+  padding-left: 3rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 1.4rem;
+  line-height: 3rem;
 }
 
 .companyLink {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
 
   display: flex;
   align-items: center;
@@ -83,50 +85,58 @@
 }
 
 .mt-2 {
-  padding-top: 2%;
+  padding-top: 2rem;
 }
 
 .m-table {
   background: #f5f6f8;
-  border-radius: 16px;
+  border-radius: 1.6rem;
   width: 100%;
   height: 70vh;
-  margin-top: 5%;
-  padding: 5% 10% 5% 10%;
-  max-width: 300px;
+  /* margin-top: 5%; */
+  /* padding: 5% 10% 5% 10%; */
+  padding: 0% 2rem 0% 2rem;
+  margin-bottom: 2rem;
+  max-width: 30rem;
 }
 
 .t-header {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 1.2rem;
   width: 30%;
   /* or 214% */
   display: inline-block;
   color: #0085ff;
 }
-.row2 {
+/* .row2 {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   width: 100%;
   padding-bottom: 10%;
   justify-content: space-between;
+  
+} */
+
+.row-reverse{
+  flex-direction: row-reverse;
 }
 .m-0 {
-  margin-right: 0px !important;
+  margin-right: 0rem !important;
 }
 
 .est-tot {
   min-width: 100%;
   float: right;
   text-align: right;
-  padding-right: 20px;
+
+  padding-right: 2rem;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   /* identical to box height, or 171% */
   color: #676879;
 }
@@ -134,14 +144,14 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 24px;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
   /* identical to box height, or 100% */
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
-  padding-right: 20px;
+  padding-right: 2rem;
   color: #0085ff;
 }
 
@@ -149,4 +159,9 @@
   display: flex;
   flex-direction: row;
   padding: 4rem 3% 2% 9%;
+}
+
+.custom-br{
+  color: #f5f6f8;
+  content: "";
 }

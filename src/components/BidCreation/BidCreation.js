@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navigation from 'components/Navigation/Navigation'
-import { CREATE_BID } from '../../apollo/bid';
+import {SUBMITTED,MATERIAL,LABOR,MISCELLANEOUS} from 'components/utils/standardNaming';
+import {CREATE_BID} from '../../apollo/bid';
+
 import { useMutation } from '@apollo/client';
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
@@ -22,35 +24,12 @@ const BidCreation = () => {
 
     let history = useHistory();
 
-    const [createBid, data] = useMutation(CREATE_BID);
-    //const [bidId,setBidId] = useState("");
-    const [material, setMaterial] = useState({ data: [{ 'name': '', 'cost': 0 }] });
-    const [labor, setLabor] = useState({ data: [{ 'name': '', 'cost': 0 }] });
-    const [misc, setMisc] = useState({ data: [{ 'name': '', 'cost': 0 }] });
+    const [createBid] = useMutation(CREATE_BID);
+
     const [materialCounter, setMaterialCounter] = useState(0);
     const [laborCounter, setLaborCounter] = useState(0);
     const [miscCounter, setMiscCounter] = useState(0);
-    const formRef = useRef();
-
-    const MATERIAL = "Material";
-    const LABOR = "Labor";
-    const MISCELLANEOUS = "Miscellaneous";
-
-    //console.log(formRef.current.values)
-
-    // $amount: Long
-    // $organization: ID
-    // $estTime: String
-    // $availability: Date
-    // $material: JSON
-    // $labor: JSON
-    // $miscExpense: JSON
-    // $contactName: String
-    // $phone: String
-    // $license_number: String
-    // $classType: String
-    // $notes: String
-    // $project: ID
+    
 
     const inputHeader = [
         "Company Name",
@@ -103,7 +82,7 @@ const BidCreation = () => {
             
         }).catch(err => { throw err });
         alert("You have successfully placed your bid");
-        history.push('/');
+        history.push('/bidPage');
     }
 
 
@@ -213,7 +192,7 @@ const BidCreation = () => {
         availability: "2020-12-01",
         notes: "Hello, World",
         project: 1,
-
+       
         material: { data: [{ 'name': 'brick1', 'cost': 50000 }, { 'name': 'brick2', 'cost': 1000 }] },
         labor: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
         miscExpense: { data: [{ 'name': 'brick1', 'cost': 500 }, { 'name': 'brick2', 'cost': 1000 }] },
@@ -240,11 +219,13 @@ const BidCreation = () => {
                     notes: "",
                     project: 1,//from where you chose the project
                     //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
-                    amount: 1
+                    amount: 1,
+                    status: SUBMITTED,
+
                 }}
 
                 // validationSchema={SignupSchema}
-                innerRef={formRef}
+    
 
                 onSubmit={values => {
 

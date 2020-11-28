@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { Loader, LoaderStoryLine } from 'monday-ui-react-core';
-import { GetBid } from '../../apollo/bid';
+import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standardNaming';
 import Navigation from 'components/Navigation/Navigation';
-import './CostBreakdown.css';
 
 import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from "react-router-dom";
+
+import { useQuery, useMutation } from '@apollo/client';
+
+import { GetBid, CHANGE_BID_STATUS } from '../../apollo/bid';
+
+import './CostBreakdown.css';
+import { Loader, LoaderStoryLine } from 'monday-ui-react-core';
+
+
 
 function LeftRight({ mkey, val }) {
   return (
@@ -18,22 +25,31 @@ function LeftRight({ mkey, val }) {
 
 export default function CostBreakdown(props) {
 
+
+  let history = useHistory();
+
+
   //for testing purposes
   //you get this when you create a user account
   sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
-console.log(props);
+
   let projectId = 'dsfsdlfksj';
   const { loading, error, data } = useQuery(GetBid, {
     //needs to be changed to projectId from props
     variables: { id: props.match.params.id },
   });
-  // useEffect(() => {}, []);
+
+  const [changeBidStatus] = useMutation(CHANGE_BID_STATUS);
+
+
+
+
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
-    
+
     // console.log(data.bid.contactName);
-    console.log(data.bid.material.data);
+
     const materials = data.bid.material.data.map((data) => {
       return (
 
@@ -61,24 +77,20 @@ console.log(props);
 
     });
     const materialPrices = data.bid.material.data.map((data) => (
-      <div className="row2" key={uuidv4()}>
-        {/* <p>{data.qty}</p>
-        <p>{data.unitCost}</p> */}
-        <p>{data.cost}</p>
+      <div className="row row-reverse" key={uuidv4()}>
+    
+        <p className="costListItem">${data.cost}</p>
       </div>
     ));
     const laborPrices = data.bid.labor.data.map((data) => (
-      <div className="row2" key={uuidv4()}>
-        {/* <p>{data.qty}</p>
-        <p>{data.unitCost}</p> */}
-        <p>{data.cost}</p>
+      <div className="row row-reverse" key={uuidv4()}>
+        <p className="costListItem">${data.cost}</p>
       </div>
     ));
     const miscPrices = data.bid.miscExpense.data.map((data) => (
-      <div className="row2" key={uuidv4()}>
-        {/* <p>{data.qty}</p>
-        <p>{data.unitCost}</p> */}
-        <p>{data.cost}</p>
+      <div className="row row-reverse" key={uuidv4()}>
+
+        <p className="costListItem">${data.cost}</p>
       </div>
     ));
     const Tot = () => {
@@ -98,16 +110,23 @@ console.log(props);
       }, 0);
       return (
         <div key={uuidv4()} className="tot">
-          {sum}
+          ${sum}
         </div>
       );
     };
+
+    const handleChangeStatus = (status) => {
+      changeBidStatus({ variables: { bidId: props.match.params.id, status: status } });
+      history.push('/bidPage');
+    }
 
     return (
       <div className="dashboard-projects">
         <Navigation />
         <div className="row3">
           <h4>Bid Proposal</h4>
+          <button className="aef" onClick={() => { handleChangeStatus(AWARDED) }}>Accept Bid</button>
+          <button className="aef" onClick={() => { handleChangeStatus(DECLINED) }}>Reject Bid</button>
         </div>
         <div className="grid">
           <div className="col">
@@ -132,21 +151,26 @@ console.log(props);
             {misc}
           </div>
           <div className="col">
-            <div className="row">
-              <h4 className="companyLink">{data.bid.organization.Name}</h4>
-            </div>
+            
+            <LeftRight mkey={'Org. Name'} val={data.bid.organization.Name} />
             <LeftRight mkey={'Submitted by'} val={data.bid.contactName} />
-            <LeftRight mkey={'Recieved'} val={data.bid.estTime} />
+            <LeftRight mkey={'Est. Time'} val={data.bid.estTime} />
+            {/* <div className = "custom-br"></div> */}
+            <br />
             <div className="m-table">
-              <div className="row2">
-                <p className="t-header">Qty</p>
-                <p className="t-header">Unit cost</p>
-                <p className="t-header">Total cost</p>
+              <div className="row row-reverse">
+               
+                <p className="header">Total cost</p>
               </div>
               {materialPrices}
-              <br />
+              <div className="row">
+               
+               <p className="header custom-br">.</p>
+             </div>
               {laborPrices}
-              <br />
+              <div className="row ">
+                <p className="header custom-br">.</p>
+              </div>
               {miscPrices}
             </div>
             <div className="est-tot">ESTIMATED TOTAL</div>
