@@ -8,6 +8,7 @@ export const GetBid = gql`
       contactName
       miscExpense
       estTime
+      status
       organization {
         name
         about
@@ -28,6 +29,7 @@ export const GET_ALL_BIDS = gql`
       published_at
       created_at
       contactName
+      status
       organization {
         name
         about
@@ -128,7 +130,7 @@ export const CREATE_BID = gql`
 }
 */
 
-export const changeBidStatus = gql`
+export const CHANGE_BID_STATUS = gql`
   mutation($bidId: ID!, $status: String!) {
     updateBid(input: { where: { id: $bidId }, data: { status: $status } }) {
       bid {

@@ -5,6 +5,8 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_BIDS } from '../../apollo/bid';
 import { Link } from 'react-router-dom';
 
+import {AWARDED,DECLINED,REVIEWING,SUBMITTED} from 'components/utils/standardNaming';
+
 const BidPage = () => {
 
     const { loading, error, data } = useQuery(GET_ALL_BIDS);
@@ -13,11 +15,17 @@ const BidPage = () => {
     else if (error) return <div>{JSON.stringify(error)}</div>;
 
     const statusColor = {
-        Reviewing: "warning",
-        Reviewed: "neutral",
-        Accepted: "success",
-        Rejected: "danger"
+        Review: "warning",
+        Awarded: "success",
+        Declined: "danger",
+        Submitted: "neutral"
     };
+
+    const renderStatus = (status,statusColor)=>{
+        console.log(statusColor);
+        console.log(statusColor[status]);
+        return (<p className={`font-color--${statusColor[status]}`}>{status}</p>)
+    }
    
 
     //in PM point of view, this page can show all bids for your project for you to reject/accept
@@ -31,13 +39,13 @@ const BidPage = () => {
     const renderRow = (data) => {
         return data.bids.map((datum, i) => {
             return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key ={datum.id}>
-                {/* <Link to={`mainProject/${datum.project.id}`}>{datum.project.name}</Link> */}
+                {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
                 <p>{datum.project.name}</p>
                 <p >{datum.project.manager.organization.name}</p>
                 <p >{datum.project.manager.name}</p>
                 <p >${datum.amount}</p>
                 <p >{datum.created_at.split("T")[0]}</p>
-                <p className="font-color--success">In Review</p>
+                {renderStatus(datum.status,statusColor)}
             </Link>
             )
 
