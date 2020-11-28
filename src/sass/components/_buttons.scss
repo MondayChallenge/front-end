@@ -1,9 +1,40 @@
-.form-submit-btn {
+.submit-btn {
     background-color: $color-azure-radiance;
-    height: 40px;
-    width: 160px;
+    height: 4rem;
+    width: 16rem;
     color: white;
-    border-radius: 6px;
-
+    border-radius: 10rem;
+    font-size: 1.8rem;
+    line-height: 4rem;
+    text-align: center;
 
   }
+
+  .submit-btn :hover,
+  .submit-btn :focus {
+    background: $color-azure-radiance;
+}
+
+.button-background-color{
+  &--success{
+      background-color: $color-success;
+  }
+
+  &--success :hover,
+  &--success :focus{
+    background-color: $color-success;
+  } 
+
+
+
+  &--warning{
+      background-color: $color-warning;
+  }
+
+  &--neutral{
+      background-color: $default-font-color;
+  }
+  &--danger{
+      background-color: $color-danger;
+  }
+}

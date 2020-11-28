@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  align-items: center;
+  align-items: flex-end;
   flex-basis: 100%;
   width: 27%;
   padding: 0 3% 0 3%;
@@ -27,7 +27,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
   line-height: 2.4rem;
   /* or 171% */
 
@@ -42,7 +42,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
   line-height: 2.4rem;
   /* or 171% */
   text-align: right !important;
@@ -55,7 +55,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
   line-height: 3rem;
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
-  font-size: 1.4rem;
+  /* font-size: 1.4rem; */
   line-height: 3rem;
 }
 
@@ -75,7 +75,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
   line-height: 2.2rem;
 
   display: flex;
@@ -97,14 +97,14 @@
   /* padding: 5% 10% 5% 10%; */
   padding: 0% 2rem 0% 2rem;
   margin-bottom: 2rem;
-  max-width: 30rem;
+  /* max-width: 30rem; */
 }
 
 .t-header {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   width: 30%;
   /* or 214% */
   display: inline-block;
@@ -156,12 +156,26 @@
 }
 
 .row3 {
-  display: flex;
-  flex-direction: row;
-  padding: 4rem 3% 2% 9%;
+
+  display: grid;
+  grid-template-columns: max-content 1fr;
+
+  padding: 4rem 9% 2% 9%;
+  align-items: center;
 }
 
 .custom-br{
   color: #f5f6f8;
   content: "";
+}
+
+.bid-btn-group{
+  justify-self: end;
+  display:grid;
+  grid-template-columns: repeat(2,max-content);
+  column-gap: 2rem;
+}
+
+.bid-btn{
+
 }

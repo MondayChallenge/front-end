@@ -333,7 +333,7 @@ const BidCreation = () => {
                             <p className="bid-creation__summary__price">$191,987.41</p>
                         </div>
 
-                        <input type="submit" value="Submit" className="bid-creation__submit-btn form-submit-btn" ></input>
+                        <input type="submit" value="Submit" className="bid-creation__submit-btn submit-btn" ></input>
 
 
                     </Form>
