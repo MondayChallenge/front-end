@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 export const GetBid = gql`
   query bid($id: ID!) {
     bid(id: $id) {
@@ -8,6 +8,7 @@ export const GetBid = gql`
       contactName
       miscExpense
       estTime
+      status
       organization {
         name
         about
@@ -20,21 +21,70 @@ export const GetBid = gql`
   }
 `;
 
+export const GET_ALL_BIDS = gql`
+  query GET_ALL_BIDS {
+    bids {
+      id
+      amount
+      published_at
+      created_at
+      contactName
+      status
+      organization {
+        name
+        about
+      }
+      project {
+        id
+        name
+        owner {
+          id
+          username
+          name
+        }
+        architect {
+          id
+          username
+          name
+        }
+        manager {
+          id
+          username
+          name
+          organization {
+            name
+          }
+        }
+        team {
+          id
+          username
+          name
+        }
+        organization {
+          name
+          about
+        }
+      }
+    }
+  }
+`;
+
 export const CREATE_BID = gql`
-mutation createBid(
+  mutation createBid(
     $amount: Long
     $organization: ID
-    $estTime: String
-    $availability: Date
-    $material: JSON
-    $labor: JSON
-    $miscExpense: JSON
-    $contactName: String
-    $phone: String
-    $license_number: String
-    $classType: String
-    $notes: String
-    $project: ID
+    $estTime: String!
+    $availability: Date!
+    $material: JSON!
+    $labor: JSON!
+    $miscExpense: JSON!
+    $contactName: String!
+    $phone: String!
+    $license_number: String!
+    $classType: String!
+    $notes: String!
+    $project: ID!
+    $status: String!
   ) {
     createBid(
       input: {
@@ -52,6 +102,7 @@ mutation createBid(
           classType: $classType
           notes: $notes
           project: $project
+          status: $status
         }
       }
     ) {
@@ -76,5 +127,37 @@ mutation createBid(
   "project": 1,
   "amount": 100000000000,
   "estTime": "20 Days"
+}
+*/
+
+export const CHANGE_BID_STATUS = gql`
+  mutation($bidId: ID!, $status: String!) {
+    updateBid(input: { where: { id: $bidId }, data: { status: $status } }) {
+      bid {
+        id
+        status
+      }
+    }
+  }
+`;
+
+/*
+{
+  "bidId": 1,
+  "status": "Awarded"
+}
+*/
+
+export const getBidStatus = gql`
+  query($bidId: ID!) {
+    bid(id: $bidId) {
+      status
+    }
+  }
+`;
+
+/*
+{
+  "bidId": 1
 }
 */

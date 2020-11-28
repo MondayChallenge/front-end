@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const AddProject = gql`
   mutation createProject(
@@ -111,6 +111,13 @@ export const getProjects = gql`
   query($id: ID) {
     projects(sort: "endDate:asc", where: { representatives_in: $id }) {
       id
+      address
+      city
+      zip
+      state
+      estTime
+      minBid
+      description
       name
       owner {
         username
@@ -146,6 +153,56 @@ export const getProject = gql`
       maxBudgetRange
       description
       team {
+        name
+        username
+      }
+      owner {
+        name
+        username
+      }
+      architect {
+        name
+        username
+      }
+      manager {
+        name
+        username
+      }
+      status
+      email
+      phone
+      type
+      numBuildings
+      numStories
+      squareFootage
+      bids {
+        amount
+        classType
+        organization {
+          name
+          owner {
+            name
+            username
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getTenProposals = gql`
+  query {
+    projects(limit: 10, sort: "published_at:asc") {
+      name
+      address
+      city
+      state
+      zip
+      id
+      estTime
+      maxBudgetRange
+      description
+      team {
         username
       }
       owner {
@@ -161,6 +218,7 @@ export const getProject = gql`
       email
       phone
       type
+      endDate
       numBuildings
       numStories
       squareFootage

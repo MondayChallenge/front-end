@@ -2,7 +2,7 @@ import React from "react";
 import "./Proposals.css";
 import Navigation from "components/Navigation/Navigation";
 import {getProjects} from '../../apollo/project'
-import {getUser} from '../../apollo/user'
+import {GetAllUsers} from '../../apollo/user'
 import { useQuery } from '@apollo/client';
 
 const Proposals = () => {
@@ -15,7 +15,7 @@ const Proposals = () => {
     variables: {id:userId},
   });
 
-  const users =useQuery(getUser);
+  const users =useQuery(GetAllUsers);
 
   const [projects, setProjects] = React.useState([])
   

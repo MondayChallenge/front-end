@@ -285,7 +285,7 @@ const Projects = () => {
         <div class="submit valign-text-middle font-class-1 ">
 
         </div> */}
-        <input type="submit" value="Submit" className="project-form__submit-btn form-submit-btn" ></input>
+        <input type="submit" value="Submit" className="project-form__submit-btn submit-btn" ></input>
         {/* <Mutation mutation={AddProject} variables={{ name }} >
           {AddProposal => <button  onClick={(e)=>{e.preventDefault();AddProposal()}} className="project-form__submit-btn">Submit</button>}
         </Mutation> */}

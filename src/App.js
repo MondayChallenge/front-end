@@ -11,6 +11,7 @@ import Messages from "./components/Messages/Messages";
 import Projects from "./components/Projects/Projects";
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
 import BidCreation from './components/BidCreation/BidCreation';
+import FindProject from './components/FindProject/FindProject';
 import BidPage from 'components/BidPage/BidPage';
 
 import { RegisterUser, LoginUser } from "./apollo/user";
@@ -25,6 +26,7 @@ monday.setToken(
 // const hist = createBrowserHistory();
 
 const App = ()=> {
+
   const [newUser] = useMutation(RegisterUser, {
     onCompleted: (data) => {
       console.log("Data from RegisterUser", data.register.user.id);     
@@ -34,6 +36,7 @@ const App = ()=> {
     },
     onError: (error) => console.error("Error getting RegisterUser", error),
   });
+
   const [user] = useMutation(LoginUser, {
     onCompleted: (data) => {
       console.log("Data from LoginUser", data.login.user.id);
@@ -73,7 +76,7 @@ const App = ()=> {
     }
   };
 
-  const getRegisterUserID = async (email, password) => {
+  const getRegisterUserID = async (email, password, name) => {
     try {
       const userInfo = await newUser({
         variables: {
@@ -117,24 +120,28 @@ const App = ()=> {
     // make sure to have both userId and jwtToken stored on sessionStorage
     if(!userId && token){
       sessionStorage.removeItem('jwtToken');
-      getLoginUserID(email, password)
+      getLoginUserID(email, password,name)
     }
+    getLoginUserID(email, password,name)
   }, [password]);
-  
-    return (
-      <BrowserRouter >
-        <ScrollToTop />      
-          <Route path="/" exact component={MainProject} /> 
-          <Route path="/proposals" exact component={Proposals} />
-          <Route path="/messages" exact component={Messages} />
-          <Route path="/newProject" exact component={Projects} />
-          <Route path="/costBreakdown" exact component={CostBreakdown} />
-          <Route path="/bidCreation" exact component={BidCreation} />
-          <Route path="/bidPage" exact component={BidPage} />
-      </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Route path="/mainproject/:id" exact component={MainProject} />
+      <Route path="/proposals" exact component={Proposals} />
+      <Route path="/messages" exact component={Messages} />
+      <Route path="/newProject" exact component={Projects} />
+      <Route path="/costBreakdown/:id" exact component={CostBreakdown} />
+      <Route path="/bidCreation" exact component={BidCreation} />
+      <Route path="/findProject" exact component={FindProject} />
+      <Route path="/bidPage" exact component={BidPage} />
+    </BrowserRouter>
+  );
+};
+
 
 export default App;
 
-{/* {JSON.stringify(this.state.boardData, null, 2)}  */}
+{
+  /* {JSON.stringify(this.state.boardData, null, 2)}  */
+}

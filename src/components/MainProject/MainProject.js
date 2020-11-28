@@ -5,12 +5,23 @@ import interior1 from "assets/img/interior-1.png";
 import interior2 from "assets/img/interior-2.png";
 import interior3 from "assets/img/interior-3.png";
 import headshot from "assets/img/professional_woman_headshot.jpg";
-
+import { useQuery } from "@apollo/client";
 import { getRandomInt } from "components/utils/getRandomInt";
-import { renderImgBubble } from 'components/utils/renderImgBubble';
+import { useHistory } from "react-router-dom";
+import { getProjects } from "../../apollo/project";
+import { getCurrUser } from "../../apollo/user";
+import { Link } from "react-router-dom";
+import { renderImgBubble } from "components/utils/renderImgBubble";
 
-const MainProject = () => {
-
+const MainProject = (props) => {
+  const { loading, error, data } = useQuery(getProjects, {
+    variables: { id: props.match.params.id },
+  });
+  console.log(props);
+  const history = useHistory();
+  const { loading: userLoading, error: userError, data: userData } = useQuery(
+    getCurrUser
+  );
 
   const bids = [
     { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
@@ -39,7 +50,7 @@ const MainProject = () => {
           <p
             className={`main-project__right__bidding__group--status font-color--${
               bidColors[status.split(" ")[0]]
-              }`}
+            }`}
           >
             {status}
           </p>
@@ -72,14 +83,12 @@ const MainProject = () => {
     },
   ];
 
-
   const renderTeam = (team) => {
     return team.map((member, i) => {
       const { name, title, img } = member;
 
       return (
         <div className="main-project__right__team__group" key={i}>
-
           <div className="main-project__right__team__group--img">
             {renderImgBubble(img, name)}
           </div>
@@ -92,75 +101,88 @@ const MainProject = () => {
       );
     });
   };
+  const {
+    loading: userInfoLoading,
+    error: userInfoError,
+    data: userInfoData,
+  } = useQuery(getCurrUser, {
+    variables: { id: userData ? userData.me.id : null },
+  });
+  if (loading) return <div>Loading</div>;
+  else if (error) return <div>{JSON.stringify(error)}</div>;
+  else {
+    console.log(userInfoData);
+    console.log(userInfoError);
 
-const imgBuildingArray = [building1,interior1,interior2,interior3];
-  const renderImgBuilding = (imgs) => {
-    const imgArr = [];
-    for (let i = 0; i < 4; i++) {
-      imgArr.push(<img
-        src={imgs[i]}
-        alt={`building_${i + 1}`}
-        className={`main-project__left__image--${i + 1}`}
-      />)
+    console.log(data.projects[0]);
+    var currProject = data.projects[0];
 
-    }
+    const imgBuildingArray = [building1, interior1, interior2, interior3];
+    const renderImgBuilding = (imgs) => {
+      const imgArr = [];
+      for (let i = 0; i < 4; i++) {
+        imgArr.push(
+          <img
+            src={imgs[i]}
+            alt={`building_${i + 1}`}
+            className={`main-project__left__image--${i + 1}`}
+          />
+        );
+      }
 
-    return imgArr;
-  }
+      return imgArr;
+    };
+    return (
+      <div className="dashboard-projects">
+        <Navigation />
+        <div className="main-project">
+          <h1>{currProject.name}</h1>
+          <Link to="/test">bid now</Link>
+          <div className="main-project__left">
+            <div className="main-project__left__image">
+              {renderImgBuilding(imgBuildingArray)}
+            </div>
 
+            <div className="main-project__left__details">
+              <ul className="main-project__left__details--1">
+                <li>Location</li>
+                <li>Project ID</li>
+                <li>Est. Duration</li>
+                <li>Budget</li>
+              </ul>
+              <ul className="main-project__left__details--2">
+                <li>
+                  {currProject.address}{" "}
+                  <span>
+                    {currProject.city}, {currProject.state} {currProject.zip}
+                  </span>
+                </li>
+                <li>{props.match.params.id}</li>
+                <li>{currProject.estTime}</li>
+                <li>${currProject.minBid}</li>
+              </ul>
+            </div>
 
-  return (
-    <div className="dashboard-projects">
-      <Navigation />
-      <div className="main-project">
-        <h1>Mattamy Development</h1>
-        <div className="main-project__left">
-          <div className="main-project__left__image">
-            {renderImgBuilding(imgBuildingArray)}
+            <h3>Project Details</h3>
+            <p>{currProject.description}</p>
           </div>
 
-          <div className="main-project__left__details">
-            <ul className="main-project__left__details--1">
-              <li>Location</li>
-              <li>Project ID</li>
-              <li>Est. Completition Date</li>
-              <li>Budget</li>
-            </ul>
-            <ul className="main-project__left__details--2">
-              <li>
-                1015 Market Street <span>San Francisco, CA 94103</span>
-              </li>
-              <li>1924561</li>
-              <li>September 2021</li>
-              <li>$7.2 million</li>
-            </ul>
-          </div>
+          <div className="main-project__right">
+            <div className="main-project__right__cards main-project__right__bidding ">
+              <h3>Bidding Activity</h3>
 
-          <h3>Project Details</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis
-            aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur.
-          </p>
-        </div>
+              {renderBidding(bids, bidColors)}
+            </div>
 
-        <div className="main-project__right">
-          <div className="main-project__right__cards main-project__right__bidding ">
-            <h3>Bidding Activity</h3>
-
-            {renderBidding(bids, bidColors)}
-          </div>
-
-          <div className="main-project__right__cards main-project__right__team ">
-            <h3>Project Team</h3>
-
-            {renderTeam(team)}
+            <div className="main-project__right__cards main-project__right__team ">
+              <h3>Project Team</h3>
+              {renderTeam(team)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MainProject;
