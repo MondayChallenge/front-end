@@ -2,6 +2,7 @@ import React from "react";
 import "./Proposals.css";
 import Navigation from "components/Navigation/Navigation";
 import {getProjects} from '../../apollo/project'
+import {getUser} from '../../apollo/user'
 import { useQuery } from '@apollo/client';
 
 const Proposals = () => {
@@ -13,12 +14,18 @@ const Proposals = () => {
   const { data } = useQuery(getProjects,{
     variables: {id:userId},
   });
+
+  const users =useQuery(getUser);
+
   const [projects, setProjects] = React.useState([])
   
   React.useEffect(()=>{
     if(data){
       console.log('data',data)
       setProjects(data.projects)
+    }
+    if(users.data){
+      console.log('get user>>>>',users.data.users);
     }
   },[data])
   

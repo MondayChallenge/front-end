@@ -44,10 +44,11 @@ const App = ()=> {
     },
     onError: (error) => {
       getRegisterUserID(email, password)
-      // console.error("Error getting LoginUser", error)
+      console.error("Error getting LoginUser", error)
     },
   });
 
+  const [name, setName] = React.useState("");
   const [email, setEamil] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [userId, setUserId] = React.useState(null);
@@ -64,6 +65,7 @@ const App = ()=> {
         }
         `);
       // console.log('monday user: ',data.me)
+      setName(data.me.name);
       setEamil(data.me.email);
       setPassword(data.me.name + "_" + data.me.id);
     } catch (err) {
@@ -77,6 +79,7 @@ const App = ()=> {
         variables: {
           email,
           password,
+          name
         },
       });
       return userInfo.data.register.user.id;
@@ -108,8 +111,8 @@ const App = ()=> {
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
-      console.log("user info", email, password);
-      getLoginUserID(email, password) || getRegisterUserID(email, password);
+      console.log("user info", email, password, name);
+      getLoginUserID(email, password, name) || getRegisterUserID(email, password, name);
     }
     // make sure to have both userId and jwtToken stored on sessionStorage
     if(!userId && token){
