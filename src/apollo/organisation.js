@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const CreateOrganization = gql`
   mutation createOrganization(
@@ -50,3 +50,20 @@ export const CreateOrganization = gql`
   "country": "India"
 }
  */
+
+export const GetAllOrganisation = gql`
+  query($id: ID!) {
+    user(id: $id) {
+      organization {
+        name
+        phone
+        about
+        address
+        city
+        state
+        zip
+        country
+      }
+    }
+  }
+`;

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const AddProject = gql`
   mutation createProject(
@@ -153,15 +153,19 @@ export const getProject = gql`
       maxBudgetRange
       description
       team {
+        name
         username
       }
       owner {
+        name
         username
       }
       architect {
+        name
         username
       }
       manager {
+        name
         username
       }
       status
@@ -177,6 +181,7 @@ export const getProject = gql`
         organization {
           name
           owner {
+            name
             username
           }
         }
