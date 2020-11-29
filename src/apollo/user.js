@@ -55,8 +55,8 @@ export const getUserInfo = gql`
   query User($id: ID!) {
     user(id: $id) {
       username
-      organization {
-        city
+      teamMemberOf {
+        id
       }
     }
   }
