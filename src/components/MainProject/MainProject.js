@@ -109,7 +109,7 @@ const MainProject = (props) => {
   });
   useEffect(() => {
     function run() {
-      if (userInfoData) {
+      if (data && data.project) {
         console.log(userInfoData.user.teamMemberOf);
         for (let el of userInfoData.user.teamMemberOf) {
           if (el.id == data.project.id) {
@@ -120,8 +120,8 @@ const MainProject = (props) => {
     }
     run();
   }, [userInfoData]);
-  if (userInfoLoading) return <div>Loading</div>;
-  else if (userInfoError) return <div>{JSON.stringify(error)}</div>;
+  if (loading) return <div>Loading</div>;
+  else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
     console.log(isTeamMember);
     var currProject = data.project;
