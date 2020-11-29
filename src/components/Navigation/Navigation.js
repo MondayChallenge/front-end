@@ -18,7 +18,7 @@ const Navigation = (props) => {
           <Link to="/" className="projects navLink" >Projects</Link>
           <Link to="/messages" className="messages navLink" >Messages</Link>
           {/* <Link to="/proposals" className="proposals navLink" >Proposals</Link> */}
-          <Link to="/document" className="documents navLink" >Documents</Link>
+          {/* <Link to="/document" className="documents navLink" >Documents</Link> */}
           <Link to="/findProject" className="reports navLink" >Project Market</Link>
           <Link to="/bidPage" className="directory navLink" >Bid</Link>
           <Link to="/calendar" className="calendarTab navLink" >Calendar</Link>
