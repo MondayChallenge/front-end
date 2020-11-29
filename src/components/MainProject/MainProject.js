@@ -23,16 +23,7 @@ const MainProject = (props) => {
     getCurrUser
   );
   const [isTeamMember, setTeamMember] = useState(false);
-  const bids = [
-    { name: 'Cupertino Electric, Inc.', type: 'Utilities', status: 'Awarded' },
-    { name: 'Bay Electric', type: 'Utilities', status: 'Declined' },
-    { name: 'A&A Concrete Supply', type: 'Concrete', status: 'Awarded' },
-    {
-      name: 'SAS Stressteel, Inc.',
-      type: 'Structural Steel',
-      status: 'Awaiting',
-    },
-  ];
+  const [bids, setBids] = useState([]);
 
   const bidColors = {
     Awarded: 'success',
@@ -42,11 +33,13 @@ const MainProject = (props) => {
 
   const renderBidding = (bids, bidColors) => {
     return bids.map((bid, i) => {
-      const { name, type, status } = bid;
+      const { organization, type, status } = bid;
 
       return (
         <div className="main-project__right__bidding__group" key={i}>
-          <p className="main-project__right__bidding__group--name">{name}</p>
+          <p className="main-project__right__bidding__group--name">
+            {organization.name}
+          </p>
           <p
             className={`main-project__right__bidding__group--status font-color--${
               bidColors[status.split(' ')[0]]
@@ -107,25 +100,30 @@ const MainProject = (props) => {
   } = useQuery(getUserInfo, {
     variables: { id: userData ? userData.me.id : null },
   });
+
   useEffect(() => {
     function run() {
       if (data && data.project) {
-        console.log(userInfoData.user.teamMemberOf);
-        for (let el of userInfoData.user.teamMemberOf) {
-          if (el.id == data.project.id) {
-            setTeamMember(true);
+        setBids(data.project.bids);
+        console.log(data.project);
+        if (data.project.representatives) {
+          console.log(data.project.representatives);
+          for (let el of data.project.representatives) {
+            if (el.id == sessionStorage.getItem('userId')) {
+              setTeamMember(true);
+            }
           }
         }
       }
     }
     run();
-  }, [userInfoData]);
+  }, [data]);
+
   if (loading) return <div>Loading</div>;
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
-    console.log(isTeamMember);
+    console.log(data.project.bids);
     var currProject = data.project;
-
     const imgBuildingArray = [building1, interior1, interior2, interior3];
     const renderImgBuilding = (imgs) => {
       const imgArr = [];

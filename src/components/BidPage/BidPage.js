@@ -2,20 +2,21 @@ import React from 'react';
 import Navigation from 'components/Navigation/Navigation';
 import renderImgBubble from 'components/utils/renderImgBubble';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_BIDS } from '../../apollo/bid';
+import { GET_ALL_BIDS, getAllBidsForAUser } from '../../apollo/bid';
 import { Link } from 'react-router-dom';
-
+import './BidPage.css'
 import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standardNaming';
 
 const BidPage = () => {
-    sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
-
+    // sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
+    
+/*
     const { loading, error, data } = useQuery(GET_ALL_BIDS);
     // useEffect(() => {}, []);
     if (loading) return <div>Loading</div>;
     else if (error) return <div>{JSON.stringify(error)}</div>;
     else {
-
+*/
         const statusColor = {
             Review: "warning",
             Awarded: "success",
@@ -36,8 +37,17 @@ const BidPage = () => {
 
 
         //if you are the bidder, you will see project name, bidder name, their org name, receieved, status
+        
+    
+        const token = sessionStorage.getItem('jwtToken');
+        const userId = sessionStorage.getItem('userId');
+        sessionStorage.setItem('jwt',token);
+        const [bids,setBids] = React.useState([]);
+        const { data } = useQuery(getAllBidsForAUser,{
+                variables: {ownerId:userId},
+            });
+        
 
-        console.log(data)
         const renderRow = (data) => {
             return data.bids.map((datum, i) => {
                 return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
@@ -60,9 +70,16 @@ const BidPage = () => {
         //       to={`mainproject/${id}`}>
         //       {title}
         //     </Link>
+        React.useEffect(()=>{
+            if(data){
+              console.log('data',data)
+              setBids(data.bids)
+            }
+ 
+          },[data])
 
         return (
-            <div className="dashboard-projects">
+            <div className="dashboard-projects bidPage">
                 <Navigation />
                 <div className="bid-page">
                     <div className="bid-page__thead table-blocks__thead">
@@ -82,14 +99,14 @@ const BidPage = () => {
                         <p >Mattamy Development</p>
                     </div> */}
 
-                    {renderRow(data)}
+                    {bids.length>0 ? renderRow(data) : null}
 
 
 
                 </div>
             </div>
         )
-    }
+    // }
 
 }
 

@@ -30,7 +30,7 @@ export default function FindProject() {
     });
     console.log(recentProposals);
     return (
-      <div className="dashboard-projects">
+      <div className="dashboard-projects findProject">
         <Navigation />
         <div id="list">
           <Table>{recentProposals ? recentProposals : 'test'}</Table>
@@ -46,7 +46,7 @@ function TableRow({ title, owner, status, due, id }) {
       <td className="listItem title font-class-1 ">
         <Link
           style={{ textDecoration: 'none', color: 'rgba(0,154,255,1.0)' }}
-          to={`mainproject/${id}`}>
+          to={`projects/${id}`}>
           {title}
         </Link>
       </td>

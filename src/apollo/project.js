@@ -120,7 +120,7 @@ export const getProjects = gql`
       description
       name
       owner {
-        username
+        name
       }
       status
       endDate
@@ -152,6 +152,9 @@ export const getProject = gql`
       estTime
       maxBudgetRange
       description
+      representatives {
+        id
+      }
       team {
         name
         username
@@ -185,6 +188,7 @@ export const getProject = gql`
             username
           }
         }
+        status
       }
     }
   }

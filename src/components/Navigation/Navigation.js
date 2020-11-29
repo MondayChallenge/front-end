@@ -18,11 +18,11 @@ const Navigation = (props) => {
           <Link to="/" className="projects navLink" >Projects</Link>
           <Link to="/messages" className="messages navLink" >Messages</Link>
           {/* <Link to="/proposals" className="proposals navLink" >Proposals</Link> */}
-          <Link to="/" className="documents navLink" >Documents</Link>
-          <Link to="/findProject" className="reports navLink" >Reports</Link>
-          <Link to="/bidPage" className="directory navLink" >Budget</Link>
-          <Link to="/" className="calendar navLink" >Calendar</Link>
-          <Link to="/" className="admin navLink" >Directory</Link>
+          <Link to="/findProject" className="reports navLink" >Project Market</Link>
+          <Link to="/bidPage" className="directory navLink" >Bid</Link>
+          <Link to="/calendar" className="calendarTab navLink" >Calendar</Link>
+          <Link to="/directory" className="directoryTab navLink" >Directory</Link>
+          <Link to="/document" className="documents navLink" >Documents</Link>
         </div>
         <div id="bar">
           <img

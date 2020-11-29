@@ -1,12 +1,16 @@
 
-.dashboard-projects {
+.document{
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 6.4rem;
   position: relative;
   background-color: white;
+  
 }
+
 
 #topNav{
   display: flex;
@@ -15,30 +19,30 @@
 }
 
 /* Dashboard sign */
-.dashboard-projects .dashboard {
+.document .dashboard {
   background-color: transparent;
-  font-size: 3.2rem;
+  font-size: 32px;
   text-align: left;
   white-space: nowrap;
   width: auto;
 }
 
 /* New Project Btn */
-.dashboard-projects .rectangle-176 {
+.document .rectangle-176 {
   background-color: var(--azure-radiance);
-  border-radius: 10rem;
-  height: 4rem;
-  width: 16rem;
+  border-radius: 100px;
+  height: 40px;
+  width: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.dashboard-projects .new-project {
+.document .new-project {
   background-color: transparent;
   color: white;
-  font-size: 1.8rem;
-  line-height: 4rem;
+  font-size: 18px;
+  line-height: 40px;
   text-decoration: none;
 }
 
@@ -51,69 +55,40 @@
 #navLinks{
   display: flex;
   flex-direction: row;
-  height: 8rem; 
+  height: 80px; 
 }
 
-.dashboard-projects .navLink {
+.document .navLink {
   display: block;
   text-decoration: none;
   background-color: transparent;
   color: var(--dolphin);
-  font-size: 1.8rem;
-  height: 8rem;
+  font-size: 18px;
+  height: 80px;
   font-family: 'Roboto', Helvetica, Arial, serif;
   font-style: normal;
   font-weight: 400;
-  line-height: 10rem;
+  line-height: 100px;
   width: calc(100%/7);
   text-align: center
 }
 
 #bar{
   position: relative;
-  height: .4rem;
+  height: 4px;
   width:100%
 }
 
-.dashboard-projects .line-1 {
+.document .line-1 {
   background-color: transparent;
-  height: .4rem;
+  height: 4px;
   position: absolute;
   width: inherit;
 }
-.dashboard-projects .line-2 {
+.document .line-2 {
   background-color: transparent;
-  height: .4rem;
+  height: 4px;
   position: absolute;
+  margin-left: calc((100%/7)*6) ;
   width: calc(100%/7);
-}
-
-
-.border-class-1 {
-  border: .1rem solid transparent;
-}
-
-.font-class-1 {
-  font-family: 'Roboto', Helvetica, Arial, serif;
-  font-style: normal;
-  font-size: 1.8rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-}
-
-.font-class-2 {
-  color: var(--mine-shaft);
-  font-family: 'Roboto', Helvetica, Arial, serif;
-  font-size: 1.8rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 2.4rem;
-}
-
-:root {
-  --azure-radiance: rgba(0,154,255,1.0);
-  --dolphin: rgba(103,104,121,1.0);
-  --mine-shaft: rgba(50,51,56,1.0);
-  --mist-gray: rgba(196,196,196,1.0);
-  --mystic: rgba(230,233,239,1.0);
-}
+} 
