@@ -112,12 +112,12 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Start Date</h4>
-            <input type="date" className="form-inputs form-inputs--small" onChange={e=>setStartDate(e.target.value)}></input>
+            <input placeholder="Select" onFocus={e=>{e.target.type ='date'}} onBlur={e=>{e.target.type='text'}} className="form-inputs form-inputs--small" onChange={e=>setStartDate(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >End Date</h4>
-            <input type="date" className="form-inputs form-inputs--small" onChange={e=>setEndDate(e.target.value)}></input>
+            <input placeholder="Select" onFocus={e=>{e.target.type ='date'}} onBlur={e=>{e.target.type='text'}} className="form-inputs form-inputs--small" onChange={e=>setEndDate(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">

@@ -14,7 +14,7 @@ import BidCreation from './components/BidCreation/BidCreation';
 import FindProject from './components/FindProject/FindProject';
 import BidPage from 'components/BidPage/BidPage';
 
-import { RegisterUser, LoginUser } from "./apollo/user";
+import { RegisterUser, LoginUser, UpdateName } from "./apollo/user";
 import { useMutation } from "@apollo/client";
 import mondaySdk from "monday-sdk-js";
 
@@ -46,10 +46,19 @@ const App = ()=> {
       sessionStorage.setItem('jwtToken',  data.login.jwt);
     },
     onError: (error) => {
+      console.error("Error getting LoginUser, now trying register", error)
       getRegisterUserID(email, password)
       console.error("Error getting LoginUser", error)
     },
   });
+
+  const [updateUser] = useMutation(UpdateName, {
+    onCompleted: (data) => {
+      console.log("Data from updateUser", data);
+
+    },
+    onError: (error) => {console.log('Error updating user',error)}
+  })
 
   const [name, setName] = React.useState("");
   const [email, setEamil] = React.useState("");
@@ -76,16 +85,15 @@ const App = ()=> {
     }
   };
 
-  const getRegisterUserID = async (email, password, name) => {
+  const getRegisterUserID = async (email, password) => {
     try {
-      const userInfo = await newUser({
+      await newUser({
         variables: {
           email,
           password,
-          name
         },
       });
-      return userInfo.data.register.user.id;
+      // return userInfo.data.register.user.id;
     } catch (err) {
       console.log("graphQL register error:", err);
     }
@@ -109,23 +117,59 @@ const App = ()=> {
     }
   };
 
+  const updateUserName = async (id,name) => {
+    try {
+      await updateUser({
+        variables: {
+          userId: id,
+          name,
+        },
+      });
+    } catch (err) {
+      console.log("graphQL login error:", err);
+    }
+  };
   
 
+  // React.useEffect(() => {
+    
+  //   getUser();
+  //   let userID = sessionStorage.getItem('userId');
+  //   let token = sessionStorage.getItem('jwtToken');
+  //   // console.log("user info", 'e',email, 'p',password, 'name',name, 'id',userID);
+  //   if (password.length > 0 && !token) {
+  //     console.log("password",  password);
+  //     getLoginUserID(email, password) || getRegisterUserID(email, password);
+  //   }
+  //   // make sure to have both userId and jwtToken stored on sessionStorage
+  //   // if(email.length>0 && password.length>0){
+  //     if(!userID && token){
+  //       sessionStorage.removeItem('jwtToken');
+  //       sessionStorage.removeItem('userId');
+  //       console.log("user info", 'e',email, 'p',password)
+  //       getLoginUserID(email, password)
+  //     }
+  //     else if(userID && name.length>0){
+  //       console.log('id>>',userID,'name',name)
+  //       updateUserName(userID, name)
+  //     }
+  //   // } 
+    
+  // }, [password]);
   React.useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
     getUser();
     if (password.length > 0 && !token) {
-      console.log("user info", email, password, name);
-      getLoginUserID(email, password, name) || getRegisterUserID(email, password, name);
+      console.log('user info', email, password, name);
+      getLoginUserID(email, password, name) ||
+        getRegisterUserID(email, password, name);
     }
     // make sure to have both userId and jwtToken stored on sessionStorage
-    if(!userId && token){
+    if (!userId && token) {
       sessionStorage.removeItem('jwtToken');
-      getLoginUserID(email, password,name)
+      getLoginUserID(email, password);
     }
-
-    
   }, [password]);
 
   return (

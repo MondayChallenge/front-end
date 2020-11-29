@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from '../Navigation/Navigation';
 import './Messages.css';
+import DF_headshot from "assets/img/David_Felber_headshot.png";
 import { ReactSVG } from 'react-svg'
 
 const Messages = () => {
@@ -44,7 +45,7 @@ const Messages = () => {
                   <img class="smallPhoto" alt=''
                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
                   />
-                  <div class="smallInitial font-class-3 ">KS</div>
+                  <span class="smallInitial font-class-3 ">KS</span>
                 </div>
                 <div class="select border-class-1"></div>
                 <div class='star'>
@@ -70,7 +71,7 @@ const Messages = () => {
               <div class="leftMessageEntry">
                 <div class="photo">
                   <img class="smallPhoto" alt=''
-                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b73e5d6f58133fc1a61d/img/image-17@2x.png"
+                     src={DF_headshot}
                    />
                    
                 </div>
@@ -140,7 +141,7 @@ const Messages = () => {
           <div id='messageContent-head'>
             <div>
               <img class="largePhoto" alt=''
-                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
+                src={DF_headshot}
               />
               <span class="largeName  font-class-1 ">David Felber</span>
             </div>

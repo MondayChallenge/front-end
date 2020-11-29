@@ -15,7 +15,7 @@ const Proposals = () => {
     variables: {id:userId},
   });
 
-  const users =useQuery(GetAllUsers);
+  // const users =useQuery(GetAllUsers);
 
   const [projects, setProjects] = React.useState([])
   
@@ -24,9 +24,9 @@ const Proposals = () => {
       console.log('data',data)
       setProjects(data.projects)
     }
-    if(users.data){
-      console.log('get user>>>>',users.data.users);
-    }
+    // if(users.data){
+    //   console.log('get user>>>>',users.data.users);
+    // }
   },[data])
   
  

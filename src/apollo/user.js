@@ -1,13 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const RegisterUser = gql`
-  mutation Register($email: String!, $password: String!, $name: String!) {
+  mutation Register($email: String!, $password: String!) {
     register(
       input: {
         username: $email
         password: $password
         email: $email
-        name: $name
       }
     ) {
       jwt
@@ -34,7 +33,6 @@ export const LoginUser = gql`
       jwt
       user {
         id
-        name
       }
     }
   }
