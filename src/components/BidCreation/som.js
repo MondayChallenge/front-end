@@ -4,7 +4,7 @@ import { SUBMITTED, MATERIAL, LABOR, MISCELLANEOUS } from 'components/utils/stan
 import { CREATE_BID } from '../../apollo/bid';
 
 import { useMutation } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
@@ -33,8 +33,8 @@ const BidCreation = () => {
 
     const [amount, setAmount] = useState(0);
 
-    //const formRef = useRef();
-    
+    const formRef = useRef();
+
 
 
     const inputHeader = [
@@ -80,33 +80,55 @@ const BidCreation = () => {
         })
     }
 
-    const handleAmountCounter = (event)=>{
-
-        const int = event.target.value;
-      setTimeout(()=>setAmount(amount+parseInt(int)),1000)
-        
-        
-    }
-
-  
 
     const renderBidDetails = (counter, name) => {
         let renderElement = [];
         for (let i = 0; i <= counter; i++) {
-            renderElement.push(<div className="form-inputs-row"key = {`${name}_${i}`}>
+            renderElement.push(<div className="form-inputs-row" key={`${name}_${i}`}>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >{name}</h4>
                     <Field name={`${name}_item_${i}`} className="form-inputs form-inputs--small" />
                 </div>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >Cost</h4>
-                    <Field name={`${name}_cost_${i}`}  className="form-inputs form-inputs--small"></Field>
+                    <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
                 </div>
             </div>
             )
         }
         return renderElement;
     }
+
+    const handleAmountCounter = () => {
+        
+        const arrValues = Object.entries(formRef.current.values);
+        
+        let amountDummy = 0;
+
+        
+       arrValues.map(value => {
+
+            if (isNaN(parseInt(value[1]))) {
+                return;
+            } else if (value[0].includes(`${MATERIAL}_cost_`) && !isNaN(parseInt(value[1])) ){
+                amountDummy = amountDummy + parseInt(value[1]);
+            }
+            else if (value[0].includes(`${LABOR}_cost_`) && !isNaN(value[1])) {
+                //pushing cost from name data to the std schema
+                amountDummy = amountDummy + parseInt(value[1]);
+
+            } else if (value[0].includes(`${MISCELLANEOUS}_cost_`) && !isNaN(value[1])) {
+                amountDummy = amountDummy + parseInt(value[1]);
+
+            }
+        })
+         setTimeout(()=>{
+            setAmount(amountDummy)
+            handleAmountCounter();//has to be called again to get the last value
+        },1000)
+    }
+
+
 
     const handleCounter = (name) => {
         console.log(`handleCounter ${name}`)
@@ -126,7 +148,7 @@ const BidCreation = () => {
         }
     }
 
- 
+
 
 
     const shapingValues = (values) => {
@@ -168,8 +190,7 @@ const BidCreation = () => {
                 gqlData[value[0]] = value[1];
             }
 
-        }
-        )
+        })
 
         gqlData["material"] = materialData;
         gqlData["labor"] = laborData;
@@ -178,18 +199,19 @@ const BidCreation = () => {
         return gqlData;
     }
 
-  
+
 
 
     const handleSubmit = (data) => {
         console.log('this was triggered');
 
         createBid({ variables: data }).then(res => {
-            
+
         }).catch(err => { throw err });
         alert("You have successfully placed your bid");
         history.push('/bidPage');
     }
+
 
 
     return (
@@ -198,7 +220,6 @@ const BidCreation = () => {
 
             <Formik
                 initialValues={{
-
                     organization: 1,
                     contactName: "",
                     phone: "",
@@ -207,28 +228,32 @@ const BidCreation = () => {
                     estTime: "",
                     availability: "2020-12-01",
                     notes: "",
-          owner: sessionStorage.getItem('userId'),
-          project: props.match.params.id, //from where you chose the project                    //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
+                    project: 1,//from where you chose the project
+                    //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
                     amount: amount,
                     status: SUBMITTED,
-
+                    Material_cost_0: "",
+                    Labor_cost_0: "",
+                    Miscellaneous_cost_0: "",
+                    Material_item_0: "",
+                    Labor_item_0: "",
+                    Miscellaneous_item_0: ""
                 }}
 
                 // validationSchema={SignupSchema}
-    
-              
+
+                innerRef={formRef}
 
                 onSubmit={values => {
-
                     const finalValues = shapingValues(values)
-                    //console.log(finalValues);
+
                     //need to input values here and manupulate it
                     handleSubmit(finalValues);
-                     //handleSubmit(testData)
                 }}
             >
-                {({ errors, touched }) => (
+                {({ errors, touched, values }) => (
                     <Form action="" className="bid-creation" >
+
                         <h1 className="form-section-header">{`Bidder's Information`}</h1>
 
                         <p className="form-section-subheader ">
@@ -350,6 +375,15 @@ export default BidCreation;
 
 
 
+
+
+
+
+
+
+
+
+
 // const testData = {
 
 //     organization: 1,
@@ -368,3 +402,4 @@ export default BidCreation;
 //     amount: 100000000000,
 
 // };
+
