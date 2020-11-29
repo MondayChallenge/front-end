@@ -18,6 +18,18 @@ const Proposals = () => {
   // const users =useQuery(GetAllUsers);
 
   const [projects, setProjects] = React.useState([])
+
+  const renderImage = (name) => {
+    const color = ["orange", "green", "blue", "pink", "purple"];
+    let initials = name.split(' ').map(word=>(word[0])).join('');
+    let NameCode = initials.length >1 ? initials.split('').reduce((acc,cur)=> (acc[0].charCodeAt()+cur[0].charCodeAt())) : initials.charCodeAt();
+    let pickColorBasedNameCode = color[NameCode%(color.length)]
+    return (
+      <div className={`listItem-projectOwner-Image ${pickColorBasedNameCode}`}>
+        <div class="smallInitial ">{initials}</div>
+      </div>
+    )
+  }
   
   React.useEffect(()=>{
     if(data){
@@ -171,13 +183,9 @@ const Proposals = () => {
                 {/* <Link to={`/proposals/${project.id}`}>{project.name}</Link> */}
               </td>
               <td className="listItem font-class-1 ">
-                <img
-                  className="listItem-image"
-                  alt=""
-                  src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/image-17@2x.png"
-                />
+                {project.owner ? renderImage(project.owner.name ): null}
                 <span className="listItem-projectOwner font-class-1 ">
-                  {project.owner ? project.owner.username : ""}
+                  {project.owner ? project.owner.name : ""}
                 </span>
               </td>
               <td className="listItem font-class-1 status">{project.status}</td>

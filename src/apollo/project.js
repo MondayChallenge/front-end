@@ -120,7 +120,7 @@ export const getProjects = gql`
       description
       name
       owner {
-        username
+        name
       }
       status
       endDate
