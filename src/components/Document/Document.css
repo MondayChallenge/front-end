@@ -1,0 +1,94 @@
+
+.document{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 6.4rem;
+  position: relative;
+  background-color: white;
+  
+}
+
+
+#topNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Dashboard sign */
+.document .dashboard {
+  background-color: transparent;
+  font-size: 32px;
+  text-align: left;
+  white-space: nowrap;
+  width: auto;
+}
+
+/* New Project Btn */
+.document .rectangle-176 {
+  background-color: var(--azure-radiance);
+  border-radius: 100px;
+  height: 40px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.document .new-project {
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+/* Nevagation Menu Links */
+#bottomNav{
+  display: flex;
+  flex-direction: column;
+}
+
+#navLinks{
+  display: flex;
+  flex-direction: row;
+  height: 80px; 
+}
+
+.document .navLink {
+  display: block;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--dolphin);
+  font-size: 18px;
+  height: 80px;
+  font-family: 'Roboto', Helvetica, Arial, serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100px;
+  width: calc(100%/8);
+  text-align: center
+}
+
+#bar{
+  position: relative;
+  height: 4px;
+  width:100%
+}
+
+.document .line-1 {
+  background-color: transparent;
+  height: 4px;
+  position: absolute;
+  width: inherit;
+}
+.document .line-2 {
+  background-color: transparent;
+  height: 4px;
+  position: absolute;
+  margin-left: calc((100%/8)*2) ;
+  width: calc(100%/8);
+} 

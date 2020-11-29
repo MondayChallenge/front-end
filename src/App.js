@@ -13,6 +13,9 @@ import CostBreakdown from './components/CostBreakdown/CostBreakdown';
 import BidCreation from './components/BidCreation/BidCreation';
 import FindProject from './components/FindProject/FindProject';
 import BidPage from 'components/BidPage/BidPage';
+import Calendar from './components/Calendar/Calendar';
+import Directory from './components/Directory/Directory';
+import Document from './components/Document/Document';
 
 import { RegisterUser, LoginUser, UpdateName, GetName } from './apollo/user';
 import { useMutation, useQuery } from '@apollo/client';
@@ -158,6 +161,9 @@ const App = () => {
       <Route path='/costBreakdown/:id' exact component={CostBreakdown} />
       <Route path='/findProject' exact component={FindProject} />
       <Route path='/bidPage' exact component={BidPage} />
+      <Route path='/calendar' exact component={Calendar} />
+      <Route path='/directory' exact component={Directory} />
+      <Route path='/document' exact component={Document} />
     </BrowserRouter>
   );
 };
