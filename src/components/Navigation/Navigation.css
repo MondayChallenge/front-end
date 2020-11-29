@@ -65,7 +65,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 10rem;
-  width: calc(100%/8);
+  width: calc(100%/6);
   text-align: center
 }
 
@@ -85,7 +85,7 @@
   background-color: transparent;
   height: .4rem;
   position: absolute;
-  width: calc(100%/8);
+  width: calc(100%/6);
 }
 
 
