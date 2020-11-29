@@ -23,21 +23,22 @@ const MainProject = (props) => {
     getCurrUser
   );
   const [isTeamMember, setTeamMember] = useState(false);
+
   const bids = [
-    { name: 'Cupertino Electric, Inc.', type: 'Utilities', status: 'Awarded' },
-    { name: 'Bay Electric', type: 'Utilities', status: 'Declined' },
-    { name: 'A&A Concrete Supply', type: 'Concrete', status: 'Awarded' },
+    { name: "Cupertino Electric, Inc.", type: "Utilities", status: "Awarded" },
+    { name: "Bay Electric", type: "Utilities", status: "Declined" },
+    { name: "A&A Concrete Supply", type: "Concrete", status: "Awarded" },
     {
-      name: 'SAS Stressteel, Inc.',
-      type: 'Structural Steel',
-      status: 'Awaiting',
+      name: "SAS Stressteel, Inc.",
+      type: "Structural Steel",
+      status: "Awaiting",
     },
   ];
 
   const bidColors = {
-    Awarded: 'success',
-    Awaiting: 'warning',
-    Declined: 'danger',
+    Awarded: "success",
+    Awaiting: "warning",
+    Declined: "danger",
   };
 
   const renderBidding = (bids, bidColors) => {
@@ -49,8 +50,9 @@ const MainProject = (props) => {
           <p className="main-project__right__bidding__group--name">{name}</p>
           <p
             className={`main-project__right__bidding__group--status font-color--${
-              bidColors[status.split(' ')[0]]
-            }`}>
+              bidColors[status.split(" ")[0]]
+            }`}
+          >
             {status}
           </p>
           <p className="main-project__right__bidding__group--type">{type}</p>
@@ -61,24 +63,24 @@ const MainProject = (props) => {
 
   const team = [
     {
-      name: 'David Felber',
-      title: 'Project Manager',
-      img: '',
+      name: "David Felber",
+      title: "Project Manager",
+      img: DF_headshot,
     },
     {
-      name: 'Welsey Thomas',
-      title: 'VP of Business Development',
-      img: '',
+      name: "Welsey Thomas",
+      title: "VP of Business Development",
+      img: "",
     },
     {
-      name: 'Lauren Stevens',
-      title: 'Sr. Architect/Designer',
+      name: "Lauren Stevens",
+      title: "Sr. Architect/Designer",
       img: headshot,
     },
     {
-      name: 'Brad Nichols',
-      title: 'Project Engineer',
-      img: '',
+      name: "Brad Nichols",
+      title: "Project Engineer",
+      img: "",
     },
   ];
 
@@ -99,7 +101,6 @@ const MainProject = (props) => {
       );
     });
   };
-
   const {
     loading: userInfoLoading,
     error: userInfoError,
@@ -142,6 +143,17 @@ const MainProject = (props) => {
 
       return imgArr;
     };
+
+    React.useEffect(()=>{
+      
+      if(data){
+        console.log('data', data);
+        setProject(data.project)
+      } 
+    })
+
+ 
+
     return (
       <div className="dashboard-projects">
         <Navigation />
@@ -161,7 +173,7 @@ const MainProject = (props) => {
               </ul>
               <ul className="main-project__left__details--2">
                 <li>
-                  {currProject.address}{' '}
+                  {currProject.address}{" "}
                   <span>
                     {currProject.city}, {currProject.state} {currProject.zip}
                   </span>
@@ -205,7 +217,7 @@ const MainProject = (props) => {
         </div>
       </div>
     );
-  }
+  // }
 };
 
 export default MainProject;

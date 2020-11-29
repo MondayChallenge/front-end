@@ -18,9 +18,8 @@ export const RegisterUser = gql`
 //      id
 //    }
 //  }
- 
-// }
 
+// }
 
 export const LoginUser = gql`
   mutation Login($email: String!, $password: String!) {
@@ -28,6 +27,7 @@ export const LoginUser = gql`
       jwt
       user {
         id
+        name
       }
     }
   }
@@ -51,12 +51,23 @@ export const getCurrUser = gql`
   }
 `;
 
-export const getUserInfo = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+export const GetAllUsers = gql`
+  query {
+    users(sort: "username:asc") {
+      id
       username
       teamMemberOf {
         id
+
+    }
+  }
+`;
+
+export const UpdateName = gql`
+  mutation updateUser($userId: ID!, $name: String!) {
+    updateUser(input: { where: { id: $userId }, data: { name: $name } }) {
+      user {
+        name
       }
     }
   }
