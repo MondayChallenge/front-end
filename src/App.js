@@ -88,7 +88,7 @@ const App = () => {
 
   const getRegisterUserID = async (email, password) => {
     try {
-      await newUser({
+      const userInfo = await newUser({
         variables: {
           email,
           password,
@@ -100,7 +100,7 @@ const App = () => {
           name: name,
         },
       });
-      // return userInfo.data.register.user.id;
+      return userInfo.data.register.user.id;
     } catch (err) {
       console.log('graphQL register error:', err);
     }

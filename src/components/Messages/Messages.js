@@ -2,7 +2,6 @@ import React from "react";
 import Navigation from '../Navigation/Navigation';
 import './Messages.css';
 import DF_headshot from "assets/img/David_Felber_headshot.png";
-import { ReactSVG } from 'react-svg'
 
 const Messages = () => {
   return (
@@ -11,13 +10,10 @@ const Messages = () => {
       <div id='messagesArea'>
         <div id='messagesBox'>
           <div id='inboxToolBar'>
-            <div className="search-box border-class-3">
-              <ReactSVG className="image-99" src="/public/search.svg"/> 
-              <span class="search  font-class-1 border-class-1">Search</span>
-            </div>
+            <input className="search-box border-class-3" placeholder="search"></input>
             <div class="sort-box font-class-4 ">
               <div class="sort font-class-1">Sort: 
-                <select class="sort-menu font-class-1">
+                <select class="sort-menu">
                   <option value="Newest" selected="selected">Newest First</option>
                   <option value="Oldest" >Oldest First</option>
                 </select>

@@ -207,6 +207,7 @@ const BidCreation = () => {
                     availability: "2020-12-01",
                     notes: "",
           owner: sessionStorage.getItem('userId'),
+          // eslint-disable-next-line no-undef
           project: props.match.params.id, //from where you chose the project                    //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
                     amount: amount,
                     status: SUBMITTED,
