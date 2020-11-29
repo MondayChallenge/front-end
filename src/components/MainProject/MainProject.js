@@ -8,21 +8,21 @@ import headshot from 'assets/img/professional_woman_headshot.jpg';
 import { useQuery } from '@apollo/client';
 import { getRandomInt } from 'components/utils/getRandomInt';
 import { useHistory } from 'react-router-dom';
-import { getProjects } from '../../apollo/project';
+import { getProject } from '../../apollo/project';
 import { getCurrUser } from '../../apollo/user';
 import { getUserInfo } from '../../apollo/user';
 import { Link } from 'react-router-dom';
 import { renderImgBubble } from 'components/utils/renderImgBubble';
 
 const MainProject = (props) => {
-  const { loading, error, data } = useQuery(getProjects, {
+  const { loading, error, data } = useQuery(getProject, {
     variables: { id: props.match.params.id },
   });
   const history = useHistory();
   const { loading: userLoading, error: userError, data: userData } = useQuery(
     getCurrUser
   );
-
+  const [isTeamMember, setTeamMember] = useState(false);
   const bids = [
     { name: 'Cupertino Electric, Inc.', type: 'Utilities', status: 'Awarded' },
     { name: 'Bay Electric', type: 'Utilities', status: 'Declined' },
