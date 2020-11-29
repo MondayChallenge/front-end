@@ -9,7 +9,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
 
-const BidCreation = () => {
+const BidCreation = (props) => {
 
     // const SignupSchema = Yup.object().shape({
     //     firstName: Yup.string()
