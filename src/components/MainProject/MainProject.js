@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from 'components/Navigation/Navigation';
 import building1 from 'assets/img/building-1.png';
 import interior1 from 'assets/img/interior-1.png';
