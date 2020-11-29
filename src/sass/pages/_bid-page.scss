@@ -6,18 +6,19 @@
 
 
     &__thead{
-        grid-column: center-start/center-end;
+        grid-column: full-start/full-end;
         background-color: $color-mystic;
         display: grid;
         grid-template-columns: repeat(6,minmax(7rem,1fr));
-
+        padding-left: 6.4rem;
     }
 
     &__trow{
         margin-top: 2rem;
-        grid-column:  center-start/center-end;
+        grid-column: full-start/full-end;
         display: grid;
         grid-template-columns: repeat(6,minmax(7rem,1fr));
+        padding-left: 6.4rem;
         
     }
 

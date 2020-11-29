@@ -5,9 +5,9 @@
         height: 5rem;
         font-weight: 400;
         align-items: center;
-        justify-items: center;
-        text-align: center;
-        
+        justify-items: start;
+        text-align: left;
+      
     }
 
     &__trow{
@@ -16,8 +16,9 @@
         height: 5rem;
         font-weight: 400;
         align-items: center;
-        justify-items: center;
-        text-align: center;
+        justify-items: start;
+        text-align: left;
+      
     }
 
     &__trow:hover{
