@@ -18,6 +18,7 @@ export const RegisterUser = gql`
   }
 `;
 
+
 // mutation CreateRegister {
 //   register (input: {email: "111@test.com",password: "123" ,username: "testname"}){
 //    jwt
