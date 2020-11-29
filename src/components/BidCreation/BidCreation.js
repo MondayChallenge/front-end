@@ -191,7 +191,8 @@ const BidCreation = (props) => {
           estTime: '',
           availability: '2020-12-01',
           notes: '',
-          project: 1, //from where you chose the project
+          owner: sessionStorage.getItem('userId'),
+          project: props.match.params.id, //from where you chose the project
           //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
           amount: amount,
           status: SUBMITTED,
