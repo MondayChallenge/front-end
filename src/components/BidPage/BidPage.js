@@ -4,7 +4,7 @@ import renderImgBubble from 'components/utils/renderImgBubble';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_BIDS, getAllBidsForAUser } from '../../apollo/bid';
 import { Link } from 'react-router-dom';
-
+import './BidPage.css'
 import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standardNaming';
 
 const BidPage = () => {
@@ -79,7 +79,7 @@ const BidPage = () => {
           },[data])
 
         return (
-            <div className="dashboard-projects">
+            <div className="dashboard-projects bidPage">
                 <Navigation />
                 <div className="bid-page">
                     <div className="bid-page__thead table-blocks__thead">

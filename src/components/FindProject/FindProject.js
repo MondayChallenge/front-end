@@ -30,7 +30,7 @@ export default function FindProject() {
     });
     console.log(recentProposals);
     return (
-      <div className="dashboard-projects">
+      <div className="dashboard-projects findProject">
         <Navigation />
         <div id="list">
           <Table>{recentProposals ? recentProposals : 'test'}</Table>
