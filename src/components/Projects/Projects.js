@@ -11,7 +11,7 @@ import { useMutation } from '@apollo/client';
   
 const Projects = () => {
   
-  const [organization, setOrgID] = useState(1);
+  const [organization] = useState(1);
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -25,13 +25,13 @@ const Projects = () => {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
   const [address, setAddress] = useState("");
-  const [owner, setOwner] = useState(1);
-  const [architect, setArchitect] = useState(1);
-  const [manager, setManager] = useState(1);
+  const [owner] = useState(sessionStorage.getItem('userId'));
+  const [architect] = useState(1);
+  const [manager] = useState(1);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [representatives] = useState(sessionStorage.getItem('userId'));
-  const [createProject, {data}] = useMutation(AddProject,{
+  const [createProject] = useMutation(AddProject,{
     onCompleted: (data) => {
       console.log('succeed adding project', data.createProject.project.id)
       return data
