@@ -1,15 +1,8 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const RegisterUser = gql`
-  mutation Register($email: String!, $password: String!, $name: String!) {
-    register(
-      input: {
-        username: $email
-        password: $password
-        email: $email
-        name: $name
-      }
-    ) {
+  mutation Register($email: String!, $password: String!) {
+    register(input: { username: $email, password: $password, email: $email }) {
       jwt
       user {
         id
@@ -18,6 +11,16 @@ export const RegisterUser = gql`
   }
 `;
 
+export const getUserInfo = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      username
+      teamMemberOf {
+        id
+      }
+    }
+  }
+`;
 
 // mutation CreateRegister {
 //   register (input: {email: "111@test.com",password: "123" ,username: "testname"}){
@@ -35,7 +38,6 @@ export const LoginUser = gql`
       jwt
       user {
         id
-        name
       }
     }
   }
@@ -64,6 +66,26 @@ export const GetAllUsers = gql`
     users(sort: "username:asc") {
       id
       username
+      teamMemberOf {
+        id
+      }
+    }
+  }
+`;
+
+export const UpdateName = gql`
+  mutation updateUser($userId: ID!, $name: String!) {
+    updateUser(input: { where: { id: $userId }, data: { name: $name } }) {
+      user {
+        name
+      }
+    }
+  }
+`;
+
+export const GetName = gql`
+  query getUserName($id: ID!) {
+    user(id: $id) {
       name
     }
   }

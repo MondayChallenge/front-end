@@ -4,7 +4,7 @@ import { SUBMITTED, MATERIAL, LABOR, MISCELLANEOUS } from 'components/utils/stan
 import { CREATE_BID } from '../../apollo/bid';
 
 import { useMutation } from '@apollo/client';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
@@ -100,7 +100,7 @@ const BidCreation = () => {
                 </div>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >Cost</h4>
-                    <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
+                    <Field name={`${name}_cost_${i}`}  className="form-inputs form-inputs--small"></Field>
                 </div>
             </div>
             )
@@ -350,16 +350,6 @@ export default BidCreation;
 
 
 
-
-
-
-
-
-
-
-
-
-
 // const testData = {
 
 //     organization: 1,
@@ -378,4 +368,3 @@ export default BidCreation;
 //     amount: 100000000000,
 
 // };
-
