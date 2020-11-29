@@ -67,3 +67,13 @@ export const GetAllUsers = gql`
     }
   }
 `;
+
+export const UpdateName = gql`
+  mutation updateUser($userId: ID!, $name: String!) {
+    updateUser(input: { where: { id: $userId }, data: { name: $name } }) {
+      user {
+        name
+      }
+    }
+  }
+`;
