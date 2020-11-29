@@ -1,69 +1,69 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import "sass/main.scss";
+import 'sass/main.scss';
 
 import ScrollToTop from './ScrollToTop';
 
-import MainProject from "./components/MainProject";
-import Proposals from "./components/Proposals/Proposals";
-import Messages from "./components/Messages/Messages";
-import Projects from "./components/Projects/Projects";
+import MainProject from './components/MainProject';
+import Proposals from './components/Proposals/Proposals';
+import Messages from './components/Messages/Messages';
+import Projects from './components/Projects/Projects';
 import CostBreakdown from './components/CostBreakdown/CostBreakdown';
 import BidCreation from './components/BidCreation/BidCreation';
 import FindProject from './components/FindProject/FindProject';
 import BidPage from 'components/BidPage/BidPage';
 
-import { RegisterUser, LoginUser, UpdateName } from "./apollo/user";
-import { useMutation } from "@apollo/client";
-import mondaySdk from "monday-sdk-js";
+import { RegisterUser, LoginUser, UpdateName, GetName } from './apollo/user';
+import { useMutation, useQuery } from '@apollo/client';
+import mondaySdk from 'monday-sdk-js';
 
 const monday = mondaySdk();
 monday.setToken(
-  "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc"
+  'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc'
 );
- 
+
 // const hist = createBrowserHistory();
 
-const App = ()=> {
-
+const App = () => {
   const [newUser] = useMutation(RegisterUser, {
     onCompleted: (data) => {
-      console.log("Data from RegisterUser", data.register.user.id);     
+      console.log('Data from RegisterUser', data.register.user.id);
       setUserId(data.register.user.id);
-      sessionStorage.setItem('userId',  data.register.user.id);
-      sessionStorage.setItem('jwtToken',  data.register.jwt);
+      sessionStorage.setItem('userId', data.register.user.id);
+      sessionStorage.setItem('jwtToken', data.register.jwt);
     },
-    onError: (error) => console.error("Error getting RegisterUser", error),
+    onError: (error) => console.error('Error getting RegisterUser', error),
   });
 
   const [user] = useMutation(LoginUser, {
     onCompleted: (data) => {
-      console.log("Data from LoginUser", data.login.user.id);
+      console.log('Data from LoginUser', data.login.user.id);
       setUserId(data.login.user.id);
       // sessionStorage.removeItem('jwtToken');
-      sessionStorage.setItem('userId',  data.login.user.id);
-      sessionStorage.setItem('jwtToken',  data.login.jwt);
+      sessionStorage.setItem('userId', data.login.user.id);
+      sessionStorage.setItem('jwtToken', data.login.jwt);
     },
     onError: (error) => {
-      console.error("Error getting LoginUser, now trying register", error)
-      getRegisterUserID(email, password)
-      console.error("Error getting LoginUser", error)
+      getRegisterUserID(email, password);
+      // console.error("Error getting LoginUser", error)
     },
   });
 
-  const [updateUser] = useMutation(UpdateName, {
+  const [usernameUpdate] = useMutation(UpdateName, {
     onCompleted: (data) => {
-      console.log("Data from updateUser", data);
-
+      console.log("user's name updated on Strapi");
     },
-    onError: (error) => {console.log('Error updating user',error)}
-  })
+    onError: (error) => {
+      console.warn(error.message);
+      console.warn('Name update failed');
+    },
+  });
 
-  const [name, setName] = React.useState("");
-  const [email, setEamil] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEamil] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [userId, setUserId] = React.useState(null);
+  const [name, setName] = React.useState('');
 
   const getUser = async () => {
     try {
@@ -79,9 +79,10 @@ const App = ()=> {
       // console.log('monday user: ',data.me)
       setName(data.me.name);
       setEamil(data.me.email);
-      setPassword(data.me.name + "_" + data.me.id);
+      setName(data.me.name);
+      setPassword(data.me.name + '_' + data.me.id);
     } catch (err) {
-      console.log("monday api error:", err);
+      console.log('monday api error:', err);
     }
   };
 
@@ -93,9 +94,15 @@ const App = ()=> {
           password,
         },
       });
+      await usernameUpdate({
+        variables: {
+          userId: userInfo.data.register.user.id,
+          name: name,
+        },
+      });
       // return userInfo.data.register.user.id;
     } catch (err) {
-      console.log("graphQL register error:", err);
+      console.log('graphQL register error:', err);
     }
   };
 
@@ -108,54 +115,21 @@ const App = ()=> {
         },
       });
       if (userInfo) {
+        await usernameUpdate({
+          variables: {
+            userId: userInfo.data.login.user.id,
+            name: name,
+          },
+        });
         return userInfo.data.login.user.id;
       } else {
         return null;
       }
     } catch (err) {
-      console.log("graphQL login error:", err);
+      console.log('graphQL login error:', err);
     }
   };
 
-  const updateUserName = async (id,name) => {
-    try {
-      await updateUser({
-        variables: {
-          userId: id,
-          name,
-        },
-      });
-    } catch (err) {
-      console.log("graphQL login error:", err);
-    }
-  };
-  
-
-  // React.useEffect(() => {
-    
-  //   getUser();
-  //   let userID = sessionStorage.getItem('userId');
-  //   let token = sessionStorage.getItem('jwtToken');
-  //   // console.log("user info", 'e',email, 'p',password, 'name',name, 'id',userID);
-  //   if (password.length > 0 && !token) {
-  //     console.log("password",  password);
-  //     getLoginUserID(email, password) || getRegisterUserID(email, password);
-  //   }
-  //   // make sure to have both userId and jwtToken stored on sessionStorage
-  //   // if(email.length>0 && password.length>0){
-  //     if(!userID && token){
-  //       sessionStorage.removeItem('jwtToken');
-  //       sessionStorage.removeItem('userId');
-  //       console.log("user info", 'e',email, 'p',password)
-  //       getLoginUserID(email, password)
-  //     }
-  //     else if(userID && name.length>0){
-  //       console.log('id>>',userID,'name',name)
-  //       updateUserName(userID, name)
-  //     }
-  //   // } 
-    
-  // }, [password]);
   React.useEffect(() => {
     const userId = sessionStorage.getItem('userId');
     const token = sessionStorage.getItem('jwtToken');
@@ -176,19 +150,17 @@ const App = ()=> {
     <BrowserRouter>
       <ScrollToTop />
       {/* <Route path="/mainproject/:id" exact component={MainProject} /> */}
-      <Route path="/" exact component={Proposals} />
-      <Route path="/projects/:id" exact component={MainProject} />
-      <Route path="/messages" exact component={Messages} />
-      <Route path="/newProject" exact component={Projects} />
-      <Route path="/costBreakdown/:id" exact component={CostBreakdown} />
-      <Route path="/bidCreation" exact component={BidCreation} />
-      <Route path="/findProject" exact component={FindProject} />
-      <Route path="/bidPage" exact component={BidPage} />
+      <Route path='/' exact component={Proposals} />
+      <Route path='/projects/:id' exact component={MainProject} />
+      <Route path='/messages' exact component={Messages} />
+      <Route path='/newProject' exact component={Projects} />
+      <Route path='/bidCreation/:id' exact component={BidCreation} />
+      <Route path='/costBreakdown/:id' exact component={CostBreakdown} />
+      <Route path='/findProject' exact component={FindProject} />
+      <Route path='/bidPage' exact component={BidPage} />
     </BrowserRouter>
   );
-  
 };
-
 
 export default App;
 
