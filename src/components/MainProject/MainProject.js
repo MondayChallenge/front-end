@@ -85,7 +85,6 @@ const MainProject = (props) => {
   const renderTeam = (team) => {
     return team.map((member, i) => {
       const { name, title, img } = member;
-
       return (
         <div className="main-project__right__team__group" key={i}>
           <div className="main-project__right__team__group--img">
@@ -100,21 +99,32 @@ const MainProject = (props) => {
       );
     });
   };
+
   const {
     loading: userInfoLoading,
     error: userInfoError,
     data: userInfoData,
-  } = useQuery(getCurrUser, {
+  } = useQuery(getUserInfo, {
     variables: { id: userData ? userData.me.id : null },
   });
-  if (loading) return <div>Loading</div>;
-  else if (error) return <div>{JSON.stringify(error)}</div>;
+  useEffect(() => {
+    function run() {
+      if (userInfoData) {
+        console.log(userInfoData.user.teamMemberOf);
+        for (let el of userInfoData.user.teamMemberOf) {
+          if (el.id == data.project.id) {
+            setTeamMember(true);
+          }
+        }
+      }
+    }
+    run();
+  }, [userInfoData]);
+  if (userInfoLoading) return <div>Loading</div>;
+  else if (userInfoError) return <div>{JSON.stringify(error)}</div>;
   else {
-    console.log(userInfoData);
-    console.log(userInfoError);
-
-    console.log(data.projects[0]);
-    var currProject = data.projects[0];
+    console.log(isTeamMember);
+    var currProject = data.project;
 
     const imgBuildingArray = [building1, interior1, interior2, interior3];
     const renderImgBuilding = (imgs) => {
@@ -125,6 +135,7 @@ const MainProject = (props) => {
             src={imgs[i]}
             alt={`building_${i + 1}`}
             className={`main-project__left__image--${i + 1}`}
+            key={i}
           />
         );
       }
@@ -136,7 +147,6 @@ const MainProject = (props) => {
         <Navigation />
         <div className="main-project">
           <h1>{currProject.name}</h1>
-          <Link to={'/bidCreation/' + props.match.params.id}>bid now</Link>
           <div className="main-project__left">
             <div className="main-project__left__image">
               {renderImgBuilding(imgBuildingArray)}
@@ -170,7 +180,21 @@ const MainProject = (props) => {
             <div className="main-project__right__cards main-project__right__bidding ">
               <h3>Bidding Activity</h3>
 
-              {renderBidding(bids, bidColors)}
+              {isTeamMember ? (
+                renderBidding(bids, bidColors)
+              ) : (
+                <div>
+                  {' '}
+                  <Link
+                    to={'/bidCreation/' + props.match.params.id}
+                    style={{
+                      textDecoration: 'none',
+                      color: 'rgba(0,154,255,1.0)',
+                    }}>
+                    Bid Now
+                  </Link>
+                </div>
+              )}
             </div>
 
             <div className="main-project__right__cards main-project__right__team ">
