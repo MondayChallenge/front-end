@@ -38,7 +38,6 @@ export const LoginUser = gql`
       jwt
       user {
         id
-        name
       }
     }
   }
@@ -80,6 +79,14 @@ export const UpdateName = gql`
       user {
         name
       }
+    }
+  }
+`;
+
+export const GetName = gql`
+  query getUserName($id: ID!) {
+    user(id: $id) {
+      name
     }
   }
 `;
