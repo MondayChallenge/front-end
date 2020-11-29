@@ -34,7 +34,6 @@ const BidCreation = () => {
     const [amount, setAmount] = useState(0);
 
     //const formRef = useRef();
-    
 
 
     const inputHeader = [
@@ -317,11 +316,13 @@ const BidCreation = () => {
                         </div>
 
                         <div className="bid-creation__summary">
-                            <p className="bid-creation__summary__note">Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
-     for a period of ninety (90) days from the date that bids are due to be received.</p>
+                            <p className="bid-creation__summary__note">
+                            Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
+                            for a period of ninety (90) days from the date that bids are due to be received.
+                            </p>
 
-                            <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
-                            <p className="bid-creation__summary__price">${amount}</p>
+                            {/* <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
+                            <p className="bid-creation__summary__price">${amount}</p> */}
                         </div>
 
                         <input type="submit" value="Submit" className="bid-creation__submit-btn submit-btn" ></input>
