@@ -27,106 +27,106 @@ monday.setToken(
 
 const App = ()=> {
 
-  // const [newUser] = useMutation(RegisterUser, {
-  //   onCompleted: (data) => {
-  //     console.log("Data from RegisterUser", data.register.user.id);     
-  //     setUserId(data.register.user.id);
-  //     sessionStorage.setItem('userId',  data.register.user.id);
-  //     sessionStorage.setItem('jwtToken',  data.register.jwt);
-  //   },
-  //   onError: (error) => console.error("Error getting RegisterUser", error),
-  // });
+  const [newUser] = useMutation(RegisterUser, {
+    onCompleted: (data) => {
+      console.log("Data from RegisterUser", data.register.user.id);     
+      setUserId(data.register.user.id);
+      sessionStorage.setItem('userId',  data.register.user.id);
+      sessionStorage.setItem('jwtToken',  data.register.jwt);
+    },
+    onError: (error) => console.error("Error getting RegisterUser", error),
+  });
 
-  // const [user] = useMutation(LoginUser, {
-  //   onCompleted: (data) => {
-  //     console.log("Data from LoginUser", data.login.user.id);
-  //     setUserId(data.login.user.id);
-  //     // sessionStorage.removeItem('jwtToken');
-  //     sessionStorage.setItem('userId',  data.login.user.id);
-  //     sessionStorage.setItem('jwtToken',  data.login.jwt);
-  //   },
-  //   onError: (error) => {
-  //     getRegisterUserID(email, password)
-  //     console.error("Error getting LoginUser", error)
-  //   },
-  // });
+  const [user] = useMutation(LoginUser, {
+    onCompleted: (data) => {
+      console.log("Data from LoginUser", data.login.user.id);
+      setUserId(data.login.user.id);
+      // sessionStorage.removeItem('jwtToken');
+      sessionStorage.setItem('userId',  data.login.user.id);
+      sessionStorage.setItem('jwtToken',  data.login.jwt);
+    },
+    onError: (error) => {
+      getRegisterUserID(email, password)
+      console.error("Error getting LoginUser", error)
+    },
+  });
 
-  // const [name, setName] = React.useState("");
-  // const [email, setEamil] = React.useState("");
-  // const [password, setPassword] = React.useState("");
-  // const [userId, setUserId] = React.useState(null);
+  const [name, setName] = React.useState("");
+  const [email, setEamil] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [userId, setUserId] = React.useState(null);
 
-  // const getUser = async () => {
-  //   try {
-  //     const { data } = await monday.api(`
-  //       query {
-  //         me {
-  //           id,
-  //           name,
-  //           email
-  //         }
-  //       }
-  //       `);
-  //     // console.log('monday user: ',data.me)
-  //     setName(data.me.name);
-  //     setEamil(data.me.email);
-  //     setPassword(data.me.name + "_" + data.me.id);
-  //   } catch (err) {
-  //     console.log("monday api error:", err);
-  //   }
-  // };
+  const getUser = async () => {
+    try {
+      const { data } = await monday.api(`
+        query {
+          me {
+            id,
+            name,
+            email
+          }
+        }
+        `);
+      // console.log('monday user: ',data.me)
+      setName(data.me.name);
+      setEamil(data.me.email);
+      setPassword(data.me.name + "_" + data.me.id);
+    } catch (err) {
+      console.log("monday api error:", err);
+    }
+  };
 
-  // const getRegisterUserID = async (email, password, name) => {
-  //   try {
-  //     const userInfo = await newUser({
-  //       variables: {
-  //         email,
-  //         password,
-  //         name
-  //       },
-  //     });
-  //     return userInfo.data.register.user.id;
-  //   } catch (err) {
-  //     console.log("graphQL register error:", err);
-  //   }
-  // };
+  const getRegisterUserID = async (email, password, name) => {
+    try {
+      const userInfo = await newUser({
+        variables: {
+          email,
+          password,
+          name
+        },
+      });
+      return userInfo.data.register.user.id;
+    } catch (err) {
+      console.log("graphQL register error:", err);
+    }
+  };
 
-  // const getLoginUserID = async (email, password) => {
-  //   try {
-  //     const userInfo = await user({
-  //       variables: {
-  //         email,
-  //         password,
-  //       },
-  //     });
-  //     if (userInfo) {
-  //       return userInfo.data.login.user.id;
-  //     } else {
-  //       return null;
-  //     }
-  //   } catch (err) {
-  //     console.log("graphQL login error:", err);
-  //   }
-  // };
+  const getLoginUserID = async (email, password) => {
+    try {
+      const userInfo = await user({
+        variables: {
+          email,
+          password,
+        },
+      });
+      if (userInfo) {
+        return userInfo.data.login.user.id;
+      } else {
+        return null;
+      }
+    } catch (err) {
+      console.log("graphQL login error:", err);
+    }
+  };
 
   
 
-  // React.useEffect(() => {
-  //   const userId = sessionStorage.getItem('userId');
-  //   const token = sessionStorage.getItem('jwtToken');
-  //   getUser();
-  //   if (password.length > 0 && !token) {
-  //     console.log("user info", email, password, name);
-  //     getLoginUserID(email, password, name) || getRegisterUserID(email, password, name);
-  //   }
-  //   // make sure to have both userId and jwtToken stored on sessionStorage
-  //   if(!userId && token){
-  //     sessionStorage.removeItem('jwtToken');
-  //     getLoginUserID(email, password,name)
-  //   }
+  React.useEffect(() => {
+    const userId = sessionStorage.getItem('userId');
+    const token = sessionStorage.getItem('jwtToken');
+    getUser();
+    if (password.length > 0 && !token) {
+      console.log("user info", email, password, name);
+      getLoginUserID(email, password, name) || getRegisterUserID(email, password, name);
+    }
+    // make sure to have both userId and jwtToken stored on sessionStorage
+    if(!userId && token){
+      sessionStorage.removeItem('jwtToken');
+      getLoginUserID(email, password,name)
+    }
 
     
-  // }, [password]);
+  }, [password]);
 
   return (
     <BrowserRouter>
