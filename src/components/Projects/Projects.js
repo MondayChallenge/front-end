@@ -95,53 +95,82 @@ const Projects = () => {
 
         <div className="form-inputs-section">
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Company Name</h4>
-            <input className="form-inputs form-inputs--small" ></input>
-          </div>
-
-          <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Project Name</h4>
-            <input id="project_name" className="form-inputs form-inputs--small" onChange={e=>setName(e.target.value)}></input>
-          </div>
-
-          <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Project Number</h4>
+            <h4 className="form-inputs-label">Company Name</h4>
             <input className="form-inputs form-inputs--small"></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Start Date</h4>
-            <input placeholder="Select" onFocus={e=>{e.target.type ='date'}} onBlur={e=>{e.target.type='text'}} className="form-inputs form-inputs--small" onChange={e=>setStartDate(e.target.value)}></input>
+            <h4 className="form-inputs-label">Project Name</h4>
+            <input
+              id="project_name"
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setName(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >End Date</h4>
-            <input placeholder="Select" onFocus={e=>{e.target.type ='date'}} onBlur={e=>{e.target.type='text'}} className="form-inputs form-inputs--small" onChange={e=>setEndDate(e.target.value)}></input>
+            <h4 className="form-inputs-label">Project Number</h4>
+            <input className="form-inputs form-inputs--small"></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Timezone</h4>
-            <input className="form-inputs form-inputs--small" onChange={e=>setTimezone(e.target.value)}></input>
+            <h4 className="form-inputs-label">Start Date</h4>
+            <input
+              placeholder="Select"
+              onFocus={(e) => {
+                e.target.type = 'date';
+              }}
+              onBlur={(e) => {
+                e.target.type = 'text';
+              }}
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setStartDate(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Project Type</h4>
-            <input className="form-inputs form-inputs--small" onChange={e=>setProjectType(e.target.value)}></input>
+            <h4 className="form-inputs-label">End Date</h4>
+            <input
+              placeholder="Select"
+              onFocus={(e) => {
+                e.target.type = 'date';
+              }}
+              onBlur={(e) => {
+                e.target.type = 'text';
+              }}
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setEndDate(e.target.value)}></input>
+          </div>
+
+          <div className="form-inputs-block form-inputs-block--small">
+            <h4 className="form-inputs-label">Timezone</h4>
+            <input
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setTimezone(e.target.value)}></input>
+          </div>
+
+          <div className="form-inputs-block form-inputs-block--small">
+            <h4 className="form-inputs-label">Project Type</h4>
+            <input
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setProjectType(e.target.value)}></input>
           </div>
 
           <div className="project-form__info__amounts-sect">
             <div className="project-form__info__amounts-sect--1">
-              <h4 className="form-inputs-label" >Project Amount $</h4>
+              <h4 className="form-inputs-label">Project Amount $</h4>
               <span>
-                <div class="select-box border-class-3"></div>
+                <div className="select-box border-class-3"></div>
                 <p className="form-inputs-label">allow range</p>
               </span>
             </div>
 
             <div className="project-form__info__amounts-sect--2">
-              <input className="form-inputs form-inputs--small" onChange={e=>setMinBid(e.target.value)}></input>
+              <input
+                className="form-inputs form-inputs--small"
+                onChange={(e) => setMinBid(e.target.value)}></input>
               <p className="form-inputs-label">to</p>
-              <input className="form-inputs form-inputs--small" onChange={e=>setMaxBudgetRange(e.target.value)}></input>
+              <input
+                className="form-inputs form-inputs--small"
+                onChange={(e) => setMaxBudgetRange(e.target.value)}></input>
             </div>
 
             {/* <div class="x-C61RwL valign-text-middle font-class-1">$</div> */}
@@ -184,54 +213,54 @@ const Projects = () => {
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >City</h4>
-            <input className="form-inputs form-inputs--small" onChange={e=>setCity(e.target.value)}></input>
+            <h4 className="form-inputs-label">City</h4>
+            <input
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setCity(e.target.value)}></input>
           </div>
 
           {/* TODO - NEED TO FIX GRID FOR THIS */}
           <div className="form-inputs-block form-inputs-block--small">
-            <div class="address address-text form-inputs-label">
+            <div className="address address-text form-inputs-label">
               Address
             </div>
-            <input class="address address-input form-inputs form-inputs--small" onChange={e=>setAddress(e.target.value)}></input>
+            <input
+              className="address address-input form-inputs form-inputs--small"
+              onChange={(e) => setAddress(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <div class="zip-code form-inputs-label">
-              Zip (Postal) Code
-            </div>
-            <input class="zip-code form-inputs form-inputs--small" onChange={e=>setZip(e.target.value)}></input>
+            <div className="zip-code form-inputs-label">Zip (Postal) Code</div>
+            <input
+              className="zip-code form-inputs form-inputs--small"
+              onChange={(e) => setZip(e.target.value)}></input>
           </div>
         </div>
 
         <h1 className="form-section-header">Attachments</h1>
 
         <p className="form-section-subheader  ">
-         Please upload the scope of work, images, or additional documentation for bidders to review prior to submitting a project bid.
+          Please upload the scope of work, images, or additional documentation
+          for bidders to review prior to submitting a project bid.
         </p>
 
         <div className="project-form__files">
           <div className="form-drop-file">
             <p className="form-drop-file__title">
               Drag your file here, or
-              <span > browse</span>
+              <span> browse</span>
             </p>
             {/* .supports-j-if-pdf-png-C61RwL used to be */}
-            <p className="form-drop-file__sub ">
-              Supports: JPG, GIF, PDF, PNG
-            </p>
+            <p className="form-drop-file__sub ">Supports: JPG, GIF, PDF, PNG</p>
           </div>
-          
 
           <div className="form-drop-file">
             <p className="form-drop-file__title">
               Drag your file here, or
-              <span > browse</span>
+              <span> browse</span>
             </p>
             {/* .supports-j-if-pdf-png-C61RwL used to be */}
-            <p className="form-drop-file__sub ">
-              Supports: JPG, GIF, PDF, PNG
-            </p>
+            <p className="form-drop-file__sub ">Supports: JPG, GIF, PDF, PNG</p>
           </div>
         </div>
 
@@ -255,28 +284,32 @@ const Projects = () => {
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Owner</h4>
+            <h4 className="form-inputs-label">Owner</h4>
             <input className="form-inputs form-inputs--small"></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Architect</h4>
+            <h4 className="form-inputs-label">Architect</h4>
             <input className="form-inputs form-inputs--small"></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Project Manager</h4>
+            <h4 className="form-inputs-label">Project Manager</h4>
             <input className="form-inputs form-inputs--small"></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" >Email</h4>
-            <input className="form-inputs form-inputs--small"  onChange={e=>setEmail(e.target.value)}></input>
+            <h4 className="form-inputs-label">Email</h4>
+            <input
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setEmail(e.target.value)}></input>
           </div>
 
           <div className="form-inputs-block form-inputs-block--small">
-            <h4 className="form-inputs-label" > Phone Number</h4>
-            <input className="form-inputs form-inputs--small"  onChange={e=>setPhone(e.target.value)}></input>
+            <h4 className="form-inputs-label"> Phone Number</h4>
+            <input
+              className="form-inputs form-inputs--small"
+              onChange={(e) => setPhone(e.target.value)}></input>
           </div>
         </div>
 
