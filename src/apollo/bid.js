@@ -66,6 +66,7 @@ export const CREATE_BID = gql`
     $notes: String!
     $project: ID!
     $status: String!
+    $owner: ID!
   ) {
     createBid(
       input: {
@@ -84,6 +85,7 @@ export const CREATE_BID = gql`
           notes: $notes
           project: $project
           status: $status
+          owner: $owner
         }
       }
     ) {
@@ -97,9 +99,9 @@ export const CREATE_BID = gql`
 {
   "notes": "Hello, World",
   "license_number": "PPR11722P",
-  "material": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
-  "labor": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
-  "miscExpense": {data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]},
+  "material": "{data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]}",
+  "labor": "{data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]}",
+  "miscExpense": "{data: [{'name': 'brick1','cost': 500}, {'name': 'brick2','cost': 1000}]}",
   "contactName": "Rohit",
   "phone": "+91 999999999",
   "classType": "A Class",
@@ -107,7 +109,9 @@ export const CREATE_BID = gql`
   "availability": "2020-12-01",
   "project": 1,
   "amount": 100000000000,
-  "estTime": "20 Days"
+  "estTime": "20 Days",
+  "owner": 1,
+  "status": "Avaialble"
 }
 */
 
@@ -140,5 +144,61 @@ export const getBidStatus = gql`
 /*
 {
   "bidId": 1
+}
+*/
+
+export const getAllBidsForAUser = gql`
+  query getAllBids($ownerId: ID!) {
+    bids(where: { owner: $ownerId }) {
+      id
+      amount
+      published_at
+      created_at
+      contactName
+      organization {
+        name
+        about
+      }
+      project {
+        id
+        name
+        owner {
+          id
+          username
+          name
+        }
+        architect {
+          id
+          username
+          name
+        }
+        manager {
+          id
+          username
+          name
+          organization {
+            name
+          }
+        }
+        team {
+          id
+          username
+          name
+        }
+        organization {
+          name
+          about
+        }
+        status
+        owner {
+          name
+        }
+      }
+    }
+  }
+`;
+/*
+{
+  "id": 1
 }
 */
