@@ -107,8 +107,9 @@ const MainProject = (props) => {
         setBids(data.project.bids);
         console.log(data.project);
         if (data.project.representatives) {
+          console.log(data.project.representatives);
           for (let el of data.project.representatives) {
-            if (el.id == data.project.id) {
+            if (el.id == sessionStorage.getItem('userId')) {
               setTeamMember(true);
             }
           }
