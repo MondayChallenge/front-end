@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const RegisterUser = gql`
   mutation Register($email: String!, $password: String!) {
@@ -6,6 +6,17 @@ export const RegisterUser = gql`
       jwt
       user {
         id
+      }
+    }
+  }
+`;
+
+export const getUserInfo = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      username
+      organization {
+        city
       }
     }
   }
@@ -58,7 +69,7 @@ export const GetAllUsers = gql`
       username
       teamMemberOf {
         id
-
+      }
     }
   }
 `;
