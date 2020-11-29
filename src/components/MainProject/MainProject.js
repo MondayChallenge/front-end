@@ -110,10 +110,12 @@ const MainProject = (props) => {
   useEffect(() => {
     function run() {
       if (data && data.project) {
-        console.log(userInfoData.user.teamMemberOf);
-        for (let el of userInfoData.user.teamMemberOf) {
-          if (el.id == data.project.id) {
-            setTeamMember(true);
+        console.log(data.project);
+        if (data.project.representatives) {
+          for (let el of data.project.representatives) {
+            if (el.id == data.project.id) {
+              setTeamMember(true);
+            }
           }
         }
       }
