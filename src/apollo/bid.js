@@ -30,11 +30,23 @@ export const GET_ALL_BIDS = gql`
       created_at
       contactName
       status
-
+      organization {
+        name
+        about
+      }
       project {
         id
         name
-     
+        owner {
+          id
+          username
+          name
+        }
+        architect {
+          id
+          username
+          name
+        }
         manager {
           id
           username
@@ -43,8 +55,15 @@ export const GET_ALL_BIDS = gql`
             name
           }
         }
-  
-
+        team {
+          id
+          username
+          name
+        }
+        organization {
+          name
+          about
+        }
       }
     }
   }
