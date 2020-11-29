@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from '../Navigation/Navigation';
 import './Messages.css';
-import { ReactSVG } from 'react-svg'
+import DF_headshot from "assets/img/David_Felber_headshot.png";
 
 const Messages = () => {
   return (
@@ -10,13 +10,10 @@ const Messages = () => {
       <div id='messagesArea'>
         <div id='messagesBox'>
           <div id='inboxToolBar'>
-            <div className="search-box border-class-3">
-              <ReactSVG className="image-99" src="/public/search.svg"/> 
-              <span class="search  font-class-1 border-class-1">Search</span>
-            </div>
+            <input className="search-box border-class-3" placeholder="search"></input>
             <div class="sort-box font-class-4 ">
               <div class="sort font-class-1">Sort: 
-                <select class="sort-menu font-class-1">
+                <select class="sort-menu">
                   <option value="Newest" selected="selected">Newest First</option>
                   <option value="Oldest" >Oldest First</option>
                 </select>
@@ -44,7 +41,7 @@ const Messages = () => {
                   <img class="smallPhoto" alt=''
                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
                   />
-                  <div class="smallInitial font-class-3 ">KS</div>
+                  <span class="smallInitial font-class-3 ">KS</span>
                 </div>
                 <div class="select border-class-1"></div>
                 <div class='star'>
@@ -70,7 +67,7 @@ const Messages = () => {
               <div class="leftMessageEntry">
                 <div class="photo">
                   <img class="smallPhoto" alt=''
-                     src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b73e5d6f58133fc1a61d/img/image-17@2x.png"
+                     src={DF_headshot}
                    />
                    
                 </div>
@@ -140,7 +137,7 @@ const Messages = () => {
           <div id='messageContent-head'>
             <div>
               <img class="largePhoto" alt=''
-                src="https://anima-uploads.s3.amazonaws.com/projects/5fa1a82d0aa76a11ee1c02fa/releases/5fa1b6c90aa76a11ee1c03d5/img/ellipse-1-1@2x.png"
+                src={DF_headshot}
               />
               <span class="largeName  font-class-1 ">David Felber</span>
             </div>
