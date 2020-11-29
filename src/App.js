@@ -136,8 +136,8 @@ const App = ()=> {
       <Route path="/projects/:id" exact component={MainProject} />
       <Route path="/messages" exact component={Messages} />
       <Route path="/newProject" exact component={Projects} />
+      <Route path="/bidCreation/:id" exact component={BidCreation} />
       <Route path="/costBreakdown/:id" exact component={CostBreakdown} />
-      <Route path="/bidCreation" exact component={BidCreation} />
       <Route path="/findProject" exact component={FindProject} />
       <Route path="/bidPage" exact component={BidPage} />
     </BrowserRouter>

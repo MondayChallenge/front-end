@@ -56,7 +56,9 @@ export const GetAllUsers = gql`
     users(sort: "username:asc") {
       id
       username
-      name
+      teamMemberOf {
+        id
+
     }
   }
 `;

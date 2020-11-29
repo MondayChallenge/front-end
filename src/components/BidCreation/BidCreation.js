@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 
-const BidCreation = () => {
+const BidCreation = (props) => {
 
     // const SignupSchema = Yup.object().shape({
     //     firstName: Yup.string()
@@ -24,7 +24,9 @@ const BidCreation = () => {
 
     let history = useHistory();
 
-    const [createBid] = useMutation(CREATE_BID);
+    const [createBid] = useMutation(CREATE_BID,{
+        variables:{project:props.match.params.id}
+    });
 
     const [materialCounter, setMaterialCounter] = useState(0);
     const [laborCounter, setLaborCounter] = useState(0);
@@ -79,16 +81,15 @@ const BidCreation = () => {
         })
     }
 
-    const handleAmountCounter = (event)=>{
+    const handleSubmit = (data) => {
+        console.log('this was triggered');
 
-        const int = event.target.value;
-      setTimeout(()=>setAmount(amount+parseInt(int)),1000)
-        
-        
+        createBid({ variables: data }).then(res => {
+            
+        }).catch(err => { throw err });
+        alert("You have successfully placed your bid");
+        history.push('/bidpage');
     }
-
-  
-
     const renderBidDetails = (counter, name) => {
         let renderElement = [];
         for (let i = 0; i <= counter; i++) {
