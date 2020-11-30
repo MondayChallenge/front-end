@@ -203,7 +203,7 @@ const BidCreation = (props) => {
             <Formik
                 initialValues={{
 
-                    organization: 2,
+                    organization: 1,
                     contactName: "",
                     phone: "",
                     license_number: "",

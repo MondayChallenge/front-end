@@ -145,7 +145,7 @@ export default function CostBreakdown(props) {
               <LeftRight mkey={'Project Name'} val={data.bid.project.name} />
               <LeftRight
                 mkey={'Project Contact Name'}
-                val={data.bid.project.manager.name}
+                val={data.bid.organization.name}
               />
               <LeftRight mkey={'Project ID'} val={data.bid.project.id} />
               <br />
