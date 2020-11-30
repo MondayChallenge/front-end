@@ -196,7 +196,7 @@ export const getProject = gql`
 
 export const getTenProposals = gql`
   query {
-    projects(limit: 10, sort: "published_at:asc") {
+    projects( sort: "published_at:asc") {
       name
       address
       city

@@ -6,17 +6,20 @@ import Navigation from '../Navigation/Navigation';
 // import { Formik } from 'formik';
 import { AddProject } from '../../apollo/project';
 import { useMutation } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
+
+
 
 const Projects = () => {
 
   const [organization] = useState(1);
   const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState("2020-12-01");
+  const [endDate, setEndDate] = useState("2020-12-05");
   const [timezone, setTimezone] = useState("");
   const [projectType, setProjectType] = useState("");
-  const [minBid, setMinBid] = useState("");
-  const [maxBudgetRange, setMaxBudgetRange] = useState("");
+  const [minBid, setMinBid] = useState(1000);
+  const [maxBudgetRange, setMaxBudgetRange] = useState(2000);
   const [description, setDescription] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -37,6 +40,8 @@ const Projects = () => {
     onError: (error) => console.error('Error getting RegisterUser', error),
   });
 
+  let history = useHistory();
+
   const testData = {
     zip: zip,
     published_at: '2019-12-03T10:15:30Z',
@@ -51,7 +56,7 @@ const Projects = () => {
     city: city,
     name: name,
     numStories: '2000',
-    manager: manager,
+    manager: name,
     category: 'Office',
     team: [1, 2, 3],
     estTime: '3 Month',
@@ -63,7 +68,7 @@ const Projects = () => {
     organization: organization,
     numBuildings: '1',
     country: country,
-    architect: architect,
+    architect: name,
     address: address,
     squareFootage: '100',
     maxBudgetRange: parseFloat(maxBudgetRange),
@@ -80,6 +85,8 @@ const Projects = () => {
     sessionStorage.setItem('jwt', token);
     // sessionStorage.setItem('jwt',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
     createProject({ variables: testData });
+    alert("You have successfully created your project");
+    history.push('/');
   };
 
   return (

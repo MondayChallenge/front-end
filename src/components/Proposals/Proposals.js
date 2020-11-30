@@ -19,17 +19,18 @@ const Proposals = () => {
 
   const [projects, setProjects] = React.useState([])
 
-  const renderImage = (name) => {
-    const color = ["orange", "green", "blue", "pink", "purple"];
-    let initials = name.split(' ').map(word=>(word[0])).join('');
-    let NameCode = initials.length >1 ? initials.split('').reduce((acc,cur)=> (acc[0].charCodeAt()+cur[0].charCodeAt())) : initials.charCodeAt();
-    let pickColorBasedNameCode = color[NameCode%(color.length)]
-    return (
-      <div className={`listItem-projectOwner-Image ${pickColorBasedNameCode}`}>
-        <div class="smallInitial ">{initials}</div>
-      </div>
-    )
-  }
+  // const renderImage = (name) => {
+  //   const color = ["orange", "green", "blue", "pink", "purple"];
+  //   let initials = name.split(' ').map(word=>(word[0])).join('');
+  //   console.log(initials);
+  //   let NameCode = initials.length >1 ? initials.split('').reduce((acc,cur)=> (acc[0].charCodeAt()+cur[0].charCodeAt())) : initials.charCodeAt();
+  //   let pickColorBasedNameCode = color[NameCode%(color.length)]
+  //   return (
+  //     <div className={`listItem-projectOwner-Image ${pickColorBasedNameCode}`}>
+  //       <div class="smallInitial ">{initials}</div>
+  //     </div>
+  //   )
+  // }
   
   React.useEffect(()=>{
     if(data){
@@ -60,7 +61,7 @@ const Proposals = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="listEntry ">
+            {/* <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
                 <Link to={`/projects/1`}>Mattamy Development</Link>
               </td>
@@ -78,7 +79,7 @@ const Proposals = () => {
               <td className="listItem font-class-1 ">Nov 12, 2020</td>
               <td className="listItem font-class-1 ">14</td>
               <td className="listItem font-class-1 ">2</td>
-            </tr>
+            </tr> */}
             {/* 
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
@@ -183,7 +184,7 @@ const Proposals = () => {
                 {/* <Link to={`/proposals/${project.id}`}>{project.name}</Link> */}
               </td>
               <td className="listItem font-class-1 ">
-                {project.owner ? renderImage(project.owner.name ): null}
+                {/* {project.owner ? renderImage(project.owner.name ): null} */}
                 <span className="listItem-projectOwner font-class-1 ">
                   {project.owner ? project.owner.name : ""}
                 </span>

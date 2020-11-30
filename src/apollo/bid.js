@@ -174,6 +174,7 @@ export const getAllBidsForAUser = gql`
       published_at
       created_at
       contactName
+      status
       organization {
         name
         about
@@ -208,7 +209,7 @@ export const getAllBidsForAUser = gql`
           name
           about
         }
-        status
+      
         owner {
           name
         }
