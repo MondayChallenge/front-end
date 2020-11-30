@@ -11,6 +11,7 @@ export const GetBid = gql`
       status
       owner{
         id
+        name
       }
       organization {
         name

@@ -23,7 +23,7 @@
         grid-template-rows: max-content max-content;
         row-gap: 3rem;
         background-color: white;
-        height: 55%;
+        height: 35%;
         width: 95%;
         align-self: center;
         justify-self: center;
@@ -34,28 +34,30 @@
 
         &__content{
             grid-column: 1/-1;
-             display: grid;
-            grid-template-columns: repeat(3,1fr);
-            grid-template-rows: repeat(3,minmax(min-content,max-content));
-            row-gap: 2rem;
+            // display: grid;
+            // grid-template-columns: repeat(3,1fr);
+            // grid-template-rows: repeat(3,minmax(min-content,max-content));
+            // row-gap: 2rem;
+           
            
             & h1{
                 font-size: 7rem;
                 font-weight: 500;
-                grid-row: 1;
-                grid-column: 1/-1;
+                // grid-row: 1;
+                // grid-column: 1/-1;
             }
 
             & p{
-               grid-row: 2;
-               grid-column: 1/2;
+            //    grid-row: 2;
+            //    grid-column: 1/-1;
               
             }
 
-            & button{
+            &__btn{
                 grid-row: 3;
                 grid-column: 1/-1;
              
+                margin-top: 2rem;
                 // justify-self: end;
                 
             }
