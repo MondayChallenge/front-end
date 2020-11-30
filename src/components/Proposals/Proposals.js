@@ -21,10 +21,11 @@ const Proposals = () => {
 
   const renderImage = (name) => {
     const color = ["orange", "green", "blue", "pink", "purple"];
-    let initials = name.split(' ').map(word=>(word[0])).join('');
-    console.log(initials);
-    let NameCode = initials.length >1 ? initials.split('').reduce((acc,cur)=> (acc[0].charCodeAt()+cur[0].charCodeAt())) : initials.charCodeAt();
+    let words = name.split(' ');
+    let initials = words.length > 1 ? words[0][0] + words[words.length-1][0] : words[0][0];
+    let NameCode = initials.length > 1 ? initials.split('').reduce((acc,cur)=> (acc[0].charCodeAt()+cur[0].charCodeAt())) : initials.charCodeAt();
     let pickColorBasedNameCode = color[NameCode%(color.length)]
+
     return (
       <div className={`listItem-projectOwner-Image ${pickColorBasedNameCode}`}>
         <div class="smallInitial ">{initials}</div>
