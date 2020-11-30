@@ -57,8 +57,8 @@ const BidPage = () => {
                     <Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
                         {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
                         <p>{datum.project.name}</p>
-                        <p >{datum.project.manager.organization.name}</p>
-                        <p >{datum.project.manager.name}</p>
+                        <p >{datum.project.organization.name}</p>
+                        <p >{datum.project.owner.name}</p>
                         {/* <p >${datum.amount}</p> */}
                         <p >Click for More</p>
                         <p >{datum.created_at.split("T")[0]}</p>
