@@ -9,89 +9,95 @@ import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standa
 
 const BidPage = () => {
     // sessionStorage.setItem("jwtToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
-    
-/*
-    const { loading, error, data } = useQuery(GET_ALL_BIDS);
-    // useEffect(() => {}, []);
-    if (loading) return <div>Loading</div>;
-    else if (error) return <div>{JSON.stringify(error)}</div>;
-    else {
-*/
-        const statusColor = {
-            Review: "warning",
-            Awarded: "success",
-            Declined: "danger",
-            Submitted: "neutral"
-        };
 
-        const renderStatus = (status, statusColor) => {
-            // console.log(statusColor);
-            // console.log(statusColor[status]);
-            return (<p className={`font-color--${statusColor[status]}`}>{status}</p>)
+    /*
+        const { loading, error, data } = useQuery(GET_ALL_BIDS);
+        // useEffect(() => {}, []);
+        if (loading) return <div>Loading</div>;
+        else if (error) return <div>{JSON.stringify(error)}</div>;
+        else {
+    */
+
+    const token = sessionStorage.getItem('jwtToken');
+    const userId = sessionStorage.getItem('userId');
+    sessionStorage.setItem('jwt', token);
+    
+    const [bids, setBids] = React.useState([]);
+    const { data } = useQuery(getAllBidsForAUser, {
+        variables: { ownerId: userId },
+    });
+
+
+
+    const statusColor = {
+        Review: "warning",
+        Awarded: "success",
+        Declined: "danger",
+        Submitted: "neutral"
+    };
+
+    const renderStatus = (status, statusColor) => {
+        // console.log(statusColor);
+        // console.log(statusColor[status]);
+        return (<p className={`font-color--${statusColor[status]}`}>{status}</p>)
+    }
+
+
+    //in PM point of view, this page can show all bids for your project for you to reject/accept
+    //from constractor POV, this page can show all bids that you sent out 
+    //so you have to filter the bids on this component
+
+
+    //if you are the bidder, you will see project name, bidder name, their org name, receieved, status
+
+
+
+
+    const renderRow = (data) => {
+        return data.bids.map((datum, i) => {
+            console.log(datum);
+            return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
+                {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
+                <p>{datum.project.name}</p>
+                <p >{datum.project.manager.organization.name}</p>
+                <p >{datum.project.manager.name}</p>
+                <p >${datum.amount}</p>
+                <p >{datum.created_at.split("T")[0]}</p>
+                {renderStatus(datum.status, statusColor)}
+            </Link>
+            )
+
+        })
+
+    }
+
+    // <Link
+    //       style={{ textDecoration: 'none', color: 'rgba(0,154,255,1.0)' }}
+    //       to={`mainproject/${id}`}>
+    //       {title}
+    //     </Link>
+    React.useEffect(() => {
+        if (data) {
+            console.log('data', data)
+            setBids(data.bids)
         }
 
+    }, [data])
 
-        //in PM point of view, this page can show all bids for your project for you to reject/accept
-        //from constractor POV, this page can show all bids that you sent out 
-        //so you have to filter the bids on this component
+    return (
+        <div className="dashboard-projects bidPage">
+            <Navigation />
+            <div className="bid-page">
+                <div className="bid-page__thead table-blocks__thead">
+                    <p>Project Name</p>
+                    <p>Organization</p>
+                    <p>Project Manager</p>
+                    <p>Amount</p>
+                    <p>Date Sent</p>
+                    <p>Status</p>
+                </div>
 
-
-        //if you are the bidder, you will see project name, bidder name, their org name, receieved, status
-        
-    
-        const token = sessionStorage.getItem('jwtToken');
-        const userId = sessionStorage.getItem('userId');
-        sessionStorage.setItem('jwt',token);
-        const [bids,setBids] = React.useState([]);
-        const { data } = useQuery(getAllBidsForAUser,{
-                variables: {ownerId:userId},
-            });
-        
-
-        const renderRow = (data) => {
-            return data.bids.map((datum, i) => {
-                return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
-                    {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
-                    <p>{datum.project.name}</p>
-                    <p >{datum.project.manager.organization.name}</p>
-                    <p >{datum.project.manager.name}</p>
-                    <p >${datum.amount}</p>
-                    <p >{datum.created_at.split("T")[0]}</p>
-                    {renderStatus(datum.status, statusColor)}
-                </Link>
-                )
-
-            })
-
-        }
-
-        // <Link
-        //       style={{ textDecoration: 'none', color: 'rgba(0,154,255,1.0)' }}
-        //       to={`mainproject/${id}`}>
-        //       {title}
-        //     </Link>
-        React.useEffect(()=>{
-            if(data){
-              console.log('data',data)
-              setBids(data.bids)
-            }
- 
-          },[data])
-
-        return (
-            <div className="dashboard-projects bidPage">
-                <Navigation />
-                <div className="bid-page">
-                    <div className="bid-page__thead table-blocks__thead">
-                        <p>Project Name</p>
-                        <p>Organization</p>
-                        <p>Project Manager</p>
-                        <p>Amount</p>
-                        <p>Date Sent</p>
-                        <p>Status</p>
-                    </div>
-
-                    {/* <div className="bid-page__trow">
+                {/* <div className="bid-page__trow">
                         <p >Cupertino Electric, Inc.</p>
                         <p >David Felb</p>
                         <p className="font-color--success">Open to Bid</p>
@@ -99,13 +105,13 @@ const BidPage = () => {
                         <p >Mattamy Development</p>
                     </div> */}
 
-                    {bids.length>0 ? renderRow(data) : null}
+                {bids.length > 0 ? renderRow(data) : null}
 
 
 
-                </div>
             </div>
-        )
+        </div>
+    )
     // }
 
 }

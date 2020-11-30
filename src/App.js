@@ -23,7 +23,8 @@ import mondaySdk from 'monday-sdk-js';
 
 const monday = mondaySdk();
 monday.setToken(
-  'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc'
+  // 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkxNjQwMjQzLCJ1aWQiOjE2OTgzMjgwLCJpYWQiOiIyMDIwLTExLTIzVDA0OjIxOjExLjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.IfCFnLLJFxZdtUCYmmDriA0tUDWFHMVL414ubvEzVlc'
+  "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjkyMTg4MjkwLCJ1aWQiOjE2NjgyODI1LCJpYWQiOiIyMDIwLTExLTI5VDIzOjQ2OjE2LjAwMFoiLCJwZXIiOiJtZTp3cml0ZSJ9.4bYxxw9Be6eh-aoMX6MNVvxNmREFQPulZOYgTQ-sx0U"
 );
 
 // const hist = createBrowserHistory();
@@ -79,7 +80,7 @@ const App = () => {
           }
         }
         `);
-      // console.log('monday user: ',data.me)
+      console.log('monday user: ',data.me)
       setName(data.me.name);
       setEamil(data.me.email);
       setName(data.me.name);

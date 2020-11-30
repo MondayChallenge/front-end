@@ -62,7 +62,7 @@ const Proposals = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="listEntry ">
+            {/* <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
                 <Link to={`/projects/1`}>Mattamy Development</Link>
               </td>
@@ -80,7 +80,7 @@ const Proposals = () => {
               <td className="listItem font-class-1 ">Nov 12, 2020</td>
               <td className="listItem font-class-1 ">14</td>
               <td className="listItem font-class-1 ">2</td>
-            </tr>
+            </tr> */}
             {/* 
             <tr className="listEntry ">
               <td className="listItem title font-class-1 ">
