@@ -342,11 +342,7 @@ const Projects = () => {
           historyPushLink="/"
         /> : null}
 
-{<Modal
-          handleModalFunct={handleModal}
-          message={"project"}
-          historyPushLink="/"
-        /> }
+
         {/* <Mutation mutation={AddProject} variables={{ name }} >
           {AddProposal => <button  onClick={(e)=>{e.preventDefault();AddProposal()}} className="project-form__submit-btn">Submit</button>}
         </Mutation> */}
