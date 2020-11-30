@@ -9,6 +9,9 @@ export const GetBid = gql`
       miscExpense
       estTime
       status
+      owner{
+        id
+      }
       organization {
         name
         about
@@ -16,8 +19,15 @@ export const GetBid = gql`
       project {
         id
         name
+        manager{
+          name
+          organization {
+            name
+          }
+        }
       }
     }
+
   }
 `;
 

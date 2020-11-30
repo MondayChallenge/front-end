@@ -1,8 +1,8 @@
 import React from 'react';
 import Navigation from 'components/Navigation/Navigation';
 import renderImgBubble from 'components/utils/renderImgBubble';
-import { useQuery } from '@apollo/client';
-import { getAllBidsForAUser } from '../../apollo/bid';
+import { useQuery, useMutation } from '@apollo/client';
+import { getAllBidsForAUser,CHANGE_BID_STATUS } from '../../apollo/bid';
 import { Link } from 'react-router-dom';
 import './BidPage.css'
 import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standardNaming';
@@ -26,6 +26,7 @@ const BidPage = () => {
     const { data } = useQuery(getAllBidsForAUser, {
         variables: { ownerId: userId },
     });
+    
 
   
 
@@ -55,7 +56,7 @@ const BidPage = () => {
 
 
     const renderRow = (data) => {
-        console.log(data);
+        //console.log(data);
         return data.bids.map((datum, i) => {
 
             return (
@@ -64,7 +65,8 @@ const BidPage = () => {
                     <p>{datum.project.name}</p>
                     <p >{datum.project.manager.organization.name}</p>
                     <p >{datum.project.manager.name}</p>
-                    <p >${datum.amount}</p>
+                    {/* <p >${datum.amount}</p> */}
+                    <p >Click for More</p>
                     <p >{datum.created_at.split("T")[0]}</p>
                     {renderStatus(datum.status, statusColor)}
                 </Link>
@@ -80,7 +82,7 @@ const BidPage = () => {
 
         console.log(data);
         return data.projects.map((datum, i) => {
-
+            //TODO need to make function to go through all bids of the project 
             return (
                 <Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.bids[0].id}`} key={datum.bids[0].id}>
                     {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
@@ -90,7 +92,8 @@ const BidPage = () => {
                     <p >{datum.bids[0].organization.name}</p>
                     {/* name of bidder */}
                     <p >{datum.bids[0].contactName}</p>
-                    <p >${datum.bids[0].amount}</p>
+                    {/* <p >${datum.bids[0].amount}</p> */}
+                    <p >Click for More</p>
                     <p >{datum.bids[0].created_at.split("T")[0]}</p>
                     {datum.bids[0].status === 'Submitted' ?  <p >Ready for Review</p> :renderStatus(datum.bids[0].status, statusColor) }
                 </Link>
@@ -99,7 +102,6 @@ const BidPage = () => {
         })
 
     }
-
 
     return (
         <div className="dashboard-projects bidPage">
