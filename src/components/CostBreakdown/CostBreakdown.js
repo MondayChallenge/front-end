@@ -28,6 +28,10 @@ export default function CostBreakdown(props) {
 
   let history = useHistory();
 
+  // const token = sessionStorage.getItem('jwtToken');
+  const userId = sessionStorage.getItem('userId');
+  // sessionStorage.setItem('jwt', token);
+
 
   let projectId = 'dsfsdlfksj';
   const { loading, error, data } = useQuery(GetBid, {
@@ -44,7 +48,7 @@ export default function CostBreakdown(props) {
   else if (error) return <div>{JSON.stringify(error)}</div>;
   else {
 
-    // console.log(data.bid.contactName);
+    console.log(data.bid);
 
     const materials = data.bid.material.data.map((data) => {
       return (
@@ -116,23 +120,32 @@ export default function CostBreakdown(props) {
       history.push('/bidPage');
     }
 
+    const renderButtons = () => {
+      if (userId === data.bid.owner.id) {
+        return null;
+      } else {
+        return (<div className="bid-btn-group">
+          <button className="bid-btn submit-btn button-background-color--success" onClick={() => { handleChangeStatus(AWARDED) }}>Accept Bid</button>
+          <button className="bid-btn submit-btn button-background-color--danger" onClick={() => { handleChangeStatus(DECLINED) }}>Reject Bid</button>
+        </div>)
+      }
+
+    }
+
     return (
       <div className="dashboard-projects">
         <Navigation />
         <div className="cost-breakdown">
           <div className="row3">
             <h1 className="form-section-header">Bid Proposal</h1>
-            <div className="bid-btn-group">
-              <button className="bid-btn submit-btn button-background-color--success" onClick={() => { handleChangeStatus(AWARDED) }}>Accept Bid</button>
-              <button className="bid-btn submit-btn button-background-color--danger" onClick={() => { handleChangeStatus(DECLINED) }}>Reject Bid</button>
-            </div>
+            {renderButtons()}
           </div>
           <div className="grid">
             <div className="col">
-              <LeftRight mkey={'Project Name'} val={data.bid.project.Name} />
+              <LeftRight mkey={'Project Name'} val={data.bid.project.name} />
               <LeftRight
-                mkey={'Project Manager'}
-                val={data.bid.organization.Name}
+                mkey={'Project Contact Name'}
+                val={data.bid.project.manager.name}
               />
               <LeftRight mkey={'Project ID'} val={data.bid.project.id} />
               <br />
@@ -150,8 +163,7 @@ export default function CostBreakdown(props) {
               {misc}
             </div>
             <div className="col">
-
-              <LeftRight mkey={'Org. Name'} val={data.bid.organization.Name} />
+              <LeftRight mkey={'Org. Name'} val={data.bid.organization.name} />
               <LeftRight mkey={'Submitted by'} val={data.bid.contactName} />
               <LeftRight mkey={'Est. Time'} val={data.bid.estTime} />
               {/* <div className = "custom-br"></div> */}
@@ -172,8 +184,8 @@ export default function CostBreakdown(props) {
                 </div>
                 {miscPrices}
               </div>
-              <div className="est-tot">ESTIMATED TOTAL</div>
-              <Tot />
+              {/* <div className="est-tot">ESTIMATED TOTAL</div>
+              <Tot /> */}
             </div>
 
           </div>
