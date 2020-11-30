@@ -16,9 +16,9 @@ const Modal = ({ handleModalFunct, message, historyPushLink }) => {
         <div className="modal">
             <div className="modal__display">
                 <div className="modal__display__content">
-                    <h1>Success!</h1>
-                    <p>You have successfully created your {message}. It is live and ready to be viewed. Thank for using BidHub! </p>
-                    <button className = "submit-btn modal__btn" onClick={onClickModal}>Go to your {message}s!</button>
+                    <h1 >Success!</h1>
+                    <p >You have successfully created your {message}. It is live and ready to be viewed. Thank for using BidHub! </p>
+                    <button className = "submit-btn modal__display__content__btn modal__btn" onClick={onClickModal}>Go to your {message}s!</button>
                 </div>
 
             </div>
