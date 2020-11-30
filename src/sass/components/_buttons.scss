@@ -7,11 +7,27 @@
     font-size: 1.8rem;
     line-height: 4rem;
     text-align: center;
+    
 
-  }
+}
 
-  .submit-btn :hover,
-  .submit-btn :focus {
+.add-btn {
+    background-color: white;
+    height: 4rem;
+    width: 16rem;
+    color: $color-azure-radiance;
+    border-radius: 10rem;
+    border: solid 2px $color-azure-radiance;
+    font-size: 1.8rem;
+    line-height: 4rem;
+    text-align: center;
+    // padding-bottom: rem;
+    
+
+}
+
+.submit-btn :hover,
+.submit-btn :focus {
     background: $color-azure-radiance;
 }
 
@@ -24,8 +40,6 @@
   &--success :focus{
     background-color: $color-success;
   } 
-
-
 
   &--warning{
       background-color: $color-warning;

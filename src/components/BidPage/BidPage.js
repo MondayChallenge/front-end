@@ -70,7 +70,7 @@ const BidPage = () => {
 
         }
 
-        //console.log(data)
+        console.log(data)
 
         //to render all user's project's bids
         const renderProjectRow = (data) => {

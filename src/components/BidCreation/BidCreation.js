@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navigation from 'components/Navigation/Navigation'
+import Modal from 'components/Modal/Modal';
 import { SUBMITTED, MATERIAL, LABOR, MISCELLANEOUS } from 'components/utils/standardNaming';
 import { CREATE_BID } from '../../apollo/bid';
 
@@ -32,7 +33,7 @@ const BidCreation = (props) => {
     const [miscCounter, setMiscCounter] = useState(0);
 
     const [amount, setAmount] = useState(0);
-
+    const [showModal, setShowModal] = useState(false);
     //const formRef = useRef();
 
 
@@ -79,27 +80,27 @@ const BidCreation = (props) => {
         })
     }
 
-    const handleAmountCounter = (event)=>{
+    // const handleAmountCounter = (event)=>{
 
-        const int = event.target.value;
-      setTimeout(()=>setAmount(amount+parseInt(int)),1000)
-        
-        
-    }
+    //     const int = event.target.value;
+    //   setTimeout(()=>setAmount(amount+parseInt(int)),1000)
 
-  
+
+    // }
+
+
 
     const renderBidDetails = (counter, name) => {
         let renderElement = [];
         for (let i = 0; i <= counter; i++) {
-            renderElement.push(<div className="form-inputs-row"key = {`${name}_${i}`}>
+            renderElement.push(<div className="form-inputs-row" key={`${name}_${i}`}>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >{name}</h4>
                     <Field name={`${name}_item_${i}`} className="form-inputs form-inputs--small" />
                 </div>
                 <div className="form-inputs-block form-inputs-block--small">
                     <h4 className="form-inputs-label" >Cost</h4>
-                    <Field name={`${name}_cost_${i}`}  className="form-inputs form-inputs--small"></Field>
+                    <Field name={`${name}_cost_${i}`} className="form-inputs form-inputs--small"></Field>
                 </div>
             </div>
             )
@@ -125,7 +126,7 @@ const BidCreation = (props) => {
         }
     }
 
- 
+
 
 
     const shapingValues = (values) => {
@@ -177,17 +178,21 @@ const BidCreation = (props) => {
         return gqlData;
     }
 
-  
+    const handleModal = (nextState) => {
+        setShowModal(nextState);
+    }
 
 
     const handleSubmit = (data) => {
         console.log('this was triggered');
 
         createBid({ variables: data }).then(res => {
-            
+
         }).catch(err => { throw err });
-        alert("You have successfully placed your bid");
-        history.push('/bidPage');
+
+        setShowModal(true);
+        // alert("You have successfully placed your bid");
+        // history.push('/bidPage');
     }
 
 
@@ -198,7 +203,7 @@ const BidCreation = (props) => {
             <Formik
                 initialValues={{
 
-                    organization: 1,
+                    organization: 2,
                     contactName: "",
                     phone: "",
                     license_number: "",
@@ -206,17 +211,17 @@ const BidCreation = (props) => {
                     estTime: "",
                     availability: "2020-12-01",
                     notes: "",
-          owner: sessionStorage.getItem('userId'),
-          // eslint-disable-next-line no-undef
-          project: props.match.params.id, //from where you chose the project                    //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
+                    owner: sessionStorage.getItem('userId'),
+                    // eslint-disable-next-line no-undef
+                    project: props.match.params.id, //from where you chose the project                    //TODO - NEED TO CALCULATE AMOUNT AS YOU ADD ITEMS
                     amount: amount,
                     status: SUBMITTED,
 
                 }}
 
                 // validationSchema={SignupSchema}
-    
-              
+
+
 
                 onSubmit={values => {
 
@@ -224,7 +229,7 @@ const BidCreation = (props) => {
                     //console.log(finalValues);
                     //need to input values here and manupulate it
                     handleSubmit(finalValues);
-                     //handleSubmit(testData)
+                    //handleSubmit(testData)
                 }}
             >
                 {({ errors, touched }) => (
@@ -307,19 +312,19 @@ const BidCreation = (props) => {
                         <div className="form-inputs-section">
 
                             {renderBidDetails(materialCounter, MATERIAL)}
-                            <button type="button" onClick={() => { handleCounter(MATERIAL) }}>Plus</button>
+                            <button className="add-btn bid-creation__add-btn" type="button" onClick={() => { handleCounter(MATERIAL) }}>Add More +</button>
                             {renderBidDetails(laborCounter, LABOR)}
-                            <button type="button" onClick={() => { handleCounter(LABOR) }}>Plus</button>
+                            <button className="add-btn bid-creation__add-btn" type="button" onClick={() => { handleCounter(LABOR) }}>Add More +</button>
                             {renderBidDetails(miscCounter, MISCELLANEOUS)}
-                            <button type="button" onClick={() => { handleCounter(MISCELLANEOUS) }}>Plus</button>
+                            <button className="add-btn bid-creation__add-btn" type="button" onClick={() => { handleCounter(MISCELLANEOUS) }}>Add More +</button>
 
 
                         </div>
 
                         <div className="bid-creation__summary">
                             <p className="bid-creation__summary__note">
-                            Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
-                            for a period of ninety (90) days from the date that bids are due to be received.
+                                Note: It is understood that this Bid shall remain in effect, and may not be withdrawn,
+                                for a period of ninety (90) days from the date that bids are due to be received.
                             </p>
 
                             {/* <p className="bid-creation__summary__total">ESTIMATED TOTAL</p>
@@ -327,7 +332,11 @@ const BidCreation = (props) => {
                         </div>
 
                         <input type="submit" value="Submit" className="bid-creation__submit-btn submit-btn" ></input>
-
+                        {showModal ? <Modal
+                            handleModalFunct={handleModal}
+                            message={"bid"}
+                            historyPushLink="/bidPage"
+                        />: null}
 
                     </Form>
                 )}

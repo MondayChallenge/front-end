@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Navigation from '../Navigation/Navigation';
+import Modal from 'components/Modal/Modal';
 
 // import {AddProject} from '../../apollo/project';
 // import { Formik } from 'formik';
@@ -32,13 +33,15 @@ const Projects = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [representatives] = useState([sessionStorage.getItem('userId')]);
-  const [createProject] = useMutation(AddProject,{
+  const [createProject] = useMutation(AddProject, {
     onCompleted: (data) => {
       console.log('succeed adding project', data.createProject.project.id);
       return data;
     },
     onError: (error) => console.error('Error getting RegisterUser', error),
   });
+
+  const [showModal, setShowModal] = useState(false);
 
   let history = useHistory();
 
@@ -49,8 +52,8 @@ const Projects = () => {
       new Date() - Date.parse(endDate) > 0
         ? 'Closed to Bid'
         : new Date() - Date.parse(startDate) < 0
-        ? 'Upcoming'
-        : 'Open to Bid',
+          ? 'Upcoming'
+          : 'Open to Bid',
     endDate: endDate,
     minBid: parseFloat(minBid),
     city: city,
@@ -78,6 +81,11 @@ const Projects = () => {
     phone: phone,
     projectType: projectType,
   };
+
+  const handleModal = (nextState) => {
+    setShowModal(nextState);
+}
+
   const handleSubmit = (event) => {
     console.log('click button');
     event.preventDefault();
@@ -85,8 +93,9 @@ const Projects = () => {
     sessionStorage.setItem('jwt', token);
     // sessionStorage.setItem('jwt',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA2Mjc4MDk3LCJleHAiOjE2MDg4NzAwOTd9.efVO2-okLs2ZanNEBWnDKPp3gC4fnh-AY7Rx6ZXEUyI");
     createProject({ variables: testData });
-    alert("You have successfully created your project");
-    history.push('/');
+
+    setShowModal(true);
+   
   };
 
   return (
@@ -190,21 +199,21 @@ const Projects = () => {
             <h4 className="form-inputs-label" >
               Project Description
             </h4>
-            <input className="form-inputs form-inputs--large" onChange={e=>setDescription(e.target.value)}></input>
+            <input className="form-inputs form-inputs--large" onChange={e => setDescription(e.target.value)}></input>
           </div>
-          
+
         </div>
 
         <h1 className="form-section-header">Project Location</h1>
 
         <p className="form-section-subheader  ">
-        Please complete the fields below to indicate where the project will be taking place.
+          Please complete the fields below to indicate where the project will be taking place.
         </p>
 
         <div className="form-inputs-section">
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >Country</h4>
-            <input className="form-inputs form-inputs--small" onChange={e=>setCountry(e.target.value)}></input>
+            <input className="form-inputs form-inputs--small" onChange={e => setCountry(e.target.value)}></input>
             {/* <div class="select-C61RwL valign-text-middle font-class-1">Select</div> */}
             {/* dropdown carrot
             <img class="vector-6" src="" /> */}
@@ -212,7 +221,7 @@ const Projects = () => {
 
           <div className="form-inputs-block form-inputs-block--small">
             <h4 className="form-inputs-label" >State/Province</h4>
-            <input className="form-inputs form-inputs--small" onChange={e=>setState(e.target.value)}></input>
+            <input className="form-inputs form-inputs--small" onChange={e => setState(e.target.value)}></input>
             {/* <div class="select-VMr6Om valign-text-middle font-class-1">
             Select
           </div> */}
@@ -326,6 +335,12 @@ const Projects = () => {
 
         </div> */}
         <input type="submit" value="Submit" className="project-form__submit-btn submit-btn" ></input>
+
+        {showModal ? <Modal
+          handleModalFunct={handleModal}
+          message={"project"}
+          historyPushLink="/"
+        /> : null}
         {/* <Mutation mutation={AddProject} variables={{ name }} >
           {AddProposal => <button  onClick={(e)=>{e.preventDefault();AddProposal()}} className="project-form__submit-btn">Submit</button>}
         </Mutation> */}
