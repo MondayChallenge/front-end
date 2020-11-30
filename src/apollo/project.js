@@ -134,6 +134,43 @@ export const getProjects = gql`
     }
   }
 `;
+
+// export const getProjectsBids = gql`
+//   query($id: ID) {
+//     projects(sort: "endDate:asc", where: { representatives_in: $id }) {
+//       id
+//       address
+//       city
+//       zip
+//       state
+//       estTime
+//       minBid
+//       description
+//       name
+//       owner {
+//         name
+//       }
+//       status
+//       endDate
+//       published_at
+//       invitations {
+//         id
+//       }
+//       bids {
+//         id
+//         amount
+//         published_at
+//         created_at
+//         contactName
+//         status
+//         organization{
+//           id
+//           name
+//         }
+//       }
+//     }
+//   }
+// `;
 /*
 {
   "id": "1"

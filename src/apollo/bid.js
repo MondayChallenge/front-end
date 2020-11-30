@@ -200,10 +200,9 @@ export const getAllBidsForAUser = gql`
             name
           }
         }
-        team {
+        representatives{
           id
           username
-          name
         }
         organization {
           name
@@ -211,6 +210,38 @@ export const getAllBidsForAUser = gql`
         }
       
         owner {
+          name
+        }
+      }
+    }
+    projects(sort: "endDate:asc", where: { representatives_in: $ownerId }) {
+      id
+      address
+      city
+      zip
+      state
+      estTime
+      minBid
+      description
+      name
+      owner {
+        name
+      }
+      status
+      endDate
+      published_at
+      invitations {
+        id
+      }
+      bids {
+        id
+        amount
+        published_at
+        created_at
+        contactName
+        status
+        organization{
+          id
           name
         }
       }

@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from 'components/Navigation/Navigation';
 import renderImgBubble from 'components/utils/renderImgBubble';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_BIDS, getAllBidsForAUser } from '../../apollo/bid';
+import { getAllBidsForAUser } from '../../apollo/bid';
 import { Link } from 'react-router-dom';
 import './BidPage.css'
 import { AWARDED, DECLINED, REVIEWING, SUBMITTED } from 'components/utils/standardNaming';
@@ -21,12 +21,24 @@ const BidPage = () => {
     const token = sessionStorage.getItem('jwtToken');
     const userId = sessionStorage.getItem('userId');
     sessionStorage.setItem('jwt', token);
-    
+
     const [bids, setBids] = React.useState([]);
     const { data } = useQuery(getAllBidsForAUser, {
         variables: { ownerId: userId },
     });
 
+  
+
+ 
+    React.useEffect(() => {
+        
+        if (data) {
+            console.log('data', data)
+            setBids(data.bids)
+        }
+
+
+    }, [data])
 
 
     const statusColor = {
@@ -37,52 +49,57 @@ const BidPage = () => {
     };
 
     const renderStatus = (status, statusColor) => {
-        // console.log(statusColor);
-        // console.log(statusColor[status]);
+ 
         return (<p className={`font-color--${statusColor[status]}`}>{status}</p>)
     }
 
 
-    //in PM point of view, this page can show all bids for your project for you to reject/accept
-    //from constractor POV, this page can show all bids that you sent out 
-    //so you have to filter the bids on this component
-
-
-    //if you are the bidder, you will see project name, bidder name, their org name, receieved, status
-
-
-
-
     const renderRow = (data) => {
+        console.log(data);
         return data.bids.map((datum, i) => {
-            console.log(datum);
-            return (<Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
-                {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
-                <p>{datum.project.name}</p>
-                <p >{datum.project.manager.organization.name}</p>
-                <p >{datum.project.manager.name}</p>
-                <p >${datum.amount}</p>
-                <p >{datum.created_at.split("T")[0]}</p>
-                {renderStatus(datum.status, statusColor)}
-            </Link>
+
+            return (
+                <Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.id}`} key={datum.id}>
+                    {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
+                    <p>{datum.project.name}</p>
+                    <p >{datum.project.manager.organization.name}</p>
+                    <p >{datum.project.manager.name}</p>
+                    <p >${datum.amount}</p>
+                    <p >{datum.created_at.split("T")[0]}</p>
+                    {renderStatus(datum.status, statusColor)}
+                </Link>
             )
 
         })
 
     }
 
-    // <Link
-    //       style={{ textDecoration: 'none', color: 'rgba(0,154,255,1.0)' }}
-    //       to={`mainproject/${id}`}>
-    //       {title}
-    //     </Link>
-    React.useEffect(() => {
-        if (data) {
-            console.log('data', data)
-            setBids(data.bids)
-        }
+    //to render all user's project's bids
+    const renderProjectRow = (data) => {
 
-    }, [data])
+
+        console.log(data);
+        return data.projects.map((datum, i) => {
+
+            return (
+                <Link className="bid-page__trow table-blocks__trow" to={`costBreakdown/${datum.bids[0].id}`} key={datum.bids[0].id}>
+                    {/* <Link to={`mainproject/${datum.project.id}`}>{datum.project.name}</Link> */}
+                    {/* projct name */}
+                    <p>{datum.name}</p>
+                    {/* org */}
+                    <p >{datum.bids[0].organization.name}</p>
+                    {/* name of bidder */}
+                    <p >{datum.bids[0].contactName}</p>
+                    <p >${datum.bids[0].amount}</p>
+                    <p >{datum.bids[0].created_at.split("T")[0]}</p>
+                    {datum.bids[0].status === 'Submitted' ?  <p >Ready for Review</p> :renderStatus(datum.bids[0].status, statusColor) }
+                </Link>
+            )
+
+        })
+
+    }
+
 
     return (
         <div className="dashboard-projects bidPage">
@@ -91,21 +108,25 @@ const BidPage = () => {
                 <div className="bid-page__thead table-blocks__thead">
                     <p>Project Name</p>
                     <p>Organization</p>
-                    <p>Project Manager</p>
+                    <p>Contact Name</p>
                     <p>Amount</p>
                     <p>Date Sent</p>
                     <p>Status</p>
                 </div>
 
-                {/* <div className="bid-page__trow">
-                        <p >Cupertino Electric, Inc.</p>
-                        <p >David Felb</p>
-                        <p className="font-color--success">Open to Bid</p>
-                        <p >Nov 12, 2020</p>
-                        <p >Mattamy Development</p>
-                    </div> */}
+                {bids.length > 0 ? renderRow(data)
+                    :
+                    <div className="bid-page__trow table-blocks__trow">
 
-                {bids.length > 0 ? renderRow(data) : null}
+                        <p>Loading...</p>
+
+                    </div>
+                }
+
+                {bids.length > 0 ? renderProjectRow(data)
+                    :
+                    null
+                }
 
 
 
